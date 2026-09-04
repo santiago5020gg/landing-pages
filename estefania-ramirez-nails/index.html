@@ -107,6 +107,13 @@ h1,h2,h3{font-family:"Bodoni Moda",Georgia,serif;font-weight:500;margin:0;line-h
 .nav a.link::after{content:"";display:block;height:1px;background:var(--gold);width:0;transition:width .4s var(--ease);margin-top:3px}
 .nav a.link:hover::after{width:100%}
 @media(max-width:860px){.nav .link{display:none}}
+@media(max-width:640px){
+  .topbar{background:var(--ivory);border-bottom:1px solid var(--line);backdrop-filter:none}
+  .topbar .row{height:58px}
+  .brandmark{font-size:1.05rem;white-space:nowrap}
+  .brandmark small{font-size:.5rem;letter-spacing:.22em;margin-top:1px}
+  .nav .btn-primary{display:none}
+}
 
 /* ── Hero ── */
 .hero{position:relative}
@@ -297,7 +304,7 @@ footer .socials svg{width:18px;height:18px}
       <div class="hero-meta reveal">
         <div class="m"><b>4 años</b><span>de experiencia</span></div>
         <div class="m"><b>100%</b><span>diseño personalizado</span></div>
-        <div class="m"><b>Cll 92</b><span># 50C-12, Medellín</span></div>
+        <div class="m"><b>Calle 92</b><span># 50C-12, Medellín</span></div>
       </div>
     </div>
     <div class="hero-photo">
