@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Landings · Mobra Strategic</title>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#241a1f;--ivory:#faf4ee;--gold:#a9803f;--line:#e2d3c8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ivory);color:var(--ink);font-family:"Manrope",system-ui,sans-serif;
+  min-height:100vh;display:flex;flex-direction:column}
+.wrap{max-width:920px;margin:auto;padding:clamp(32px,7vw,80px) clamp(20px,5vw,40px);width:100%}
+.eyebrow{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:600}
+h1{font-family:"Bodoni Moda",serif;font-weight:500;font-size:clamp(2.4rem,6vw,4rem);margin:.5rem 0 .3rem;line-height:1.02}
+h1 em{font-style:italic;color:var(--gold)}
+.sub{color:#6c5058;max-width:52ch;margin:0 0 2.6rem}
+.card{display:flex;align-items:center;gap:1.4rem;text-decoration:none;color:inherit;
+  border:1px solid var(--line);border-radius:6px;padding:16px;background:#fff;
+  box-shadow:14px 20px 40px -26px rgba(36,26,31,.4);transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+.card:hover{transform:translateY(-4px);box-shadow:20px 28px 50px -26px rgba(36,26,31,.5)}
+.card img{width:88px;height:88px;object-fit:cover;border-radius:4px;flex:none}
+.card h2{font-family:"Bodoni Moda",serif;font-weight:500;margin:0;font-size:1.4rem}
+.card p{margin:.2rem 0 0;color:#6c5058;font-size:.9rem}
+.card .go{margin-left:auto;color:var(--gold);font-size:1.4rem}
+footer{margin-top:auto;border-top:1px solid var(--line)}
+footer .wrap{padding-block:22px;font-size:.8rem;color:#6c5058;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="eyebrow">Mobra Strategic</p>
+  <h1>Landing <em>pages</em></h1>
+  <p class="sub">Demos de sitios hechos a la medida para negocios. Toca una para verla en vivo.</p>
+  <a class="card" href="./estefania-ramirez-nails/">
+    <img src="./estefania-ramirez-nails/assets/img/g04.jpg" alt="Estefania Ramirez Nails">
+    <div>
+      <h2>Estefania Ramirez · Nail Artist</h2>
+      <p>Estudio de uñas — Medellín</p>
+    </div>
+    <span class="go">→</span>
+  </a>
+</main>
+<footer><div class="wrap"><span>Mobra Strategic</span><span>Medellín, Colombia</span></div></footer>
+</body>
+</html>
