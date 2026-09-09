@@ -2,4 +2,4 @@
 
 Demos de landing pages por negocio (Mobra Strategic). Publicado con GitHub Pages.
 
-- **estefania-ramirez-nails/** — Estudio de uñas, Medellín.
+- **salon-de-belleza-impamo/** — Salón de belleza IMPAMO, Santa Inés, Medellín.
