@@ -140,24 +140,16 @@ h1,h2,h3{font-family:"Bodoni Moda",Georgia,serif;font-weight:500;margin:0;line-h
   writing-mode:vertical-rl;transform:rotate(180deg);
   font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--steel);
 }
-/* hero as full-bleed banner with brand mark */
+/* hero as full-bleed banner: the logo image fills the panel */
 .hero-photo.is-banner{background:var(--bg-2)}
-.hero-photo.is-banner .banner-bg{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%;transform:scale(1.04)}
+.hero-photo.is-banner img{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;transform:none}
 .hero-photo.is-banner::after{content:"";position:absolute;inset:0;z-index:1;background:
-  linear-gradient(100deg, var(--bg) 2%, rgba(10,14,19,.45) 28%, rgba(10,14,19,.2) 62%),
-  linear-gradient(0deg, var(--bg) 13%, rgba(10,14,19,.5) 27%, rgba(10,14,19,0) 48%)}
-.hero-photo.is-banner .banner-logo{position:absolute;z-index:2;left:50%;top:50%;transform:translate(-50%,-50%);
-  width:clamp(140px,17vw,210px);height:auto;border-radius:999px;
-  box-shadow:0 26px 60px -18px rgba(0,0,0,.8), 0 0 0 5px rgba(10,14,19,.45), 0 0 0 6px rgba(38,198,214,.22)}
+  linear-gradient(100deg, var(--bg) 1%, rgba(10,14,19,0) 16%)}
 @media(max-width:880px){
   .hero-grid{grid-template-columns:1fr;min-height:auto}
-  .hero-photo{height:48vh;order:-1}
-  .hero-photo img{transform:none;object-position:50% 38%}
-  .hero-photo::after{background:linear-gradient(0deg, var(--bg) 2%, rgba(10,14,19,0) 42%)}
-  .hero-photo.is-banner .banner-bg{object-position:50% 30%}
-  .hero-photo.is-banner::after{background:
-    linear-gradient(0deg, var(--bg) 16%, rgba(10,14,19,.3) 34%, rgba(10,14,19,.42) 100%)}
-  .hero-photo.is-banner .banner-logo{width:clamp(120px,30vw,160px)}
+  .hero-photo{height:46vh;order:-1}
+  .hero-photo img{transform:none;object-position:50% 50%}
+  .hero-photo::after{background:linear-gradient(0deg, var(--bg) 1%, rgba(10,14,19,0) 22%)}
   .hero-badge{display:none}
 }
 
@@ -332,8 +324,7 @@ footer .socials svg{width:18px;height:18px}
     </div>
     <div class="hero-photo is-banner">
       <span class="hero-badge">Aqua Spa Detailing</span>
-      <img class="banner-bg" src="assets/img/trabajo-06.jpg" alt="Taller de detallado de Aqua Spa Detailing con techo de luces LED hexagonales" fetchpriority="high">
-      <img class="banner-logo" src="assets/img/perfil.jpg" alt="Logo de Aqua Spa Detailing">
+      <img src="assets/img/perfil.jpg" alt="Logo de Aqua Spa Detailing" fetchpriority="high">
     </div>
   </div>
 </section>
