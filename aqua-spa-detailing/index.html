@@ -153,10 +153,11 @@ h1,h2,h3{font-family:"Bodoni Moda",Georgia,serif;font-weight:500;margin:0;line-h
   .hero-photo{height:46vh;order:-1}
   .hero-photo img{transform:none;object-position:50% 50%}
   .hero-photo::after{background:linear-gradient(0deg, var(--bg) 1%, rgba(10,14,19,0) 22%)}
-  /* square banner on mobile so the logo shows fully, no cropping of the yellow text */
-  .hero-photo.is-banner{height:auto;aspect-ratio:1/1;background:#081226}
-  .hero-photo.is-banner img{object-fit:contain;object-position:center}
-  .hero-photo.is-banner::after{background:linear-gradient(0deg, var(--bg) 0%, rgba(10,14,19,0) 7%)}
+  /* mobile banner: logo image flows in-page (its own square height sets the box),
+     so it always renders on iOS and shows the full logo with no cropping */
+  .hero-photo.is-banner{height:auto;background:#081226;display:block}
+  .hero-photo.is-banner img{position:static;inset:auto;width:100%;height:auto;object-fit:contain;transform:none}
+  .hero-photo.is-banner::after{display:none}
   .hero-badge{display:none}
 }
 
