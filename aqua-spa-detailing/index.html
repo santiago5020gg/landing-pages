@@ -150,6 +150,10 @@ h1,h2,h3{font-family:"Bodoni Moda",Georgia,serif;font-weight:500;margin:0;line-h
   .hero-photo{height:46vh;order:-1}
   .hero-photo img{transform:none;object-position:50% 50%}
   .hero-photo::after{background:linear-gradient(0deg, var(--bg) 1%, rgba(10,14,19,0) 22%)}
+  /* square banner on mobile so the logo shows fully, no cropping of the yellow text */
+  .hero-photo.is-banner{height:auto;aspect-ratio:1/1;background:#081226}
+  .hero-photo.is-banner img{object-fit:contain;object-position:center}
+  .hero-photo.is-banner::after{background:linear-gradient(0deg, var(--bg) 0%, rgba(10,14,19,0) 7%)}
   .hero-badge{display:none}
 }
 
