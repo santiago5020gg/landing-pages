@@ -28,11 +28,12 @@
    STORY: A prospect sees a magazine-grade page that reads premium,
    understands the three sedes and services, and books a free trial
    class through WhatsApp in one tap.
-   ANTI-INVENTION: every name, service, photo, sede and contact link
-   is from the real source (IG @bigtraining01). No invented prices,
-   phone numbers, reviews or metrics — WhatsApp uses their own public
-   bio link (wa.link/v29cna); no promo pricing shown since it is
-   date-limited and could go stale.
+   ANTI-INVENTION: every name, service, photo, sede, address, phone
+   number and trainer credential is from the real source (IG
+   @bigtraining01 + WhatsApp Status graphics they shared: contact
+   numbers, addresses, and the trainer bio card for Julián Hernández).
+   No invented prices, reviews or metrics — no promo pricing shown
+   since the one real flyer we saw is date-limited and could go stale.
    ───────────────────────────────────────────────────────────── */
 
 :root{
@@ -147,12 +148,22 @@ h1,h2,h3{font-family:"Bodoni Moda",Georgia,serif;font-weight:500;margin:0;line-h
   writing-mode:vertical-rl;transform:rotate(180deg);
   font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--steel);
 }
+/* hero as full-bleed banner: the logo image fills the panel */
+.hero-photo.is-banner{background:#000}
+.hero-photo.is-banner img{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;transform:none}
+.hero-photo.is-banner::after{content:"";position:absolute;inset:0;z-index:1;background:
+  linear-gradient(100deg, var(--bg) 1%, rgba(11,11,13,0) 20%)}
 @media(max-width:880px){
   .hero-grid{grid-template-columns:1fr;min-height:auto}
   .hero-photo{height:46vh;order:-1}
   .hero-photo img{transform:none;object-position:50% 18%}
   .hero-photo::after{background:linear-gradient(0deg, var(--bg) 1%, rgba(11,11,13,0) 22%)}
   .hero-badge{display:none}
+  /* mobile banner: logo image flows in-page so it always renders on iOS,
+     showing the full logo with no cropping */
+  .hero-photo.is-banner{height:auto;background:#000;display:block}
+  .hero-photo.is-banner img{position:static;inset:auto;width:100%;height:auto;object-fit:contain;transform:none}
+  .hero-photo.is-banner::after{display:none}
 }
 
 /* ── Marquee strip ── */
@@ -237,6 +248,20 @@ section{position:relative}
 .about ul li svg{width:18px;height:18px;color:var(--accent);flex:none;margin-top:3px}
 @media(max-width:820px){.about-grid{grid-template-columns:1fr}.about-photo{max-width:420px}}
 
+/* ── Trainer (entrenador personalizado) ── */
+.trainer-grid{display:grid;grid-template-columns:1fr .85fr;gap:clamp(28px,5vw,72px);align-items:center}
+.trainer-photo .frame{overflow:hidden;border-radius:3px;box-shadow:var(--shadow);aspect-ratio:1/1.12;border:1px solid var(--line)}
+.trainer-photo .frame img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
+.trainer-quote{font-family:"Bodoni Moda",serif;font-style:italic;font-size:clamp(1.2rem,2.2vw,1.5rem);
+  line-height:1.5;color:var(--paper);border-left:2px solid var(--accent);padding-left:1.4rem;margin:1.6rem 0}
+.trainer-cred{list-style:none;padding:0;margin:1.6rem 0 0;display:grid;gap:.7rem}
+.trainer-cred li{display:flex;gap:.6rem;align-items:flex-start;font-size:.94rem;color:var(--paper-soft)}
+.trainer-cred li svg{width:18px;height:18px;color:var(--accent);flex:none;margin-top:3px}
+.trainer h2{font-size:clamp(2rem,4.6vw,3.4rem);margin-bottom:.3rem}
+.trainer h2 .serif-it{color:var(--accent)}
+.trainer .role{color:var(--paper-soft);font-size:.98rem}
+@media(max-width:820px){.trainer-grid{grid-template-columns:1fr}.trainer-photo{max-width:420px}}
+
 /* ── Booking / CTA ── */
 .book{background:var(--bg-2);position:relative;overflow:hidden;border-top:1px solid var(--line)}
 .book .inner{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,64px);align-items:center}
@@ -288,14 +313,15 @@ footer .socials svg{width:18px;height:18px}
 <header class="topbar" id="top">
   <div class="wrap row">
     <a class="brandmark" href="#top">
-      <img src="assets/img/profile.jpg" alt="Logo de Big Training">
+      <img src="assets/img/logo-hd.jpg" alt="Logo de Big Training">
       <span class="bt">Big Training<small>Entrenamiento funcional & cycling · Medellín</small></span>
     </a>
     <nav class="nav">
       <a class="link" href="#servicios">Servicios</a>
       <a class="link" href="#lookbook">Galería</a>
+      <a class="link" href="#entrenador">Entrenador</a>
       <a class="link" href="#sobre">Nosotros</a>
-      <a class="btn btn-primary" href="https://wa.link/v29cna" target="_blank" rel="noopener">
+      <a class="btn btn-primary" href="https://wa.me/573154393556?text=Hola%20Big%20Training%2C%20quiero%20agendar%20mi%20clase%20de%20cortes%C3%ADa%20%F0%9F%92%AA" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.6-1.2A9 9 0 1 0 12 3Z" stroke-linejoin="round"/><path d="M8.5 8.8c0 3.6 3.1 6.7 6.7 6.7.6 0 1.1-.5 1.1-1.1l-.1-1.2-2-.6-.9.9c-1.3-.6-2.3-1.6-2.9-2.9l.9-.9-.6-2-1.2-.1c-.6 0-1 .5-1 1.1Z"/></svg>
         Clase de cortesía
       </a>
@@ -312,7 +338,7 @@ footer .socials svg{width:18px;height:18px}
       <p class="lede reveal">Entrenamiento funcional, cardio y cycling en tres sedes de Medellín. En Big Training entrenas para superar tu propia marca, clase a clase.</p>
       <div class="rule reveal"></div>
       <div class="cta reveal">
-        <a class="btn btn-wa" href="https://wa.link/v29cna" target="_blank" rel="noopener">
+        <a class="btn btn-wa" href="https://wa.me/573154393556?text=Hola%20Big%20Training%2C%20quiero%20agendar%20mi%20clase%20de%20cortes%C3%ADa%20%F0%9F%92%AA" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.6-1.2A9 9 0 1 0 12 3Z" stroke-linejoin="round"/><path d="M8.5 8.8c0 3.6 3.1 6.7 6.7 6.7.6 0 1.1-.5 1.1-1.1l-.1-1.2-2-.6-.9.9c-1.3-.6-2.3-1.6-2.9-2.9l.9-.9-.6-2-1.2-.1c-.6 0-1 .5-1 1.1Z"/></svg>
           Agenda tu clase de cortesía
         </a>
@@ -324,9 +350,9 @@ footer .socials svg{width:18px;height:18px}
         <div class="m"><b>Funcional & cycling</b><span>bajo un mismo techo</span></div>
       </div>
     </div>
-    <div class="hero-photo">
+    <div class="hero-photo is-banner">
       <span class="hero-badge">Big Training</span>
-      <img src="assets/img/post-04-persona.jpg" alt="Entrenador de Big Training en la zona de pesas de la sede, bajo las columnas naranjas características del gimnasio" fetchpriority="high">
+      <img src="assets/img/logo-hd.jpg" alt="Logo de Big Training: puño en alto sostiene un rayo, sobre fondo negro" fetchpriority="high">
     </div>
   </div>
 </section>
@@ -341,7 +367,7 @@ footer .socials svg{width:18px;height:18px}
 
 <!-- STATEMENT -->
 <section class="statement sec-pad">
-  <img class="bg" src="assets/img/post-07-biceps.jpg" alt="Clase de cycling bajo luces LED hexagonales en la nueva sede de Big Training en Santa Cruz" aria-hidden="true">
+  <img class="bg" src="assets/img/bg-equipo.jpg" alt="Mancuernas, kettlebell y lazo de saltar de Big Training" aria-hidden="true">
   <div class="wrap">
     <p class="q reveal">Compite contra ti mismo. Un objetivo, tres sedes y un mismo compromiso: <em>tu mejor versión.</em></p>
     <div class="by reveal"><span class="l"></span>Big Training — Simón Bolívar · Itagüí · Santa Cruz</div>
@@ -355,19 +381,19 @@ footer .socials svg{width:18px;height:18px}
     <p class="reveal">Todo lo que necesitas para entrenar en serio, en las tres sedes de Big Training.</p>
   </div>
   <div class="svc-list">
-    <a class="svc reveal" href="https://wa.link/v29cna" target="_blank" rel="noopener">
+    <a class="svc reveal" href="https://wa.me/573154393556?text=Hola%20Big%20Training%2C%20quiero%20informaci%C3%B3n%20de%20entrenamiento%20funcional" target="_blank" rel="noopener">
       <span class="svc-media"><img src="assets/img/post-04-persona.jpg" alt="Zona de pesas y entrenamiento funcional de Big Training, con columnas naranjas y luces hexagonales"></span>
       <span class="no">01</span>
       <div><h3>Entrenamiento <span class="it">funcional</span></h3><p class="desc">Pesas, mancuernas y zona funcional en un gimnasio pensado para entrenar en serio, en cualquiera de las tres sedes.</p></div>
       <span class="arrow">→</span>
     </a>
-    <a class="svc reveal" href="https://wa.link/v29cna" target="_blank" rel="noopener">
+    <a class="svc reveal" href="https://wa.me/573154393556?text=Hola%20Big%20Training%2C%20quiero%20informaci%C3%B3n%20de%20cardio%20y%20m%C3%A1quinas" target="_blank" rel="noopener">
       <span class="svc-media"><img src="assets/img/post-02-cinta.jpg" alt="Zona de cardio de Big Training con cintas y elípticas, acompañada por el equipo del gimnasio"></span>
       <span class="no">02</span>
       <div><h3>Cardio & <span class="it">máquinas</span></h3><p class="desc">Cinta, elíptica y máquinas de cardio, con acompañamiento de nuestro equipo desde el primer día.</p></div>
       <span class="arrow">→</span>
     </a>
-    <a class="svc reveal" href="https://wa.link/v29cna" target="_blank" rel="noopener">
+    <a class="svc reveal" href="https://wa.me/573181311460?text=Hola%20Big%20Training%2C%20quiero%20informaci%C3%B3n%20del%20Sal%C3%B3n%20de%20Cycling%20en%20Santa%20Cruz" target="_blank" rel="noopener">
       <span class="svc-media"><img src="assets/img/post-06-bici.jpg" alt="Salón de Cycling de Big Training con luces LED hexagonales y bicicletas estáticas"></span>
       <span class="no">03</span>
       <div><h3>Salón de <span class="it">Cycling</span></h3><p class="desc">Clases de cycling en un salón propio, bajo luces LED — la novedad más reciente de nuestra sede Santa Cruz.</p></div>
@@ -383,18 +409,44 @@ footer .socials svg{width:18px;height:18px}
     <p class="reveal">Fotos reales de Big Training: Simón Bolívar, Itagüí y Santa Cruz, en Medellín.</p>
   </div>
   <div class="gallery">
-    <figure class="cell reveal"><img src="assets/img/post-04-persona.jpg" alt="Zona funcional con pesas y columnas naranjas de Big Training"><figcaption class="cap">Zona funcional · pesas</figcaption></figure>
+    <figure class="cell reveal"><img src="assets/img/post-04-persona.jpg" alt="Zona funcional con pesas y columnas naranjas de Big Training"><figcaption class="cap">Simón Bolívar · Cl. 35 #85-13</figcaption></figure>
     <figure class="cell reveal"><img src="assets/img/post-02-cinta.jpg" alt="Staff de Big Training en la zona de cardio"><figcaption class="cap">Cardio · equipo Big Training</figcaption></figure>
     <figure class="cell reveal"><img src="assets/img/post-05-camiseta.jpg" alt="Entrenador en bicicleta estática explicando la metodología de la sede Santa Cruz"><figcaption class="cap">Metodología · Santa Cruz</figcaption></figure>
     <figure class="cell reveal"><img src="assets/img/post-06-bici.jpg" alt="Clase de cycling en el salón dedicado de Big Training"><figcaption class="cap">Salón de Cycling</figcaption></figure>
-    <figure class="cell reveal"><img src="assets/img/post-07-biceps.jpg" alt="Clase de cycling en la nueva sede de Santa Cruz, bajo luces hexagonales"><figcaption class="cap">Nueva sede · Santa Cruz</figcaption></figure>
-    <figure class="cell reveal"><img src="assets/img/post-08-biceps2.jpg" alt="Entrenador de Big Training con balones medicinales, invitando a la clase de cortesía"><figcaption class="cap">Clase de cortesía · conócenos</figcaption></figure>
+    <figure class="cell reveal"><img src="assets/img/post-07-biceps.jpg" alt="Clase de cycling en la nueva sede de Santa Cruz, bajo luces hexagonales"><figcaption class="cap">Santa Cruz · Cra. 48 #99-75</figcaption></figure>
+    <figure class="cell reveal"><img src="assets/img/post-08-biceps2.jpg" alt="Entrenador de Big Training con balones medicinales, invitando a la clase de cortesía"><figcaption class="cap">Itagüí · Cra. 53 #32-68</figcaption></figure>
   </div>
   <div style="text-align:center;margin-top:44px" class="reveal">
     <a class="btn btn-ghost" href="https://www.instagram.com/bigtraining01" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
       Ver más en Instagram
     </a>
+  </div>
+</section>
+
+<!-- TRAINER -->
+<section id="entrenador" class="sec-pad wrap trainer">
+  <div class="trainer-grid">
+    <div>
+      <p class="label reveal">Entrenador personalizado</p>
+      <h2 class="reveal">Julián <span class="serif-it">Hernández.</span></h2>
+      <p class="role reveal">Entrenador personalizado · sede Medellín · @titan7rainer</p>
+      <blockquote class="trainer-quote reveal">"Me defino por la dedicación, la disciplina y un alto nivel de exigencia, siempre con el objetivo claro de alcanzar resultados. Pero no se trata solo del cuerpo: mi método también fortalece la mente. Porque cuando entrenas tu mente y tu cuerpo juntos, nada te detiene."</blockquote>
+      <ul class="trainer-cred reveal">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4 10-10" stroke-linecap="round" stroke-linejoin="round"/></svg>Tecnólogo en entrenamiento deportivo (SENA) y Universidad Área Andina, Bogotá</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4 10-10" stroke-linecap="round" stroke-linejoin="round"/></svg>Certificado en indoor cycling por Next Level y Giro de Action Black</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4 10-10" stroke-linecap="round" stroke-linejoin="round"/></svg>Fuerza, funcional, híbrido, resistencia, recuperación y rehabilitación muscular</li>
+      </ul>
+      <div class="cta reveal" style="margin-top:1.8rem">
+        <a class="btn btn-ghost" href="https://www.instagram.com/titan7rainer" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+          @titan7rainer
+        </a>
+      </div>
+    </div>
+    <div class="trainer-photo reveal">
+      <div class="frame"><img src="assets/img/entrenador-julian.jpg" alt="Julián Hernández, entrenador personalizado de Big Training en la sede Medellín"></div>
+    </div>
   </div>
 </section>
 
@@ -416,8 +468,17 @@ footer .socials svg{width:18px;height:18px}
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4 10-10" stroke-linecap="round" stroke-linejoin="round"/></svg>Funcional & cycling</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4 10-10" stroke-linecap="round" stroke-linejoin="round"/></svg>Clase de cortesía gratis</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4 10-10" stroke-linecap="round" stroke-linejoin="round"/></svg>Tienda deportiva propia</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4 10-10" stroke-linecap="round" stroke-linejoin="round"/></svg>Entrenador personalizado certificado</li>
       </ul>
     </div>
+  </div>
+</section>
+
+<!-- STATEMENT 2 -->
+<section class="statement sec-pad" style="padding-block:clamp(56px,8vw,110px)">
+  <img class="bg" src="assets/img/bg-fog.jpg" alt="Barra de pesas sobre el piso de un gimnasio en penumbra" aria-hidden="true">
+  <div class="wrap">
+    <p class="q reveal" style="max-width:20ch">Tu mejor versión <em>empieza hoy.</em></p>
   </div>
 </section>
 
@@ -428,7 +489,7 @@ footer .socials svg{width:18px;height:18px}
       <h2 class="reveal">Agenda tu clase<span class="serif-it">de cortesía, gratis.</span></h2>
       <p class="reveal">Escríbenos por WhatsApp y te contamos los horarios de la sede más cercana. Sin compromiso. 🔥</p>
       <div class="cta reveal">
-        <a class="btn btn-wa" href="https://wa.link/v29cna" target="_blank" rel="noopener">
+        <a class="btn btn-wa" href="https://wa.me/573154393556?text=Hola%20Big%20Training%2C%20quiero%20agendar%20mi%20clase%20de%20cortes%C3%ADa%20%F0%9F%92%AA" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.6-1.2A9 9 0 1 0 12 3Z" stroke-linejoin="round"/><path d="M8.5 8.8c0 3.6 3.1 6.7 6.7 6.7.6 0 1.1-.5 1.1-1.1l-.1-1.2-2-.6-.9.9c-1.3-.6-2.3-1.6-2.9-2.9l.9-.9-.6-2-1.2-.1c-.6 0-1 .5-1 1.1Z"/></svg>
           Escribir por WhatsApp
         </a>
@@ -441,11 +502,15 @@ footer .socials svg{width:18px;height:18px}
     <div class="info-card reveal">
       <div class="info-row">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 10c0 5-8 11-8 11s-8-6-8-11a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.6"/></svg>
-        <div><div class="k">Sedes</div><div class="v">Simón Bolívar · Itagüí · Santa Cruz — Medellín</div></div>
+        <div><div class="k">Sede Simón Bolívar</div><div class="v">Calle 35 #85-13, Medellín · <a href="https://wa.me/573154393556" target="_blank" rel="noopener">315 439 35 56</a></div></div>
       </div>
       <div class="info-row">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.6-1.2A9 9 0 1 0 12 3Z" stroke-linejoin="round"/></svg>
-        <div><div class="k">WhatsApp</div><div class="v"><a href="https://wa.link/v29cna" target="_blank" rel="noopener">wa.link/v29cna</a></div></div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 10c0 5-8 11-8 11s-8-6-8-11a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+        <div><div class="k">Sede Itagüí</div><div class="v">Carrera 53 #32-68, Samaria · <a href="https://wa.me/573154650373" target="_blank" rel="noopener">315 465 03 73</a></div></div>
+      </div>
+      <div class="info-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 10c0 5-8 11-8 11s-8-6-8-11a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+        <div><div class="k">Sede Santa Cruz</div><div class="v">Carrera 48 #99-75, Moscú 1 · <a href="https://wa.me/573181311460" target="_blank" rel="noopener">318 131 14 60</a></div></div>
       </div>
       <div class="info-row">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
@@ -459,11 +524,11 @@ footer .socials svg{width:18px;height:18px}
 <footer>
   <div class="wrap row">
     <a class="brandmark" href="#top">
-      <img src="assets/img/profile.jpg" alt="Logo de Big Training">
+      <img src="assets/img/logo-hd.jpg" alt="Logo de Big Training">
       <span class="bt">Big Training<small>Entrenamiento funcional & cycling · Medellín</small></span>
     </a>
     <div class="socials">
-      <a href="https://wa.link/v29cna" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <a href="https://wa.me/573154393556" target="_blank" rel="noopener" aria-label="WhatsApp">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.6-1.2A9 9 0 1 0 12 3Z" stroke-linejoin="round"/><path d="M8.5 8.8c0 3.6 3.1 6.7 6.7 6.7.6 0 1.1-.5 1.1-1.1l-.1-1.2-2-.6-.9.9c-1.3-.6-2.3-1.6-2.9-2.9l.9-.9-.6-2-1.2-.1c-.6 0-1 .5-1 1.1Z"/></svg>
       </a>
       <a href="https://www.instagram.com/bigtraining01" target="_blank" rel="noopener" aria-label="Instagram">
@@ -473,11 +538,11 @@ footer .socials svg{width:18px;height:18px}
   </div>
   <div class="wrap fineprint">
     <span>© <span id="yr"></span> Big Training — Medellín, Colombia</span>
-    <span>Agenda tu clase de cortesía: <a href="https://wa.link/v29cna" target="_blank" rel="noopener">wa.link/v29cna</a></span>
+    <span>Agenda tu clase de cortesía: <a href="https://wa.me/573154393556" target="_blank" rel="noopener">315 439 35 56</a></span>
   </div>
 </footer>
 
-<a class="fab" href="https://wa.link/v29cna" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+<a class="fab" href="https://wa.me/573154393556?text=Hola%20Big%20Training%2C%20quiero%20agendar%20mi%20clase%20de%20cortes%C3%ADa%20%F0%9F%92%AA" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.6-1.2A9 9 0 1 0 12 3Z" stroke-linejoin="round"/><path d="M8.5 8.8c0 3.6 3.1 6.7 6.7 6.7.6 0 1.1-.5 1.1-1.1l-.1-1.2-2-.6-.9.9c-1.3-.6-2.3-1.6-2.9-2.9l.9-.9-.6-2-1.2-.1c-.6 0-1 .5-1 1.1Z"/></svg>
 </a>
 
