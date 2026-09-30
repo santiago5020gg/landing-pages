@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jabones Sonata — Jabones artesanales en Medellín</title>
+<meta name="description" content="Jabones artesanales hechos a mano en Medellín: miel, arroz, coco, avena, exfoliante, aloe vera, manzanilla, lavanda, ruda y rosas. Empaque de regalo. Pide por WhatsApp.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%BC%3C/text%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ─────────────────────────────────────────────────────────────
+   DIRECTION CONTRACT
+   THESIS: Editorial apothecary catalogue — Sonata's real studio soap photography
+   leads, in Didone over warm cream + powder-rose, echoing the brand's logo
+   (coffee-brown wordmark, treble clef, lavender sprig, rose watercolour).
+   OWN-WORLD: cream + blush grounds, coffee ink, lavender accent (their organza
+   ribbons), antique-gold hairlines. Bodoni Moda display, Manrope body.
+   STORY: a buyer sees a premium, gift-worthy brand, browses the 10 real soaps
+   with real prices, and orders on WhatsApp in one tap.
+   ───────────────────────────────────────────────────────────── */
+:root{
+  --ivory:#FBF7F1;
+  --ivory-2:#F5EDE6;
+  --blush:#F6E2DF;
+  --rose:#EDCFCB;
+  --ink:#3F2E22;          /* coffee brown (logo wordmark, darkened) */
+  --ink-soft:#6E5A4B;
+  --accent:#6E5796;       /* lavender from their ribbons, darkened for contrast */
+  --gold:#9C7C4E;
+  --gold-bright:#D2B07A;
+  --line:#E7DAD0;
+  --shadow: 24px 34px 60px -34px rgba(63,46,34,.45);
+  --shadow-sm: 10px 16px 30px -18px rgba(63,46,34,.38);
+  --maxw:1240px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ivory);color:var(--ink);
+  font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  font-size:clamp(15px,1.05vw,17px);line-height:1.72;letter-spacing:.005em;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:"Bodoni Moda",Georgia,serif;font-weight:500;margin:0;line-height:1.03;letter-spacing:-.015em;font-optical-sizing:auto;text-wrap:balance}
+.serif-it{font-family:"Bodoni Moda",serif;font-style:italic;font-weight:500}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:clamp(20px,5vw,64px)}
+.label{font-size:.7rem;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:.6em;font-weight:600;font-size:.92rem;letter-spacing:.02em;
+  padding:.95em 1.6em;border-radius:999px;border:1px solid transparent;cursor:pointer;
+  transition:transform .5s var(--ease), box-shadow .5s var(--ease), background .4s, color .4s}
+.btn svg{width:1.15em;height:1.15em;flex:none}
+.btn-primary{background:var(--ink);color:var(--ivory);box-shadow:var(--shadow-sm)}
+.btn-primary:hover{transform:translateY(-3px)}
+.btn-ghost{border-color:var(--ink);color:var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:var(--ivory);transform:translateY(-3px)}
+.btn-wa{background:#1FA855;color:#fff}
+.btn-wa:hover{background:#178a45;transform:translateY(-3px);box-shadow:18px 24px 40px -22px rgba(23,138,69,.6)}
+
+/* Top bar */
+.topbar{position:sticky;top:0;z-index:60;backdrop-filter:saturate(1.2) blur(8px);
+  background:color-mix(in srgb, var(--ivory) 82%, transparent);border-bottom:1px solid transparent;transition:border-color .4s}
+.topbar.scrolled{border-bottom-color:var(--line)}
+.topbar .row{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brandmark{font-family:"Bodoni Moda",serif;font-size:1.5rem;letter-spacing:.04em;font-weight:500;text-transform:lowercase;line-height:1}
+.brandmark small{display:block;font-family:"Manrope";font-size:.56rem;text-transform:uppercase;color:var(--gold);font-weight:600;margin-top:4px;letter-spacing:.26em}
+.nav{display:flex;gap:2.2rem;align-items:center}
+.nav a.link{font-size:.82rem;letter-spacing:.06em;color:var(--ink-soft);transition:color .3s}
+.nav a.link:hover{color:var(--ink)}
+.nav a.link::after{content:"";display:block;height:1px;background:var(--gold);width:0;transition:width .4s var(--ease);margin-top:3px}
+.nav a.link:hover::after{width:100%}
+@media(max-width:860px){.nav .link{display:none}}
+@media(max-width:640px){
+  .topbar{background:var(--ivory);border-bottom:1px solid var(--line);backdrop-filter:none}
+  .topbar .row{height:58px}
+  .brandmark{font-size:1.3rem}
+  .brandmark small{font-size:.5rem;letter-spacing:.2em}
+  .nav .btn-primary{display:none}
+}
+
+/* Hero */
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;min-height:calc(100vh - 72px);align-items:stretch}
+.hero-copy{display:flex;flex-direction:column;justify-content:center;padding:clamp(32px,6vw,96px) clamp(20px,5vw,64px)}
+.hero h1{font-size:clamp(2.8rem,6.6vw,5rem);letter-spacing:-.03em;line-height:1}
+.hero h1 .serif-it{display:block;color:var(--accent)}
+.hero .lede{max-width:46ch;color:var(--ink-soft);font-size:clamp(1.02rem,1.4vw,1.18rem);line-height:1.75;margin:1.7rem 0 0}
+.hero .rule{width:64px;height:1px;background:var(--gold);margin:2rem 0 0}
+.hero .cta{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:2.4rem}
+.hero-meta{display:flex;gap:2.4rem;margin-top:2.8rem;flex-wrap:wrap}
+.hero-meta .m{display:flex;flex-direction:column;gap:.15rem}
+.hero-meta .m b{font-family:"Bodoni Moda",serif;font-size:1.55rem;font-weight:600}
+.hero-meta .m span{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.hero-photo{position:relative;overflow:hidden;background:var(--blush)}
+.hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:40% 50%;transform:scale(1.03)}
+.hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg, var(--ivory) 0%, rgba(251,247,241,0) 22%)}
+@media(max-width:880px){
+  .hero-grid{grid-template-columns:1fr;min-height:auto}
+  .hero-photo{height:58vh;order:-1}
+  .hero-photo img{transform:none}
+  .hero-photo::after{background:linear-gradient(0deg, var(--ivory) 0%, rgba(251,247,241,0) 30%)}
+}
+
+/* Marquee */
+.strip{border-block:1px solid var(--line);background:var(--blush);overflow:hidden}
+.strip .track{display:flex;gap:3rem;white-space:nowrap;padding:14px 0;animation:marq 40s linear infinite;width:max-content}
+.strip span{font-family:"Bodoni Moda",serif;font-style:italic;font-size:1.15rem;color:var(--ink-soft)}
+.strip span::before{content:"✦";color:var(--gold);font-style:normal;margin-right:3rem;font-size:.7em;vertical-align:middle}
+@keyframes marq{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.strip .track{animation:none}}
+
+section{position:relative}
+.sec-pad{padding-block:clamp(72px,10vw,140px)}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-bottom:clamp(36px,6vw,64px)}
+.sec-head h2{font-size:clamp(2.2rem,5.2vw,4rem)}
+.sec-head h2 .serif-it{color:var(--accent)}
+.sec-head p{max-width:40ch;color:var(--ink-soft);margin:0}
+
+/* Statement */
+.statement{background:var(--ink);color:var(--ivory)}
+.statement .q{font-family:"Bodoni Moda",serif;font-weight:500;font-size:clamp(1.8rem,4.4vw,3.2rem);line-height:1.16;max-width:24ch;letter-spacing:-.01em}
+.statement .q em{font-style:italic;color:var(--gold-bright)}
+.statement .by{margin-top:2.2rem;display:flex;align-items:center;gap:1rem;color:rgba(251,247,241,.7);font-size:.82rem;letter-spacing:.14em;text-transform:uppercase}
+.statement .by .l{width:44px;height:1px;background:var(--gold-bright)}
+
+/* Catálogo */
+.catalog{background:var(--ivory-2)}
+.prod-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(18px,2.4vw,30px)}
+.prod{background:var(--ivory);border:1px solid var(--line);border-radius:4px;overflow:hidden;box-shadow:var(--shadow-sm);
+  display:grid;grid-template-columns:1fr 1fr;transition:transform .6s var(--ease), box-shadow .6s var(--ease)}
+.prod:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.prod-media{overflow:hidden;background:var(--blush);min-height:260px}
+.prod-media img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease)}
+.prod:hover .prod-media img{transform:scale(1.07)}
+.prod-body{padding:clamp(18px,2vw,28px);display:flex;flex-direction:column}
+.prod-top{display:flex;justify-content:space-between;align-items:baseline}
+.prod .no{font-family:"Bodoni Moda",serif;color:var(--gold);font-size:.95rem}
+.prod .price{font-family:"Bodoni Moda",serif;font-weight:600;font-size:1.2rem}
+.prod h3{font-size:clamp(1.35rem,2.2vw,1.8rem);margin:.5rem 0 .8rem}
+.prod h3 .it{font-style:italic;color:var(--accent)}
+.prod ul{list-style:none;margin:0 0 1.2rem;padding:0;display:grid;gap:.35rem}
+.prod li{font-size:.86rem;color:var(--ink-soft);line-height:1.45;padding-left:1.1rem;position:relative}
+.prod li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--rose);box-shadow:0 0 0 2px var(--blush)}
+.prod-cta{margin-top:auto;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);
+  border-top:1px solid var(--line);padding-top:.9rem;display:flex;justify-content:space-between}
+.prod-cta:hover{color:var(--accent)}
+.prod-cta span{transition:transform .4s var(--ease)}
+.prod-cta:hover span{transform:translateX(4px)}
+@media(max-width:1000px){.prod-grid{grid-template-columns:1fr}}
+@media(max-width:560px){.prod{grid-template-columns:1fr}.prod-media{aspect-ratio:16/10;min-height:0}}
+
+/* Promos */
+.promo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,26px);margin-top:clamp(28px,4vw,44px)}
+.promo{border:1px solid var(--line);border-radius:4px;padding:clamp(22px,2.6vw,34px);background:var(--ivory);text-align:center}
+.promo .k{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.promo b{display:block;font-family:"Bodoni Moda",serif;font-size:clamp(2rem,3.6vw,2.8rem);font-weight:500;margin:.4rem 0 .2rem}
+.promo p{margin:0;color:var(--ink-soft);font-size:.9rem}
+.promo.feat{background:var(--ink);color:var(--ivory);border-color:var(--ink)}
+.promo.feat p{color:rgba(251,247,241,.72)}
+.promo.feat .k{color:var(--gold-bright)}
+.note{margin-top:1.4rem;text-align:center;font-size:.78rem;color:var(--ink-soft)}
+@media(max-width:820px){.promo-grid{grid-template-columns:1fr}}
+
+/* Regalo */
+.gift{background:var(--blush);overflow:hidden}
+.gift-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.gift-photos{position:relative;padding-bottom:18%}
+.gift-photos .a{border-radius:3px;overflow:hidden;box-shadow:var(--shadow);width:82%}
+.gift-photos .b{position:absolute;right:0;bottom:0;width:52%;border-radius:3px;overflow:hidden;box-shadow:var(--shadow);border:6px solid var(--ivory)}
+.gift h2{font-size:clamp(2.1rem,4.8vw,3.6rem);margin-bottom:1.2rem}
+.gift h2 .serif-it{color:var(--accent);display:block}
+.gift p{color:var(--ink-soft);max-width:48ch}
+.gift .price-tag{display:inline-flex;gap:.6rem;align-items:baseline;margin:1.4rem 0 2rem;padding:.6rem 1.1rem;border:1px solid var(--gold);border-radius:999px;font-size:.9rem}
+.gift .price-tag b{font-family:"Bodoni Moda",serif;font-size:1.2rem}
+@media(max-width:820px){.gift-grid{grid-template-columns:1fr}}
+
+/* Lookbook */
+.gallery{columns:3;column-gap:18px}
+.gallery .cell{break-inside:avoid;margin:0 0 18px;position:relative;overflow:hidden;border-radius:2px;box-shadow:var(--shadow-sm)}
+.gallery .cell img{width:100%;height:auto;transition:transform 1.1s var(--ease)}
+.gallery .cell:hover img{transform:scale(1.06)}
+.gallery .cap{position:absolute;left:0;right:0;bottom:0;padding:26px 18px 14px;background:linear-gradient(0deg, rgba(63,46,34,.72), transparent);
+  color:var(--ivory);font-family:"Bodoni Moda",serif;font-style:italic;font-size:1.05rem;opacity:0;transform:translateY(8px);transition:.5s var(--ease)}
+.gallery .cell:hover .cap{opacity:1;transform:none}
+@media(max-width:900px){.gallery{columns:2}}
+@media(max-width:520px){.gallery{columns:1}}
+
+/* About */
+.about-grid{display:grid;grid-template-columns:.95fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.about-photo .frame{overflow:hidden;border-radius:3px;box-shadow:var(--shadow)}
+.about-photo .frame img{width:100%;height:auto}
+.about h2{font-size:clamp(2rem,4.6vw,3.4rem);margin-bottom:1.2rem}
+.about h2 .serif-it{color:var(--accent)}
+.about p{color:var(--ink-soft);max-width:56ch}
+.about .signature{font-family:"Bodoni Moda",serif;font-style:italic;font-size:1.45rem;color:var(--ink);margin-top:1.5rem}
+.about ul{list-style:none;padding:0;margin:2rem 0 0;display:grid;grid-template-columns:1fr 1fr;gap:.7rem 1.5rem}
+.about ul li{display:flex;gap:.6rem;align-items:flex-start;font-size:.94rem}
+.about ul li svg{width:18px;height:18px;color:var(--gold);flex:none;margin-top:3px}
+@media(max-width:820px){.about-grid{grid-template-columns:1fr}}
+
+/* Booking */
+.book{background:var(--ivory-2)}
+.book .inner{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,64px);align-items:center}
+.book h2{font-size:clamp(2.3rem,5.4vw,4.2rem);letter-spacing:-.02em}
+.book h2 .serif-it{color:var(--accent);display:block}
+.book p{color:var(--ink-soft);max-width:44ch;margin:1.4rem 0 2.2rem}
+.book .cta{display:flex;gap:.9rem;flex-wrap:wrap}
+.info-card{background:var(--ivory);border:1px solid var(--line);border-radius:3px;padding:clamp(24px,3vw,36px);box-shadow:var(--shadow)}
+.info-row{display:flex;gap:1rem;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line)}
+.info-row:last-child{border-bottom:0;padding-bottom:0}
+.info-row:first-child{padding-top:0}
+.info-row svg{width:22px;height:22px;color:var(--gold);flex:none;margin-top:2px}
+.info-row .k{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
+.info-row .v{font-weight:600;font-size:1.02rem;overflow-wrap:anywhere}
+.info-row .v a:hover{color:var(--accent)}
+@media(max-width:820px){.book .inner{grid-template-columns:1fr}}
+
+/* Footer */
+footer{background:var(--ink);color:var(--ivory)}
+footer .row{display:flex;justify-content:space-between;gap:2rem;flex-wrap:wrap;align-items:center;padding-block:44px}
+footer .brandmark small{color:var(--gold-bright)}
+footer .socials{display:flex;gap:.8rem}
+footer .socials a{width:42px;height:42px;border:1px solid rgba(251,247,241,.28);border-radius:999px;display:grid;place-items:center;transition:.4s var(--ease)}
+footer .socials a:hover{background:var(--ivory);color:var(--ink);transform:translateY(-3px)}
+footer .socials svg{width:18px;height:18px}
+.fineprint{border-top:1px solid rgba(251,247,241,.14);padding-block:20px;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.76rem;color:rgba(251,247,241,.55)}
+.fineprint a:hover{color:var(--gold-bright)}
+
+.js .reveal{opacity:0;transform:translateY(26px);transition:opacity 1s var(--ease), transform 1s var(--ease)}
+.js .reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;transition:none}}
+
+.fab{position:fixed;right:20px;bottom:20px;z-index:80;background:#1FA855;color:#fff;width:60px;height:60px;border-radius:999px;
+  display:grid;place-items:center;box-shadow:0 14px 30px -8px rgba(23,138,69,.6);transition:transform .5s var(--ease)}
+.fab:hover{transform:scale(1.08) translateY(-2px)}
+.fab svg{width:30px;height:30px}
+</style>
+</head>
+<body>
+
+<header class="topbar" id="top">
+  <div class="wrap row">
+    <a class="brandmark" href="#top">sonata<small>Jabones artesanales</small></a>
+    <nav class="nav">
+      <a class="link" href="#catalogo">Catálogo</a>
+      <a class="link" href="#regalo">Regalos</a>
+      <a class="link" href="#sobre">Nosotros</a>
+      <a class="btn btn-primary" href="https://wa.me/573174487478?text=Hola%20Sonata%20%F0%9F%8C%BF%2C%20quiero%20pedir%20jabones%20artesanales" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.6-1.2A9 9 0 1 0 12 3Z" stroke-linejoin="round"/><path d="M8.5 8.8c0 3.6 3.1 6.7 6.7 6.7.6 0 1.1-.5 1.1-1.1l-.1-1.2-2-.6-.9.9c-1.3-.6-2.3-1.6-2.9-2.9l.9-.9-.6-2-1.2-.1c-.6 0-1 .5-1 1.1Z"/></svg>
+        Haz tu pedido
+      </a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <p class="label reveal">Jabones artesanales · Medellín</p>
+      <h1 class="reveal" style="margin-top:1rem">Cuidado que se siente,<span class="serif-it">belleza que armoniza.</span></h1>
+      <p class="lede reveal">Jabones hechos a mano con ingredientes seleccionados y procesos artesanales. Más que un jabón: pequeños momentos de bienestar para tu piel.</p>
+      <div class="rule reveal"></div>
+      <div class="cta reveal">
+        <a class="btn btn-wa" href="https://wa.me/573174487478?text=Hola%20Sonata%20%F0%9F%8C%BF%2C%20quiero%20pedir%20jabones%20artesanales" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.6-1.2A9 9 0 1 0 12 3Z" stroke-linejoin="round"/><path d="M8.5 8.8c0 3.6 3.1 6.7 6.7 6.7.6 0 1.1-.5 1.1-1.1l-.1-1.2-2-.6-.9.9c-1.3-.6-2.3-1.6-2.9-2.9l.9-.9-.6-2-1.2-.1c-.6 0-1 .5-1 1.1Z"/></svg>
+          Pedir por WhatsApp
+        </a>
+        <a class="btn btn-ghost" href="#catalogo">Ver el catálogo</a>
+      </div>
+      <div class="hero-meta reveal">
+        <div class="m"><b>10</b><span>variedades</span></div>
+        <div class="m"><b>Hecho a mano</b><span>ingredientes naturales</span></div>
+        <div class="m"><b>Regalo</b><span>empaque disponible</span></div>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="assets/img/cat-lavanda.jpg" alt="Jabón artesanal de lavanda Sonata en forma de rosa con bolsa de organza" fetchpriority="high">
+    </div>
+  </div>
+</section>
+
+<div class="strip" aria-hidden="true">
+  <div class="track">
+    <span>Miel</span><span>Arroz</span><span>Coco</span><span>Avena</span><span>Exfoliante</span><span>Aloe vera</span><span>Manzanilla</span><span>Lavanda</span><span>Ruda</span><span>Rosas</span>
+    <span>Miel</span><span>Arroz</span><span>Coco</span><span>Avena</span><span>Exfoliante</span><span>Aloe vera</span><span>Manzanilla</span><span>Lavanda</span><span>Ruda</span><span>Rosas</span>
+  </div>
+</div>
+
+<section class="statement sec-pad">
+  <div class="wrap">
+    <p class="q reveal">Más que un jabón, queremos acompañarte en esos <em>pequeños momentos de bienestar</em> que hacen la diferencia.</p>
+    <div class="by reveal"><span class="l"></span>Jabones Sonata</div>
+  </div>
+</section>
+
+<section id="catalogo" class="catalog sec-pad">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="reveal">El <span class="serif-it">catálogo</span></h2>
+      <p class="reveal">Diez jabones artesanales, cada uno con beneficios pensados para tu piel. Elige el tuyo y pídelo en un toque.</p>
+    </div>
+    <div class="prod-grid">
+    <article class="prod reveal">
+      <div class="prod-media"><img src="assets/img/cat-miel.jpg" alt="Jabón de Miel artesanal Sonata"></div>
+      <div class="prod-body">
+        <div class="prod-top"><span class="no">01</span><span class="price">$12.000</span></div>
+        <h3>Jabón de <span class="it">Miel</span></h3>
+        <ul><li>Evita resequedad</li><li>Deja la piel suave y tersa al tacto</li><li>Antibacterial</li><li>Ayuda a aliviar las irritaciones</li><li>Hidratante</li></ul>
+        <a class="prod-cta" href="https://wa.me/573174487478?text=Hola%20Sonata%20%F0%9F%8C%BF%2C%20quiero%20pedir%20el%20Jab%C3%B3n%20de%20Miel" target="_blank" rel="noopener">Pedir por WhatsApp <span>→</span></a>
+      </div>
+    </article>
+    <article class="prod reveal">
+      <div class="prod-media"><img src="assets/img/cat-arroz.jpg" alt="Jabón de Arroz artesanal Sonata"></div>
+      <div class="prod-body">
+        <div class="prod-top"><span class="no">02</span><span class="price">$12.000</span></div>
+        <h3>Jabón de <span class="it">Arroz</span></h3>
+        <ul><li>Aporta hidratación</li><li>Mejora apariencia de manchas leves</li><li>Unifica tono de la piel con el uso constante</li><li>Contiene antioxidantes naturales presentes en el arroz</li></ul>
+        <a class="prod-cta" href="https://wa.me/573174487478?text=Hola%20Sonata%20%F0%9F%8C%BF%2C%20quiero%20pedir%20el%20Jab%C3%B3n%20de%20Arroz" target="_blank" rel="noopener">Pedir por WhatsApp <span>→</span></a>
+      </div>
+    </article>
+    <article class="prod reveal">
+      <div class="prod-media"><img src="assets/img/cat-coco.jpg" alt="Jabón de Coco artesanal Sonata"></div>
+      <div class="prod-body">
+        <div class="prod-top"><span class="no">03</span><span class="price">$12.000</span></div>
+        <h3>Jabón de <span class="it">Coco</span></h3>
+        <ul><li>Nutre la piel dejándola suave y fresca</li><li>Hidratante</li><li>Limpiador profundo</li><li>Suavizante</li><li>Antioxidante</li></ul>
+        <a class="prod-cta" href="https://wa.me/573174487478?text=Hola%20Sonata%20%F0%9F%8C%BF%2C%20quiero%20pedir%20el%20Jab%C3%B3n%20de%20Coco" target="_blank" rel="noopener">Pedir por WhatsApp <span>→</span></a>
+      </div>
+    </article>
+    <article class="prod reveal">
+      <div class="prod-media"><img src="assets/img/cat-avena.jpg" alt="Jabón de Avena artesanal Sonata"></div>
+      <div class="prod-body">
+        <div class="prod-top"><span class="no">04</span><span class="price">$12.000</span></div>
+        <h3>Jabón de <span class="it">Avena</span></h3>
+        <ul><li>Hidratante</li><li>Calmante: alivia sensación de picazón</li><li>Exfoliante suave</li><li>Ideal para piel sensible</li><li>Limpia sin resecar en exceso</li></ul>
+        <a class="prod-cta" href="https://wa.me/573174487478?text=Hola%20Sonata%20%F0%9F%8C%BF%2C%20quiero%20pedir%20el%20Jab%C3%B3n%20de%20Avena" target="_blank" rel="noopener">Pedir por WhatsApp <span>→</span></a>
+      </div>
+    </article>
+    <article class="prod reveal">
+      <div class="prod-media"><img src="assets/img/cat-exfoliante.jpg" alt="Jabón Exfoliante artesanal Sonata"></div>
+      <div class="prod-body">
+        <div class="prod-top"><span class="no">05</span><span class="price">$14.000</span></div>
+        <h3>Jabón <span class="it">Exfoliante</span></h3>
+        <ul><li>Trae estropajo incluido en el jabón</li><li>Limpia profundamente</li><li>Exfolia de forma natural</li><li>Propiedades antibacterianas</li></ul>
+        <a class="prod-cta" href="https://wa.me/573174487478?text=Hola%20Sonata%20%F0%9F%8C%BF%2C%20quiero%20pedir%20el%20Jab%C3%B3n%20Exfoliante" target="_blank" rel="noopener">Pedir por WhatsApp <span>→</span></a>
+      </div>
+    </article>
+    <article class="prod reveal">
+      <div class="prod-media"><img src="assets/img/cat-aloe.jpg" alt="Jabón de Aloe Vera artesanal Sonata"></div>
+      <div class="prod-body">
+        <div class="prod-top"><span class="no">06</span><span class="price">$12.000</span></div>
+        <h3>Jabón de <span class="it">Aloe Vera</span></h3>
+        <ul><li>Hidrata y ayuda a mantener la humedad natural de la piel</li><li>Sensación refrescante y calmante</li><li>Limpia delicadamente sin resecar</li><li>Deja un aroma relajante</li></ul>
+        <a class="prod-cta" href="https://wa.me/573174487478?text=Hola%20Sonata%20%F0%9F%8C%BF%2C%20quiero%20pedir%20el%20Jab%C3%B3n%20de%20Aloe%20Vera" target="_blank" rel="noopener">Pedir por WhatsApp <span>→</span></a>
+      </div>
+    </article>
+    <article class="prod reveal">
+      <div class="prod-media"><img src="assets/img/cat-manzanilla.jpg" alt="Jabón de Manzanilla artesanal Sonata"></div>
+      <div class="prod-body">
+        <div class="prod-top"><span class="no">07</span><span class="price">$12.000</span></div>
+        <h3>Jabón de <span class="it">Manzanilla</span></h3>
+        <ul><li>Sensación de confort después del lavado</li><li>Calmante y reconfortante</li><li>Ayuda a mantener la hidratación natural</li><li>Nutre y aporta suavidad</li></ul>
+        <a class="prod-cta" href="https://wa.me/573174487478?text=Hola%20Sonata%20%F0%9F%8C%BF%2C%20quiero%20pedir%20el%20Jab%C3%B3n%20de%20Manzanilla" target="_blank" rel="noopener">Pedir por WhatsApp <span>→</span></a>
+      </div>
+    </article>
+    <article class="prod reveal">
+      <div class="prod-media"><img src="assets/img/cat-lavanda.jpg" alt="Jabón de Lavanda artesanal Sonata"></div>
+      <div class="prod-body">
+        <div class="prod-top"><span class="no">08</span><span class="price">$12.000</span></div>
+        <h3>Jabón de <span class="it">Lavanda</span></h3>
+        <ul><li>Ayuda a proteger la piel de los radicales libres</li><li>Sensación de relajación y bienestar</li><li>Experiencia aromática ideal para el descanso</li><li>Mantiene la piel hidratada</li></ul>
+        <a class="prod-cta" href="https://wa.me/573174487478?text=Hola%20Sonata%20%F0%9F%8C%BF%2C%20quiero%20pedir%20el%20Jab%C3%B3n%20de%20Lavanda" target="_blank" rel="noopener">Pedir por WhatsApp <span>→</span></a>
+      </div>
+    </article>
+    <article class="prod reveal">
+      <div class="prod-media"><img src="assets/img/cat-ruda.jpg" alt="Jabón de Ruda artesanal Sonata"></div>
+      <div class="prod-body">
+        <div class="prod-top"><span class="no">09</span><span class="price">$12.000</span></div>
+        <h3>Jabón de <span class="it">Ruda</span></h3>
+        <ul><li>Cálido aroma herbal con notas de canela</li><li>Elimina impurezas y deja frescura</li><li>Contiene vitamina E, acción antioxidante</li><li>Limpia delicadamente la piel</li></ul>
+        <a class="prod-cta" href="https://wa.me/573174487478?text=Hola%20Sonata%20%F0%9F%8C%BF%2C%20quiero%20pedir%20el%20Jab%C3%B3n%20de%20Ruda" target="_blank" rel="noopener">Pedir por WhatsApp <span>→</span></a>
+      </div>
+    </article>
+    <article class="prod reveal">
+      <div class="prod-media"><img src="assets/img/cat-rosas.jpg" alt="Jabón de Rosas artesanal Sonata"></div>
+      <div class="prod-body">
+        <div class="prod-top"><span class="no">10</span><span class="price">$12.000</span></div>
+        <h3>Jabón de <span class="it">Rosas</span></h3>
+        <ul><li>Enriquecido con vitamina E antioxidante</li><li>Delicada fragancia floral con notas de flores de algodón</li><li>Favorece una piel suave y renovada</li><li>Limpia delicadamente sin resecar</li></ul>
+        <a class="prod-cta" href="https://wa.me/573174487478?text=Hola%20Sonata%20%F0%9F%8C%BF%2C%20quiero%20pedir%20el%20Jab%C3%B3n%20de%20Rosas" target="_blank" rel="noopener">Pedir por WhatsApp <span>→</span></a>
+      </div>
+    </article>
+    </div>
+
+    <div class="promo-grid">
+      <div class="promo feat reveal"><span class="k">Promoción especial</span><b>3 × $30.000</b><p>Tres jabones a tu elección (máximo 1 exfoliante)</p></div>
+      <div class="promo reveal"><span class="k">Exfoliantes</span><b>3 × $36.000</b><p>Tres jabones exfoliantes con estropajo incluido</p></div>
+      <div class="promo reveal"><span class="k">Para regalar</span><b>+$4.000</b><p>Empaque de regalo por unidad</p></div>
+    </div>
+    <p class="note reveal">Precios y promociones según el catálogo vigente de Sonata. Confírmalos al hacer tu pedido.</p>
+    <div style="text-align:center;margin-top:28px" class="reveal">
+      <a class="btn btn-wa" href="https://wa.me/573174487478?text=Hola%20Sonata%20%F0%9F%8C%BF%2C%20quiero%20la%20promoci%C3%B3n%20de%203%20jabones" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.6-1.2A9 9 0 1 0 12 3Z" stroke-linejoin="round"/><path d="M8.5 8.8c0 3.6 3.1 6.7 6.7 6.7.6 0 1.1-.5 1.1-1.1l-.1-1.2-2-.6-.9.9c-1.3-.6-2.3-1.6-2.9-2.9l.9-.9-.6-2-1.2-.1c-.6 0-1 .5-1 1.1Z"/></svg>
+        Quiero la promoción
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="regalo" class="gift sec-pad">
+  <div class="wrap gift-grid">
+    <div class="gift-photos reveal">
+      <div class="a"><img src="assets/img/cat-regalo.jpg" alt="Caja de regalo kraft con dos jabones Sonata y moño lila"></div>
+      <div class="b"><img src="assets/img/empaque-regalo.jpg" alt="Sonata — se empaca como regalo"></div>
+    </div>
+    <div>
+      <p class="label reveal">Da los mejores regalos</p>
+      <h2 class="reveal">Un detalle hecho<span class="serif-it">con amor.</span></h2>
+      <p class="reveal">Un regalo también puede transmitir cuidado, bienestar y dedicación. Por eso nuestros jabones artesanales se empacan con una presentación elegante, lista para sorprender a esa persona especial — o para darte un gusto que también mereces.</p>
+      <p class="reveal" style="margin-top:1rem">Porque los pequeños detalles son los que más se recuerdan.</p>
+      <div class="price-tag reveal"><span>Empaque de regalo</span><b>$4.000</b><span>por unidad</span></div>
+      <div class="reveal">
+        <a class="btn btn-primary" href="https://wa.me/573174487478?text=Hola%20Sonata%20%F0%9F%8E%81%2C%20quiero%20jabones%20empacados%20para%20regalo" target="_blank" rel="noopener">Pedir para regalo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="lookbook" class="sec-pad wrap">
+  <div class="sec-head">
+    <h2 class="reveal">Hechos <span class="serif-it">a mano</span></h2>
+    <p class="reveal">Formas de rosa, flor y panal; colores que vienen de sus ingredientes. Cada jabón es único.</p>
+  </div>
+  <div class="gallery">
+    <figure class="cell reveal"><img src="assets/img/cremosos.jpg" alt="Jabones Sonata en forma de rosa color durazno entre pétalos"><figcaption class="cap">Jabones cremosos</figcaption></figure>
+    <figure class="cell reveal"><img src="assets/img/miel.jpg" alt="Jabón de miel Sonata junto a panal y cucharón de miel"><figcaption class="cap">Jabón de miel</figcaption></figure>
+    <figure class="cell reveal"><img src="assets/img/reel-detalle.jpg" alt="Jabones Sonata en forma de rosa y panal recién desmoldados"><figcaption class="cap">¡Cada detalle cuenta!</figcaption></figure>
+    <figure class="cell reveal"><img src="assets/img/coco.jpg" alt="Jabón de coco Sonata junto a un coco abierto"><figcaption class="cap">Jabón de coco</figcaption></figure>
+    <figure class="cell reveal"><img src="assets/img/arroz.jpg" alt="Jabón de arroz Sonata en forma de rosa con bolsa de organza lila"><figcaption class="cap">Jabón de arroz</figcaption></figure>
+    <figure class="cell reveal"><img src="assets/img/miel-02.jpg" alt="Jabones Sonata en bolsas de organza sobre piedra"><figcaption class="cap">Listos para llevar</figcaption></figure>
+  </div>
+  <div style="text-align:center;margin-top:44px" class="reveal">
+    <a class="btn btn-ghost" href="https://www.instagram.com/sonata_jabones/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+      Síguenos en Instagram
+    </a>
+  </div>
+</section>
+
+<section id="sobre" class="sec-pad wrap about">
+  <div class="about-grid">
+    <div class="about-photo reveal">
+      <div class="frame"><img src="assets/img/logo.jpg" alt="Logo de Sonata Jabones Artesanales: clave de sol, lavanda y pentagrama"></div>
+    </div>
+    <div>
+      <p class="label reveal">Nosotros</p>
+      <h2 class="reveal">Te presentamos <span class="serif-it">a Sonata.</span></h2>
+      <p class="reveal">Nacimos con el propósito de crear jabones artesanales que combinen calidad, cuidado y una experiencia agradable para la piel.</p>
+      <p class="reveal" style="margin-top:1rem">Trabajamos cada producto con dedicación, utilizando ingredientes seleccionados y procesos artesanales que nos permiten ofrecer jabones únicos para el cuidado diario.</p>
+      <p class="signature reveal">¡Mima tu piel con Sonata!</p>
+      <ul class="reveal">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4 10-10" stroke-linecap="round" stroke-linejoin="round"/></svg>Hecho a mano</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4 10-10" stroke-linecap="round" stroke-linejoin="round"/></svg>Ingredientes naturales</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4 10-10" stroke-linecap="round" stroke-linejoin="round"/></svg>10 variedades</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4 10-10" stroke-linecap="round" stroke-linejoin="round"/></svg>Empaque de regalo</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="book sec-pad">
+  <div class="wrap inner">
+    <div>
+      <h2 class="reveal">Haz tu pedido<span class="serif-it">y mima tu piel.</span></h2>
+      <p class="reveal">Déjanos un mensaje y pregunta por nuestros productos. Te respondemos por WhatsApp.</p>
+      <div class="cta reveal">
+        <a class="btn btn-wa" href="https://wa.me/573174487478?text=Hola%20Sonata%20%F0%9F%8C%BF%2C%20quiero%20pedir%20jabones%20artesanales" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.6-1.2A9 9 0 1 0 12 3Z" stroke-linejoin="round"/><path d="M8.5 8.8c0 3.6 3.1 6.7 6.7 6.7.6 0 1.1-.5 1.1-1.1l-.1-1.2-2-.6-.9.9c-1.3-.6-2.3-1.6-2.9-2.9l.9-.9-.6-2-1.2-.1c-.6 0-1 .5-1 1.1Z"/></svg>
+          317 448 7478
+        </a>
+        <a class="btn btn-ghost" href="https://drive.google.com/file/d/1V82PDaJ9zBgn4oYVjAXojC_lJ5donoi1/view" target="_blank" rel="noopener">Catálogo en PDF</a>
+      </div>
+    </div>
+    <div class="info-card reveal">
+      <div class="info-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.6-1.2A9 9 0 1 0 12 3Z" stroke-linejoin="round"/></svg>
+        <div><div class="k">WhatsApp</div><div class="v"><a href="https://wa.me/573174487478" target="_blank" rel="noopener">+57 317 448 7478</a></div></div>
+      </div>
+      <div class="info-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg>
+        <div><div class="k">Instagram</div><div class="v"><a href="https://www.instagram.com/sonata_jabones/" target="_blank" rel="noopener">@sonata_jabones</a></div></div>
+      </div>
+      <div class="info-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 10c0 5-8 11-8 11s-8-6-8-11a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+        <div><div class="k">Ubicación</div><div class="v">Medellín, Colombia</div></div>
+      </div>
+      <div class="info-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>
+        <div><div class="k">Entregas</div><div class="v">Pregunta por la tuya al pedir</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap row">
+    <a class="brandmark" href="#top">sonata<small>Jabones artesanales · Medellín</small></a>
+    <div class="socials">
+      <a href="https://wa.me/573174487478" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.6-1.2A9 9 0 1 0 12 3Z" stroke-linejoin="round"/><path d="M8.5 8.8c0 3.6 3.1 6.7 6.7 6.7.6 0 1.1-.5 1.1-1.1l-.1-1.2-2-.6-.9.9c-1.3-.6-2.3-1.6-2.9-2.9l.9-.9-.6-2-1.2-.1c-.6 0-1 .5-1 1.1Z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/sonata_jabones/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="wrap fineprint">
+    <span>© <span id="yr"></span> Jabones Sonata — Medellín, Colombia</span>
+    <span>Pedidos: <a href="https://wa.me/573174487478" target="_blank" rel="noopener">317 448 7478</a></span>
+  </div>
+</footer>
+
+<a class="fab" href="https://wa.me/573174487478?text=Hola%20Sonata%20%F0%9F%8C%BF%2C%20quiero%20pedir%20jabones%20artesanales" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.6-1.2A9 9 0 1 0 12 3Z" stroke-linejoin="round"/><path d="M8.5 8.8c0 3.6 3.1 6.7 6.7 6.7.6 0 1.1-.5 1.1-1.1l-.1-1.2-2-.6-.9.9c-1.3-.6-2.3-1.6-2.9-2.9l.9-.9-.6-2-1.2-.1c-.6 0-1 .5-1 1.1Z"/></svg>
+</a>
+
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+const tb=document.querySelector('.topbar');
+addEventListener('scroll',()=>tb.classList.toggle('scrolled',scrollY>12),{passive:true});
+const rev=document.querySelectorAll('.reveal');
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+  rev.forEach((el,i)=>{el.style.transitionDelay=(Math.min(i%6,5)*60)+'ms';io.observe(el);});
+}else{rev.forEach(el=>el.classList.add('in'));}
+</script>
+</body>
+</html>
