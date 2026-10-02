@@ -138,6 +138,9 @@ header .btn{padding:10px 18px;font-size:12px}
 .pin{position:relative}
 .pin .stage{position:sticky;top:0;height:100svh;overflow:hidden}
 #p6000{height:380vh}
+#p6000[data-callouts=auto]{height:auto}
+#p6000[data-callouts=auto] .stage{position:relative;height:100svh}
+#p6000[data-callouts=auto] .prog{display:none}
 #p6000 .stage{display:grid;place-items:center}
 #p6000 .bgword{position:absolute;font-weight:900;font-style:italic;font-size:clamp(120px,22vw,360px);letter-spacing:-.06em;line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(236,182,74,.26);white-space:nowrap;will-change:transform}
 #p6000 .frame{position:relative;height:min(64svh,580px);aspect-ratio:3/4;will-change:transform}
@@ -184,6 +187,23 @@ header .btn{padding:10px 18px;font-size:12px}
 .box .foot .barcode{width:90px;color:var(--mute);opacity:.5}
 .box .btn{padding:12px 18px;font-size:12.5px}
 .railnote{padding:3svh 4vw 0;color:var(--mute);font-size:13px}
+/* ── modos del riel (data-riel): fijado = el scroll vertical lo mueve · carrusel = el visitante lo desliza · vertical = tarjetas una debajo de otra ── */
+.rnav{display:none}
+[data-riel=carrusel],[data-riel=vertical]{height:auto!important}
+[data-riel=carrusel] .stage,[data-riel=vertical] .stage{position:relative!important;height:auto!important;overflow:visible!important;padding:clamp(90px,10vw,130px) 0 0!important}
+[data-riel=carrusel] .rail{width:auto!important;transform:none!important;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding-inline:4vw;scrollbar-width:none;padding-top:24px;padding-bottom:30px;cursor:grab}
+[data-riel=carrusel] .rail::-webkit-scrollbar{display:none}
+[data-riel=carrusel] .rail>*{scroll-snap-align:center}
+[data-riel=carrusel] .rail::after{content:"";flex:0 0 1px}
+[data-riel=carrusel] .rnav{display:flex;align-items:center;justify-content:center;gap:16px;padding:6px 4vw 0;color:var(--mute);font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.rnav button{width:52px;height:52px;border-radius:50%;border:1.5px solid var(--line);font-size:20px;font-weight:900;transition:transform .4s var(--pop),background .3s,color .3s}
+.rnav button:hover{transform:scale(1.1);background:var(--gold);color:#1a1103;border-color:var(--gold)}
+.rnav button:disabled{opacity:.3;pointer-events:none}
+[data-riel=vertical] .count{display:none}
+[data-riel=vertical] .rail{width:auto!important;transform:none!important;flex-direction:column;align-items:center;gap:clamp(56px,7vw,90px);padding-top:30px}
+[data-riel=vertical] .rail>*{opacity:0;transform:translateY(80px) rotate(-3deg) scale(.94);transition:transform 1s var(--pop),opacity .6s var(--out)}
+[data-riel=vertical] .rail>*.in{opacity:1;transform:rotate(var(--tilt,0deg))}
+@media (min-width:1021px){[data-riel=vertical] .rail>*:nth-child(odd){align-self:flex-start;--tilt:-1.5deg}[data-riel=vertical] .rail>*:nth-child(even){align-self:flex-end;--tilt:1.5deg}}
 
 /* ── regla para medir el pie (buscador por talla) ── */
 section.block{padding:clamp(90px,12vw,150px) 0}
@@ -382,7 +402,7 @@ footer .soc svg{width:18px;height:18px}
 </div>
 
 <!-- P6000 · anatomía (escena fijada) -->
-<section class="pin" id="p6000">
+<section class="pin" id="p6000" data-callouts="auto"><!-- data-callouts: auto (se reproduce sola, rápido, al llegar) | scroll (el scroll es la línea de tiempo) -->
   <div class="stage">
     <div class="prog"><i></i></div>
     <div class="bgword">Lo más viral</div>
@@ -402,10 +422,11 @@ footer .soc svg{width:18px;height:18px}
 <div class="treadband"><svg class="t top" data-tread preserveAspectRatio="none" aria-hidden="true"></svg><div class="ticker"><div class="track" id="t1"></div></div><svg class="t bot" data-tread preserveAspectRatio="none" aria-hidden="true"></svg></div>
 
 <!-- COLECCIÓN (riel de cajas) -->
-<section class="pin" id="coleccion">
+<section class="pin" id="coleccion" data-riel="carrusel"><!-- data-riel: fijado | carrusel | vertical -->
   <div class="stage">
     <div class="head"><div><h2 class="kin" data-kin>Elige tu <span class="m">par.</span></h2><p>¡Llévate los tuyos antes de que se agoten!</p></div><span class="count">CAJA <b id="cnum">01</b> / <span id="ctot">07</span></span></div>
     <div class="rail" id="rail"></div>
+    <div class="rnav" aria-label="Ver más productos"><button type="button" data-d="-1" aria-label="Anterior">←</button><span>Desliza para ver más</span><button type="button" data-d="1" aria-label="Siguiente">→</button></div>
     <p class="railnote">Precios publicados en el Instagram de la tienda. Confirma talla y disponibilidad por WhatsApp.</p>
   </div>
 </section>
@@ -656,25 +677,53 @@ function sceneP6000(p){
 
 // ── ESCENA "colección": riel de cajas; la tapa se levanta cuando la caja llega al centro ──
 const SE=document.getElementById('coleccion'),boxes=[...SE.querySelectorAll('.box')],cnum=document.getElementById('cnum');
+// modo del riel: atributo data-riel (fijado | carrusel | vertical); ?riel=… en la URL lo sobreescribe para probar
+const RIEL=new URLSearchParams(location.search).get('riel')||SE.dataset.riel||'fijado';
+SE.dataset.riel=RIEL;
+if(RIEL!=='fijado')SE.classList.remove('pin');
+if(RIEL==='carrusel'){
+  const step=()=>boxes[0].offsetWidth+parseFloat(getComputedStyle(rail).columnGap||0);
+  const nav=SE.querySelectorAll('.rnav button');
+  nav.forEach(b=>b.onclick=()=>rail.scrollBy({left:step()*+b.dataset.d,behavior:'smooth'}));
+  const upd=()=>{nav[0].disabled=rail.scrollLeft<8;nav[1].disabled=rail.scrollLeft>rail.scrollWidth-rail.clientWidth-8;sceneColeccion(0);};
+  rail.addEventListener('scroll',()=>requestAnimationFrame(upd),{passive:true});
+  // arrastrar con el mouse (en táctil el swipe es nativo)
+  let dx=null,sl=0;rail.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;dx=e.clientX;sl=rail.scrollLeft;rail.style.scrollSnapType='none';});
+  addEventListener('pointermove',e=>{if(dx!==null)rail.scrollLeft=sl-(e.clientX-dx);});
+  addEventListener('pointerup',()=>{if(dx===null)return;dx=null;rail.style.scrollSnapType='';const i=Math.round(rail.scrollLeft/step());rail.scrollTo({left:i*step(),behavior:'smooth'});});
+  setTimeout(upd,50);
+}
+if(RIEL==='vertical'){const vio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');vio.unobserve(e.target);}}),{threshold:.25});boxes.forEach(b=>vio.observe(b));}
 function sceneColeccion(p){
-  const max=rail.scrollWidth-innerWidth;const k=eInOutCubic(prog(p,.04,.96));
-  rail.style.transform=`translateX(${-max*k}px)`;
+  if(RIEL==='vertical'){boxes.forEach(o=>{const r=o.getBoundingClientRect(),c=(r.top+r.height/2)/innerHeight-.5,open=1-clamp(Math.abs(c)*2.2);o.querySelector('.lid').style.transform=`translateY(${-open*12}px) rotate(${-open*2.5}deg)`;});return;}
+  const car=RIEL==='carrusel',max=rail.scrollWidth-innerWidth,k=car?0:eInOutCubic(prog(p,.04,.96)),off=car?rail.scrollLeft:max*k;
+  if(!car)rail.style.transform=`translateX(${-off}px)`;
   let best=0,bd=9;
-  boxes.forEach((o,i)=>{const c=(o.offsetLeft-max*k+o.offsetWidth/2)/innerWidth-.5;
+  boxes.forEach((o,i)=>{const c=(o.offsetLeft-off+o.offsetWidth/2)/innerWidth-.5;
     if(Math.abs(c)<bd){bd=Math.abs(c);best=i;}
     const open=1-clamp(Math.abs(c)*3);            // 1 en el centro
     o.querySelector('.lid').style.transform=`translateY(${-open*12}px) rotate(${-open*2.5}deg)`;
     o.querySelector('.ph img').style.transform=`scale(1.12) translateX(${c*-8}%)`;
-    o.style.transform=`rotate(${c*-4}deg) scale(${1-Math.min(Math.abs(c),1)*.08})`;});
+    if(!car)o.style.transform=`rotate(${c*-4}deg) scale(${1-Math.min(Math.abs(c),1)*.08})`;});
   cnum.textContent=String(best+1).padStart(2,'0');
 }
 
+// ── callouts "auto": la escena se reproduce sola (2.5 s) cuando un tercio entra en pantalla ──
+const CALL=new URLSearchParams(location.search).get('callouts')||SP.dataset.callouts||'scroll';
+SP.dataset.callouts=CALL;
+let calloutP=CALL==='auto'?0:null;
+if(CALL==='auto'){
+  const DUR=2500;
+  const play=()=>{const t0=performance.now();const tick=n=>{calloutP=clamp((n-t0)/DUR);sceneP6000(calloutP);if(calloutP<1)requestAnimationFrame(tick);};requestAnimationFrame(tick);};
+  new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){o.disconnect();RM?sceneP6000(1):play();}}),{threshold:.3}).observe(SP);
+  sceneP6000(0);
+}
 function progOf(sec){const r=sec.getBoundingClientRect();return clamp(-r.top/(r.height-innerHeight));}
 function passOf(el){const r=el.getBoundingClientRect();return clamp((innerHeight-r.top)/(innerHeight+r.height));}
 const hdr=document.getElementById('top');let ticking=false;
 function onScroll(){if(ticking)return;ticking=true;requestAnimationFrame(()=>{ticking=false;
   hdr.classList.toggle('solid',scrollY>40);
-  sceneLace(RM?1:passOf(LB)*1.5);sceneP6000(RM?1:progOf(SP));sceneColeccion(RM?0:progOf(SE));});}
+  sceneLace(RM?1:passOf(LB)*1.5);if(calloutP===null)sceneP6000(RM?1:progOf(SP));sceneColeccion(RM?0:progOf(SE));});}
 addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
 
 // ── huellas que caminan + destellos (canvas): función pura de t + semilla ──
