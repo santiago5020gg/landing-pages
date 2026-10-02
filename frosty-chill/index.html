@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Frosty &amp; Chill · Panamá</title>
+<meta name="description" content="Frosty & Chill Panamá — Refrescos, postres y hamburguesas. Del antojo al chill perfecto. Plaza Balboa y San Antonio, lunes a domingo de 4:00 pm a 11:00 pm.">
+<link rel="icon" href="assets/img/avatar.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07060a; --bg2:#121019; --ink:#fff7fb; --mute:#b3a9bb;
+  --pink:#ff3d9a; --pink2:#ff86c3; --cyan:#2fe0e6; --yellow:#ffd23f; --line:rgba(255,247,251,.13);
+  --pop:cubic-bezier(.34,1.8,.5,1); --out:cubic-bezier(.16,1,.3,1);
+  --f:'Poppins',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;overflow-x:clip}
+body{background:var(--bg);color:var(--ink);font-family:var(--f);overflow-x:clip;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.wrap{width:min(1240px,100% - 32px);margin-inline:auto}
+.p{color:var(--pink)} .c{color:var(--cyan)} .y{color:var(--yellow)}
+
+.grain{position:fixed;inset:-50%;z-index:90;pointer-events:none;opacity:.07;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain .6s steps(4) infinite}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-1%)}100%{transform:translate(0,0)}}
+
+/* ── intro: el logo cae con squash & stretch y la cortina rosa "gotea" ── */
+.intro{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:var(--bg);transition:transform 1s var(--out) .15s}
+.intro.out{transform:translateY(-130%)}
+.intro .drip{position:absolute;left:0;right:0;top:100%;height:120px;color:var(--bg)}
+.intro img{width:min(240px,52vw);transform-origin:50% 100%;animation:squash 1.2s var(--out) .1s both}
+@keyframes squash{0%{transform:translateY(-120vh) scale(.8,1.3)}45%{transform:translateY(0) scale(.8,1.25)}58%{transform:translateY(0) scale(1.25,.75)}72%{transform:translateY(-30px) scale(.94,1.08)}86%{transform:translateY(0) scale(1.04,.96)}100%{transform:none}}
+
+/* ── header ── */
+header{position:fixed;top:0;left:0;right:0;z-index:50;padding:12px 0;transition:background .4s}
+header.solid{background:rgba(7,6,10,.8);backdrop-filter:blur(10px)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:16px;letter-spacing:-.01em}
+.brand img{width:42px;height:42px;border-radius:50%;object-fit:cover}
+nav{display:flex;gap:26px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+nav a{color:var(--mute);transition:color .3s,transform .4s var(--pop);display:inline-block}
+nav a:hover{color:var(--pink);transform:translateY(-3px) rotate(-3deg)}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:999px;font-weight:800;font-size:14px;letter-spacing:.04em;text-transform:uppercase;
+  background:var(--pink);color:#fff;transition:transform .5s var(--pop),box-shadow .4s;box-shadow:0 0 0 0 rgba(255,61,154,.6)}
+.btn:hover{transform:translateY(-3px) scale(1.05) rotate(-2deg);box-shadow:0 14px 40px -8px rgba(255,61,154,.75)}
+.btn.cy{background:var(--cyan);color:#06191a}
+.btn.cy:hover{box-shadow:0 14px 40px -8px rgba(47,224,230,.7)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--line)}
+.btn.ghost:hover{box-shadow:inset 0 0 0 2px var(--cyan)}
+.btn svg{width:18px;height:18px;flex:none}
+header .btn{padding:10px 18px;font-size:12px}
+
+/* ── texto cinético (letras que rebotan) ── */
+.kin .w{display:inline-block;white-space:nowrap}
+.kin .ch{display:inline-block;transform:translateY(.9em) scale(.4) rotate(-14deg);opacity:0;transition:transform .8s var(--pop),opacity .3s}
+.kin.in .ch{transform:none;opacity:1}
+.fade{opacity:0;transform:translateY(30px);transition:opacity .8s var(--out),transform .8s var(--out)}
+.fade.in{opacity:1;transform:none}
+
+/* ── hero ── */
+.hero{position:relative;min-height:100svh;display:grid;align-items:center;overflow:hidden;padding:110px 0 90px}
+#sprinkles{position:absolute;inset:0;width:100%;height:100%}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.chip{display:inline-flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;padding:8px 14px;border-radius:999px;border:1.5px solid var(--cyan);color:var(--cyan)}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--cyan);animation:blink 1.2s infinite}
+@keyframes blink{50%{opacity:.2}}
+.hero h1{font-weight:900;font-size:clamp(50px,8.2vw,128px);line-height:.9;letter-spacing:-.04em;margin:24px 0 24px}
+.hero h1 .p{font-style:italic}
+.hero p.lead{font-size:clamp(16px,1.35vw,19px);color:var(--mute);max-width:480px;line-height:1.6}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.blobwrap{position:relative;justify-self:center;width:min(470px,100%);aspect-ratio:3/4}
+.blob{position:absolute;inset:0;overflow:hidden;border-radius:42% 58% 63% 37% / 41% 44% 56% 59%;animation:morph 9s ease-in-out infinite;
+  transform:scale(0) rotate(-20deg);transition:transform 1.2s var(--pop) .1s;box-shadow:0 0 0 6px var(--pink),0 0 90px -10px rgba(255,61,154,.6)}
+.blobwrap.in .blob{transform:none}
+.blob img{width:100%;height:100%;object-fit:cover}
+@keyframes morph{0%,100%{border-radius:42% 58% 63% 37% / 41% 44% 56% 59%}33%{border-radius:58% 42% 38% 62% / 55% 38% 62% 45%}66%{border-radius:38% 62% 50% 50% / 38% 60% 40% 62%}}
+.sticker{position:absolute;z-index:2;font-weight:900;text-transform:uppercase;text-align:center;line-height:1;border-radius:999px;padding:12px 18px;
+  transform:scale(0) rotate(30deg);transition:transform .8s var(--pop)}
+.blobwrap.in .sticker{transform:rotate(var(--r)) scale(1)}
+.sticker.s1{--r:-10deg;top:6%;left:-8%;background:var(--yellow);color:#1b1300;font-size:15px;transition-delay:.9s;animation:bob 3s ease-in-out 2s infinite}
+.sticker.s2{--r:8deg;bottom:12%;right:-8%;background:var(--cyan);color:#06191a;font-size:13px;transition-delay:1.05s;animation:bob 3.4s ease-in-out 2.3s infinite}
+.sticker.s2 b{display:block;font-size:22px}
+.sticker.s3{--r:-4deg;bottom:-2%;left:6%;background:var(--ink);color:var(--bg);font-size:12px;letter-spacing:.1em;transition-delay:1.2s;animation:bob 3.8s ease-in-out 2.6s infinite}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -10px}}
+
+/* goteo rosa (divisor) */
+.drip{display:block;width:100%;height:90px}
+.drip path{fill:var(--pink)}
+.dripband{background:var(--pink);color:#fff;position:relative;z-index:2}
+.dripband .drip{position:absolute;top:100%;left:0;height:70px}
+.dripband .drip.top{top:auto;bottom:100%;transform:scaleY(-1)}
+.ticker{overflow:hidden;padding:16px 0}
+.ticker .track{display:flex;width:max-content;animation:tick 30s linear infinite}
+.ticker span{font-weight:900;font-size:clamp(26px,3.4vw,46px);letter-spacing:-.02em;white-space:nowrap;text-transform:uppercase}
+.ticker span em{font-style:normal;margin:0 .55em;color:var(--yellow)}
+@keyframes tick{to{transform:translateX(-50%)}}
+.ticker.dk{background:var(--bg2)}
+.ticker.dk .track{animation-direction:reverse;animation-duration:38s}
+.ticker.dk span{color:var(--cyan);font-size:clamp(20px,2.4vw,32px)}
+.ticker.dk span em{color:var(--pink)}
+
+/* ── escena fijada: anatomía del postre ── */
+.pin{position:relative}
+.pin .stage{position:sticky;top:0;height:100svh;overflow:hidden}
+#postre{height:380vh}
+#postre .stage{display:grid;place-items:center}
+#postre .bgword{position:absolute;font-weight:900;font-style:italic;font-size:clamp(120px,22vw,360px);letter-spacing:-.06em;line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(255,61,154,.28);white-space:nowrap;will-change:transform}
+#postre .frame{position:relative;height:min(74svh,640px);aspect-ratio:3/4;will-change:transform}
+#postre .frame .pic{position:absolute;inset:0;border-radius:28px;overflow:hidden;will-change:clip-path}
+#postre .frame .pic img{width:100%;height:100%;object-fit:cover}
+#postre svg.lines{position:absolute;inset:-30% -60%;width:220%;height:160%;overflow:visible;pointer-events:none}
+#postre svg.lines line{stroke:var(--ink);stroke-width:2}
+#postre svg.lines circle{fill:var(--yellow)}
+#postre .lbl{position:absolute;white-space:nowrap;font-weight:900;font-size:clamp(18px,2vw,28px);text-transform:uppercase;letter-spacing:-.01em;padding:8px 16px;border-radius:999px;will-change:transform,opacity;opacity:0}
+#postre .lbl.a{background:var(--pink);color:#fff} #postre .lbl.b{background:var(--cyan);color:#06191a} #postre .lbl.c{background:var(--yellow);color:#1b1300} #postre .lbl.d{background:var(--ink);color:var(--bg)}
+#postre .title{position:absolute;left:0;right:0;bottom:6svh;text-align:center;z-index:3;will-change:transform,opacity}
+#postre .title h3{font-weight:900;font-size:clamp(26px,3.6vw,52px);letter-spacing:-.03em;line-height:1}
+#postre .title p{color:var(--mute);margin-top:8px;font-size:15px}
+.prog{position:absolute;left:4vw;right:4vw;top:80px;height:3px;border-radius:3px;background:var(--line);z-index:4}
+.prog i{position:absolute;inset:0;border-radius:3px;background:linear-gradient(90deg,var(--pink),var(--cyan));transform-origin:left;transform:scaleX(0)}
+
+/* ── escena fijada horizontal: ¿qué opción eliges hoy? ── */
+#elige{height:400vh}
+#elige .stage{display:flex;flex-direction:column;justify-content:center}
+#elige .head{padding:0 4vw;margin-bottom:4svh}
+#elige .head h2{font-weight:900;font-size:clamp(40px,6.4vw,96px);line-height:.9;letter-spacing:-.045em}
+#elige .rail{display:flex;gap:3vw;padding:0 4vw;width:max-content;will-change:transform}
+.opt{position:relative;width:min(78vw,860px);height:min(60svh,520px);border-radius:32px;overflow:hidden;display:grid;grid-template-columns:1.1fr 1fr;background:var(--bg2);border:1px solid var(--line);flex:none}
+.opt .ph{overflow:hidden}
+.opt .ph img{width:100%;height:100%;object-fit:cover;will-change:transform}
+.opt .tx{padding:clamp(22px,3vw,44px);display:flex;flex-direction:column;justify-content:center;gap:14px}
+.opt .num{font-weight:900;font-size:clamp(80px,10vw,150px);line-height:.8;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:2px var(--pink)}
+.opt:nth-child(2) .num{-webkit-text-stroke-color:var(--cyan)} .opt:nth-child(3) .num{-webkit-text-stroke-color:var(--yellow)}
+.opt h3{font-weight:900;font-size:clamp(26px,2.8vw,40px);line-height:1;letter-spacing:-.03em;text-transform:uppercase}
+.opt p{color:var(--mute);line-height:1.6;font-size:15px}
+.opt .new{align-self:flex-start;font-size:11px;font-weight:900;letter-spacing:.2em;background:var(--yellow);color:#1b1300;padding:6px 10px;border-radius:8px}
+
+/* ── menú con pestañas ── */
+section.block{padding:clamp(90px,12vw,150px) 0}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:40px}
+.sec-head h2{font-weight:900;font-size:clamp(44px,7vw,104px);line-height:.88;letter-spacing:-.045em}
+.sec-head p{color:var(--mute);max-width:380px;line-height:1.6}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px;position:relative}
+.tab{padding:12px 20px;border-radius:999px;font-weight:800;font-size:14px;letter-spacing:.04em;text-transform:uppercase;border:1.5px solid var(--line);transition:transform .45s var(--pop),background .3s,color .3s,border-color .3s}
+.tab:hover{transform:translateY(-3px) rotate(-2deg);border-color:var(--pink)}
+.tab[aria-selected=true]{background:var(--pink);border-color:var(--pink);color:#fff;transform:scale(1.06)}
+.board{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 34px;min-height:340px}
+.item{display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;gap:12px;padding:18px 0;border-bottom:1px dashed var(--line);
+  opacity:0;transform:translateY(24px) scale(.96);animation:itemin .6s var(--pop) forwards}
+.item h4{font-weight:800;font-size:clamp(17px,1.5vw,21px)}
+.item small{display:block;font-weight:400;color:var(--mute);font-size:13.5px;margin-top:4px;line-height:1.5}
+.item .dots{border-bottom:2px dotted rgba(255,247,251,.18);transform:translateY(-6px)}
+.item .pr{font-weight:900;font-size:clamp(18px,1.6vw,22px);color:var(--yellow);white-space:nowrap}
+@keyframes itemin{to{opacity:1;transform:none}}
+.note{margin-top:22px;color:var(--mute);font-size:13px}
+.note a{color:var(--cyan);font-weight:700;border-bottom:1px solid currentColor}
+
+/* ── galería ── */
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.gallery figure{border-radius:24px;overflow:hidden;aspect-ratio:3/4;transform:translateY(60px) rotate(var(--r,0deg)) scale(.9);opacity:0;transition:transform 1s var(--pop),opacity .5s}
+.gallery figure.in{transform:rotate(var(--r,0deg));opacity:1}
+.gallery figure:hover{transform:rotate(0) scale(1.04)}
+.gallery figure:nth-child(2){transition-delay:.1s;margin-top:40px}.gallery figure:nth-child(3){transition-delay:.2s}.gallery figure:nth-child(4){transition-delay:.3s;margin-top:40px}
+.gallery img{width:100%;height:100%;object-fit:cover}
+
+/* ── voces ── */
+.voices{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.v{border-radius:26px;padding:30px;display:flex;flex-direction:column;gap:16px;transform-origin:bottom left}
+.v blockquote{font-weight:800;font-size:clamp(20px,1.9vw,26px);line-height:1.2;letter-spacing:-.01em}
+.v cite{font-style:normal;font-size:13px;opacity:.8;margin-top:auto}
+.v cite b{opacity:1}
+.v.a{background:var(--pink);color:#fff} .v.b{background:var(--cyan);color:#06191a} .v.c{background:var(--ink);color:var(--bg)}
+.v.fade{transform:translateY(40px) rotate(-3deg)} .v.fade.in{transform:none}
+.v:nth-child(2){transition-delay:.12s}.v:nth-child(3){transition-delay:.24s}
+
+/* ── sedes ── */
+.visit{position:relative;overflow:hidden;padding:clamp(100px,13vw,170px) 0}
+#sprinkles2{position:absolute;inset:0;width:100%;height:100%;-webkit-mask-image:linear-gradient(transparent,#000 30%);mask-image:linear-gradient(transparent,#000 30%)}
+.visit .wrap{position:relative;z-index:2}
+.visit h2{font-weight:900;font-size:clamp(48px,8.4vw,132px);line-height:.88;letter-spacing:-.05em;text-align:center}
+.visit h2 .p{font-style:italic}
+.hours{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin:30px 0 50px}
+.hours span{font-weight:800;font-size:15px;padding:10px 18px;border-radius:999px;background:var(--bg2);border:1px solid var(--line)}
+.hours span b{color:var(--cyan)}
+.sedes{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.sede{position:relative;border-radius:28px;padding:34px;background:var(--bg2);border:1px solid var(--line);overflow:hidden}
+.sede::before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-80px;top:-80px;background:var(--pink);opacity:.16;filter:blur(30px);transition:transform 1s var(--out)}
+.sede:nth-child(2)::before{background:var(--cyan)}
+.sede:hover::before{transform:scale(1.5)}
+.sede .pin-ic{width:54px;height:68px;transform:translateY(-120px);opacity:0}
+.sede.in .pin-ic{animation:drop .9s var(--pop) .25s forwards}
+.sede:nth-child(2).in .pin-ic{animation-delay:.45s}
+@keyframes drop{60%{transform:translateY(6px);opacity:1}100%{transform:none;opacity:1}}
+.sede h3{font-weight:900;font-size:clamp(28px,3vw,42px);letter-spacing:-.03em;margin:16px 0 8px}
+.sede p{color:var(--mute);line-height:1.6;min-height:3.2em}
+.sede .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.sede .row .btn{padding:12px 18px;font-size:12.5px}
+.cta{display:flex;flex-direction:column;align-items:center;gap:18px;margin-top:60px;text-align:center}
+.cta p{color:var(--mute)}
+.cta p b{color:var(--yellow)}
+.tapzone{position:relative;display:inline-block}
+.tapzone .hand{position:absolute;right:-24px;bottom:-54px;font-size:54px;pointer-events:none;transform-origin:30% 10%;animation:tap 2.6s var(--out) infinite;filter:drop-shadow(0 10px 14px rgba(0,0,0,.5));font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif}
+.tapzone .ripple{position:absolute;inset:0;border-radius:999px;pointer-events:none}
+.tapzone .ripple::before,.tapzone .ripple::after{content:"";position:absolute;inset:0;border-radius:999px;border:2px solid var(--cyan);opacity:0;animation:ripple 2.6s var(--out) infinite}
+.tapzone .ripple::after{animation-delay:.18s}
+.tapzone .btn{animation:press 2.6s var(--out) infinite;font-size:16px;padding:18px 30px}
+@keyframes tap{0%{transform:translate(60px,70px) rotate(-18deg);opacity:0}25%{transform:translate(0,0) rotate(-8deg);opacity:1}33%{transform:translate(0,5px) rotate(-8deg) scale(.92)}42%{transform:translate(0,0) rotate(-8deg)}70%{transform:translate(0,0) rotate(-8deg);opacity:1}100%{transform:translate(50px,90px) rotate(-18deg);opacity:0}}
+@keyframes ripple{0%,30%{opacity:0;transform:scale(1)}33%{opacity:1;transform:scale(1)}70%{opacity:0;transform:scale(1.3,1.9)}100%{opacity:0}}
+@keyframes press{0%,30%{transform:none}33%{transform:scale(.94)}42%,100%{transform:none}}
+
+footer{border-top:1px solid var(--line);padding:34px 0}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--mute)}
+footer .soc{display:flex;gap:10px}
+footer .soc a{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);transition:transform .5s var(--pop),border-color .3s}
+footer .soc a:hover{transform:translateY(-4px) rotate(-10deg);border-color:var(--pink)}
+footer .soc svg{width:18px;height:18px}
+
+@media (max-width:1020px){
+  .voices{grid-template-columns:1fr}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  .board{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  nav{display:none}
+  .hero{padding-top:96px}
+  .hero .wrap{grid-template-columns:1fr;gap:40px}
+  .blobwrap{width:min(300px,78vw);order:-1}
+  .sticker.s1{left:-4%} .sticker.s2{right:-4%}
+  #postre .frame{height:min(56svh,520px)}
+  #postre .lbl{font-size:15px;padding:6px 12px}
+  .opt{width:84vw;height:min(68svh,600px);grid-template-columns:1fr;grid-template-rows:46% 1fr}
+  .opt .tx{gap:8px;padding:20px}
+  .opt .num{font-size:64px;position:absolute;top:14px;right:18px;-webkit-text-stroke-width:2px;text-shadow:0 2px 20px #000}
+  .opt p{font-size:14px}
+  .chip{font-size:10px;letter-spacing:.14em}
+  .sedes{grid-template-columns:1fr}
+  .tapzone .hand{right:-8px;font-size:46px}
+  .tapzone .btn{font-size:14px;padding:16px 22px}
+}
+@media (max-width:420px){ header .btn span{display:none} header .btn{padding:10px 12px} }
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .kin .ch,.fade,.gallery figure,.blob,.sticker,.item,.sede .pin-ic{transform:none!important;opacity:1!important}
+  .intro{display:none}
+}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="intro" id="intro" aria-hidden="true">
+  <img src="assets/img/logo.png" alt="">
+  <svg class="drip" viewBox="0 0 1440 120" preserveAspectRatio="none"><path fill="currentColor" d="M0 0h1440v20c-40 0-50 70-80 70s-30-60-70-60-40 90-80 90-30-80-80-80-50 40-90 40-40-60-80-60-40 100-90 100-40-90-80-90-50 50-90 50-40-70-80-70-40 60-80 60-50-40-90-40-40 80-90 80-40-70-80-70-30 30-60 30-40-60-80-60-40 60-80 60-40-50-60-50z"/></svg>
+</div>
+
+<header id="top">
+  <div class="wrap">
+    <a class="brand" href="#"><img src="assets/img/avatar.jpg" alt="Logo Frosty &amp; Chill">Frosty &amp; Chill</a>
+    <nav><a href="#postre">Postres</a><a href="#elige">Favoritos</a><a href="#menu">Menú</a><a href="#sedes">Sedes</a></nav>
+    <a class="btn" href="https://ig.me/m/frosty.chillpty" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/></svg><span>Escríbenos</span></a>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero">
+  <canvas id="sprinkles" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div>
+      <span class="chip fade"><i></i>Abierto lun–dom · 4:00 pm a 11:00 pm</span>
+      <h1 class="kin" data-kin>Del antojo al <span class="p">chill perfecto.</span></h1>
+      <p class="lead fade">Refrescos, postres y hamburguesas en Panamá. ¡Ven a conocer tu nuevo spot favorito!</p>
+      <div class="ctas fade">
+        <a class="btn" href="#menu">Ver el menú <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn ghost" href="#sedes">Cómo llegar</a>
+      </div>
+    </div>
+    <div class="blobwrap" id="blob">
+      <div class="blob"><img src="assets/img/sundae.jpg" alt="Fresas con crema, queso y churros de Frosty & Chill"></div>
+      <span class="sticker s1">Fresas con crema 🍓</span>
+      <span class="sticker s2"><b>4PM</b>a 11PM</span>
+      <span class="sticker s3">🛵 En PedidosYa</span>
+    </div>
+  </div>
+</section>
+
+<div class="dripband">
+  <svg class="drip top" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0h1440v10c-30 0-40 40-70 40s-30-35-60-35-40 50-70 50-30-45-70-45-40 25-70 25-30-35-70-35-40 55-80 55-30-50-70-50-40 30-70 30-30-40-70-40-40 35-70 35-40-25-70-25-30 45-80 45-30-40-70-40-30 20-60 20-40-35-70-35-30 35-70 35-30-30-50-30z"/></svg>
+  <div class="ticker"><div class="track" id="t1"></div></div>
+  <svg class="drip" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0h1440v10c-30 0-40 40-70 40s-30-35-60-35-40 50-70 50-30-45-70-45-40 25-70 25-30-35-70-35-40 55-80 55-30-50-70-50-40 30-70 30-30-40-70-40-40 35-70 35-40-25-70-25-30 45-80 45-30-40-70-40-30 20-60 20-40-35-70-35-30 35-70 35-30-30-50-30z"/></svg>
+</div>
+
+<!-- POSTRE · anatomía (escena fijada) -->
+<section class="pin" id="postre">
+  <div class="stage">
+    <div class="prog"><i></i></div>
+    <div class="bgword">Explosión de sabores</div>
+    <div class="frame">
+      <div class="pic"><img src="assets/img/sundae.jpg" alt="Fresas con crema, queso y churros"></div>
+      <svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg>
+      <span class="lbl a" data-at="48,12" data-to="-24,14" data-tom="22,4">Fresas 🍓</span>
+      <span class="lbl b" data-at="22,52" data-to="-26,56" data-tom="16,70">Crema</span>
+      <span class="lbl c" data-at="42,42" data-to="118,30" data-tom="80,28">Queso</span>
+      <span class="lbl d" data-at="80,55" data-to="118,74" data-tom="80,84">Churros</span>
+    </div>
+    <div class="title"><h3>Fresas con crema, <span class="p">queso</span> y <span class="c">churros</span></h3><p>“Lunes de explosión de sabores” 🍓🧀</p></div>
+  </div>
+</section>
+
+<!-- ELIGE (escena horizontal fijada) -->
+<section class="pin" id="elige">
+  <div class="stage">
+    <div class="head"><h2 class="kin" data-kin>¿Qué opción <span class="c">eliges hoy?</span></h2></div>
+    <div class="rail">
+      <article class="opt">
+        <div class="ph"><img src="assets/img/burger-supremacy.jpg" alt="Supremacy Burger con papas western"></div>
+        <div class="tx"><span class="num">01</span><span class="new">NUEVA</span><h3>Supremacy Burger</h3><p>Bacon, queso frito, carne angus, lechuga, cebolla, queso cheddar, plátano maduro y la grandiosa salsa de la casa. Acompáñala con papas francesas o western.</p></div>
+      </article>
+      <article class="opt">
+        <div class="ph"><img src="assets/img/supremo-cerdo.jpg" alt="Supremo de cerdo con patacones y ensalada"></div>
+        <div class="tx"><span class="num">02</span><span class="new">NEW</span><h3>Supremo de cerdo</h3><p>Puerco a la plancha con chimichurri de la casa. Acompáñalo con patacones, yuca frita o papas fritas y ensalada.</p></div>
+      </article>
+      <article class="opt">
+        <div class="ph"><img src="assets/img/salchipapa.jpg" alt="Salchipapa Sin Nombre"></div>
+        <div class="tx"><span class="num">03</span><span class="new">PARA COMPARTIR</span><h3>Salchipapa “Sin Nombre”</h3><p>Papas francesas, salchichas, tocineta, queso fundido, maíz, plátano maduro, pollo, carne mechada, chicharrón y salsas de la casa.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- MENÚ -->
+<section class="block" id="menu">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="kin" data-kin>El <span class="p">menú</span></h2>
+      <p class="fade">Elige una categoría. Precios del menú de Plaza Balboa.</p>
+    </div>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div class="board" id="board" role="tabpanel"></div>
+    <p class="note">Ver menú completo: <a href="https://heyzine.com/flip-book/4d67999ffe.html" target="_blank" rel="noopener">Plaza Balboa</a> · <a href="https://heyzine.com/flip-book/9372d3e874.html" target="_blank" rel="noopener">San Antonio</a></p>
+  </div>
+</section>
+
+<div class="ticker dk"><div class="track" id="t2"></div></div>
+
+<!-- GALERÍA -->
+<section class="block">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="kin" data-kin>Pura <span class="c">tentación</span></h2><p class="fade">Nuevos sabores: helado artesanal de chicle 🩵 y fresas con crema sabor a chicle.</p></div>
+    <div class="gallery">
+      <figure style="--r:-3deg"><img src="assets/img/fresas-chicle.jpg" alt="Fresas con crema sabor a chicle" style="object-position:40% 50%"></figure>
+      <figure style="--r:2deg"><img src="assets/img/burger-supremacy.jpg" alt="Supremacy Burger"></figure>
+      <figure style="--r:-2deg"><img src="assets/img/cono-chicle.jpg" alt="Helado artesanal de chicle en cono" style="object-position:60% 50%"></figure>
+      <figure style="--r:3deg"><img src="assets/img/salchipapa.jpg" alt="Salchipapa"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- VOCES -->
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="kin" data-kin>Lo que <span class="y">dicen</span></h2></div>
+    <div class="voices">
+      <div class="v a fade"><blockquote>“¡Ojo con este spot, que aquí se viene a pecar!”</blockquote><cite><b>@toy_ahorrando</b> · en Instagram</cite></div>
+      <div class="v b fade"><blockquote>“Si te gusta conocer nuevos spots, este lugar tienes que visitarlo.”</blockquote><cite><b>@yanelis1130</b> · en Instagram</cite></div>
+      <div class="v c fade"><blockquote>“Tuvimos el honor de ofrecerle de nuestros platos favoritos a @farruko en una de sus visitas a Panamá.”</blockquote><cite><b>@frosty.chillpty</b></cite></div>
+    </div>
+  </div>
+</section>
+
+<!-- SEDES -->
+<section class="visit" id="sedes">
+  <canvas id="sprinkles2" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <h2 class="kin" data-kin>Tu nuevo spot <span class="p">favorito.</span></h2>
+    <div class="hours fade"><span>Lun–Dom <b>4:00 pm – 11:00 pm</b></span><span>🛵 Disponibles en <b>PedidosYa</b></span></div>
+    <div class="sedes">
+      <div class="sede fade">
+        <svg class="pin-ic" viewBox="0 0 24 30"><path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 30 12 30s12-9.2 12-18.1C24 5.3 18.6 0 12 0z" fill="#ff3d9a"/><circle cx="12" cy="11.5" r="4.6" fill="#07060a"/></svg>
+        <h3>Plaza Balboa</h3>
+        <p>Balboa, al lado de PH Mystic Tower.</p>
+        <div class="row">
+          <a class="btn" href="https://maps.app.goo.gl/57Y7nuoAYeJTnhjB6" target="_blank" rel="noopener">Cómo llegar</a>
+          <a class="btn ghost" href="https://heyzine.com/flip-book/4d67999ffe.html" target="_blank" rel="noopener">Menú</a>
+        </div>
+      </div>
+      <div class="sede fade">
+        <svg class="pin-ic" viewBox="0 0 24 30"><path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 30 12 30s12-9.2 12-18.1C24 5.3 18.6 0 12 0z" fill="#2fe0e6"/><circle cx="12" cy="11.5" r="4.6" fill="#07060a"/></svg>
+        <h3>San Antonio</h3>
+        <p>Ubicación en Google Maps.</p>
+        <div class="row">
+          <a class="btn cy" href="https://maps.app.goo.gl/aBF2b8qTTxbALMQG7" target="_blank" rel="noopener">Cómo llegar</a>
+          <a class="btn ghost" href="https://heyzine.com/flip-book/9372d3e874.html" target="_blank" rel="noopener">Menú</a>
+        </div>
+      </div>
+    </div>
+    <div class="cta fade">
+      <span class="tapzone"><a class="btn" href="https://ig.me/m/frosty.chillpty" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/></svg>Escríbenos por Instagram</a><span class="ripple"></span><span class="hand" aria-hidden="true">👆</span></span>
+      <p>¿Antojo en casa? Pide por <b>PedidosYa</b>.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© Frosty &amp; Chill Panamá · Refrescos · Postres · Hamburguesas</span>
+    <div class="soc">
+      <a href="https://www.instagram.com/frosty.chillpty/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+      <a href="https://bio.site/Frostyandchill" target="_blank" rel="noopener" aria-label="Menú y ubicación"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// Motion system: las escenas fijadas son FUNCIONES PURAS de su
+// progreso p (0→1) — el scroll hace de línea de tiempo.
+// ═══════════════════════════════════════════════════════════════
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const prog=(t,a,b)=>clamp((t-a)/(b-a));
+const lerp=(a,b,k)=>a+(b-a)*k;
+const eOutCubic=k=>1-Math.pow(1-k,3);
+const eInOutCubic=k=>k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;
+const eOutBack=(k,s=1.7)=>1+(s+1)*Math.pow(k-1,3)+s*Math.pow(k-1,2);
+
+// ── texto cinético: letra por letra ──
+document.querySelectorAll('[data-kin]').forEach(el=>{
+  let i=0;const walk=n=>{[...n.childNodes].forEach(c=>{
+    if(c.nodeType===3){const frag=document.createDocumentFragment();
+      c.textContent.split(/(\s+)/).forEach(tok=>{if(!tok)return;if(/^\s+$/.test(tok)){frag.append(' ');return;}
+        const w=document.createElement('span');w.className='w';
+        [...tok].forEach(ch=>{const s=document.createElement('span');s.className='ch';s.textContent=ch;s.style.transitionDelay=(i++*0.03)+'s';w.append(s);});
+        frag.append(w);});
+      c.replaceWith(frag);}else walk(c);});};walk(el);
+});
+
+// ── intro ──
+function revealHero(){document.querySelectorAll('.hero .kin,.hero .fade,#blob').forEach((e,i)=>setTimeout(()=>e.classList.add('in'),i*130));}
+if(RM){document.getElementById('intro').remove();revealHero();}
+else setTimeout(()=>{const it=document.getElementById('intro');it.classList.add('out');setTimeout(revealHero,380);setTimeout(()=>it.remove(),1400);},1500);
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.2});
+document.querySelectorAll('.kin,.fade,.gallery figure,.sede').forEach(e=>{if(!e.closest('.hero'))io.observe(e);});
+
+// ── tickers ──
+const fill=(id,html)=>{document.getElementById(id).innerHTML=html.repeat(2);};
+fill('t1','<span>Refrescos<em>✦</em>Postres<em>✦</em>Hamburguesas<em>✦</em>Waffles<em>✦</em>Corn dogs<em>✦</em></span>'.repeat(2));
+fill('t2','<span>Frappes:<em>●</em>Chocolate blanco<em>●</em>Caramelo<em>●</em>Mango<em>●</em>Vainilla<em>●</em>Fresa<em>●</em>Café<em>●</em>Galleta<em>●</em>Matcha<em>●</em>Chocolate<em>●</em>Cotton Candy<em>●</em></span>'.repeat(2));
+
+// ── menú con pestañas (precios del menú Plaza Balboa) ──
+const MENU={
+  'Hamburguesas':[['Sencilla','Carne de res, queso cheddar, tomate, cebolla caramelizada y lechuga.','$7'],['La Frosty','Carne de res, queso cheddar, tomate, cebolla caramelizada, tocino, lechuga romana y aro de cebolla.','$8.50'],['La Chilling','Doble carne de res, queso mozzarella, tomate, lechuga romana, cebolla caramelizada y tocino.','$12'],['La Burguer Galaxy','Pechuga de pollo apanada, queso cheddar, tomate, cebolla caramelizada y lechuga romana.','$8'],['Combo','Incluye papas francesas o western.','']],
+  'Favoritos':[['Salchipapas','','$5'],['Pío papas','Apanado · agridulce · picante.','$7'],['Alitas combo','Incluye ensalada, papas fritas y té frío.','$8'],['Boneless en combo','Incluye ensalada, papas fritas y té frío.','$8'],['Papas recargadas','','$5'],['Panceta con yuca frita y guacamole','','$7.50']],
+  'Corn dogs':[['Corn dog de queso','','$3.50'],['Salchicha + queso','','$3.50'],['Pollo + queso','','$4'],['Combinación con papa','','$5']],
+  'Entradas':[['Tequeños (5)','','$3.50'],['Mozzarella sticks (6)','','$4.50'],['Mini corndogs (6)','','$4.50'],['Quesadillas','','$5']],
+  'Postres':[['Tsunami waffle','','$7'],['Fresas con crema (pequeño)','','$5'],['Fresas con crema (regular)','','$7'],['Copa tentación','','$8'],['Churros (8)','','$4'],['Helado artesanal','','$2.75'],['Mini bites','','$7'],['Cheesecake','','$3.50'],['Marquesa','','$2.75'],['Pincho con toppings','','$2.50']],
+  'Bebidas':[['Frappes','Chocolate blanco, caramelo, mango, vainilla, fresa, café, galleta, matcha, chocolate, cotton candy.','12oz $4.50 · 16oz $5.50'],['Milkshake','','$4.50'],['Frozen 16oz','','$4'],['Batido de fruta','','$3.50'],['Licuado de fruta','','$3'],['Té frío 12oz','','$1.25'],['Sodas','','$1.25']],
+  'Picadas':[['La 3 Estaciones','6 mini hamburguesas, papas fritas y 2 té fríos.','$15'],['En Bomba','2 salchipapas regulares, 6 alitas, 2 corndog sencillos y 2 té fríos.','$20'],['Picada Chill','1 salchipapas, 1 Pío Papas, 10 alitas, 3 mini corndog de queso, 5 deditos de pescado y 2 té fríos.','$26']]
+};
+const tabs=document.getElementById('tabs'),board=document.getElementById('board');
+function show(cat){
+  tabs.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected',t.dataset.c===cat));
+  board.innerHTML=MENU[cat].map(([n,d,p],i)=>`<div class="item" style="animation-delay:${i*0.06}s"><h4>${n}${d?`<small>${d}</small>`:''}</h4><span class="dots"></span><span class="pr">${p}</span></div>`).join('');
+}
+Object.keys(MENU).forEach(c=>{const b=document.createElement('button');b.className='tab';b.role='tab';b.dataset.c=c;b.textContent=c;b.onclick=()=>show(c);tabs.append(b);});
+show('Hamburguesas');
+
+// ── ESCENA "postre": foto entra, líneas se dibujan, etiquetas rebotan ──
+const SP=document.getElementById('postre'),sp={frame:SP.querySelector('.frame'),pic:SP.querySelector('.pic'),bg:SP.querySelector('.bgword'),svg:SP.querySelector('svg.lines'),lbls:[...SP.querySelectorAll('.lbl')],title:SP.querySelector('.title'),bar:SP.querySelector('.prog i')};
+// svg cubre el frame expandido: inset -30% -60% → 220% x 160%; convertir % del frame a coords 0-100 del svg
+const fx=x=>(x+60)/220*100, fy=y=>(y+30)/160*100;
+sp.lbls.forEach(l=>{
+  const [ax,ay]=l.dataset.at.split(',').map(Number),[tx,ty]=((innerWidth<760&&l.dataset.tom)||l.dataset.to).split(',').map(Number);
+  l._a=[ax,ay];l._t=[tx,ty];
+  const ln=document.createElementNS('http://www.w3.org/2000/svg','line');ln.setAttribute('x1',fx(ax));ln.setAttribute('y1',fy(ay));ln.setAttribute('x2',fx(ax));ln.setAttribute('y2',fy(ay));ln.setAttribute('vector-effect','non-scaling-stroke');
+  const dot=document.createElementNS('http://www.w3.org/2000/svg','circle');dot.setAttribute('cx',fx(ax));dot.setAttribute('cy',fy(ay));dot.setAttribute('r','.6');
+  sp.svg.append(ln,dot);l._ln=ln;l._dot=dot;
+  l.style.left=tx+'%';l.style.top=ty+'%';
+});
+function scenePostre(p){
+  const k=eOutBack(prog(p,0,.22),1.2);
+  sp.frame.style.transform=`translateY(${(1-k)*40}svh) rotate(${lerp(-8,0,k)}deg) scale(${lerp(.6,1,k)*lerp(1,1.04,prog(p,.3,1))})`;
+  sp.pic.style.clipPath=`inset(${lerp(50,0,eOutCubic(prog(p,0,.2)))}% round 28px)`;
+  sp.bg.style.transform=`translateX(${lerp(30,-60,p)}%)`;
+  sp.lbls.forEach((l,i)=>{
+    const a=.24+i*.13, lk=eInOutCubic(prog(p,a,a+.08)), bk=eOutBack(prog(p,a+.06,a+.14),2);
+    l._ln.setAttribute('x2',fx(lerp(l._a[0],l._t[0],lk)));l._ln.setAttribute('y2',fy(lerp(l._a[1],l._t[1],lk)));l._ln.style.opacity=lk>0?1:0; l._dot.style.opacity=clamp(lk*4);
+    l.style.opacity=clamp(bk*1.5);
+    l.style.transform=`translate(-50%,-50%) scale(${lerp(.2,1,bk)}) rotate(${lerp(20,i%2?3:-3,bk)}deg)`;
+  });
+  const tk=eOutBack(prog(p,.8,.92));sp.title.style.opacity=clamp(tk*1.4);sp.title.style.transform=`translateY(${(1-tk)*60}px)`;
+  sp.bar.style.transform=`scaleX(${p})`;
+}
+
+// ── ESCENA "elige": el scroll vertical mueve el riel horizontal ──
+const SE=document.getElementById('elige'),rail=SE.querySelector('.rail'),opts=[...SE.querySelectorAll('.opt')];
+function sceneElige(p){
+  const max=rail.scrollWidth-innerWidth;const k=eInOutCubic(prog(p,.06,.94));
+  rail.style.transform=`translateX(${-max*k}px)`;
+  opts.forEach((o,i)=>{const c=(o.offsetLeft-max*k+o.offsetWidth/2)/innerWidth-.5; // -0.5..0.5 respecto al centro
+    o.querySelector('.ph img').style.transform=`scale(1.12) translateX(${c*-8}%)`;
+    o.style.transform=`rotate(${c*-4}deg) scale(${1-Math.min(Math.abs(c),1)*.08})`;});
+}
+
+function progOf(sec){const r=sec.getBoundingClientRect();return clamp(-r.top/(r.height-innerHeight));}
+const hdr=document.getElementById('top');let ticking=false;
+function onScroll(){if(ticking)return;ticking=true;requestAnimationFrame(()=>{ticking=false;
+  hdr.classList.toggle('solid',scrollY>40);
+  scenePostre(RM?1:progOf(SP));sceneElige(RM?0:progOf(SE));});}
+addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
+
+// ── chispitas de colores (canvas): cada sprinkle = función pura de t + semilla ──
+function sprinkleField(cv,{count=70}={}){
+  const c=cv.getContext('2d');let W,H;
+  const rnd=(i,k)=>{const x=Math.sin(i*127.1+k*311.7)*43758.5453;return x-Math.floor(x);};
+  const COLS=['#ff3d9a','#2fe0e6','#ffd23f','#ff86c3','#ffffff'];
+  const P=[...Array(count)].map((_,i)=>({x:rnd(i,1),sp:.018+rnd(i,2)*.05,len:8+rnd(i,3)*14,ph:rnd(i,4),sw:14+rnd(i,5)*30,rot:rnd(i,6)*6,vr:(rnd(i,7)-.5)*2.4,col:COLS[Math.floor(rnd(i,8)*COLS.length)],dot:rnd(i,9)<.25,z:.5+rnd(i,10)*.8}));
+  const size=()=>{const d=Math.min(devicePixelRatio||1,2);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*d;cv.height=H*d;c.setTransform(d,0,0,d,0,0);};
+  size();addEventListener('resize',size);
+  let vis=true;new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(cv);
+  const draw=t=>{c.clearRect(0,0,W,H);
+    // halos de neón que respiran
+    [[.82,.25,'255,61,154'],[.12,.8,'47,224,230']].forEach(([gx,gy,rgb],j)=>{const r=Math.max(W,H)*(.42+.04*Math.sin(t*.8+j*2));const g=c.createRadialGradient(W*gx,H*gy,0,W*gx,H*gy,r);g.addColorStop(0,`rgba(${rgb},.16)`);g.addColorStop(1,`rgba(${rgb},0)`);c.fillStyle=g;c.fillRect(0,0,W,H);});
+    P.forEach(p=>{const k=(t*p.sp+p.ph)%1,y=-30+k*(H+60),x=W*p.x+Math.sin(t*.9+p.ph*12)*p.sw;
+      c.save();c.translate(x,y);c.rotate(p.rot+t*p.vr);c.globalAlpha=.85*Math.sin(Math.PI*k)*p.z;c.fillStyle=p.col;
+      if(p.dot){c.beginPath();c.arc(0,0,4*p.z,0,7);c.fill();}else{c.beginPath();c.roundRect(-p.len*p.z/2,-2.6*p.z,p.len*p.z,5.2*p.z,3);c.fill();}
+      c.restore();});
+  };
+  if(RM){draw(4);return;}
+  const loop=n=>{if(vis)draw(n/1000);requestAnimationFrame(loop);};requestAnimationFrame(loop);
+}
+sprinkleField(document.getElementById('sprinkles'),{count:80});
+sprinkleField(document.getElementById('sprinkles2'),{count:55});
+</script>
+</body>
+</html>
