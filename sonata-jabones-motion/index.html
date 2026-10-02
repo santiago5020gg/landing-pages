@@ -7,13 +7,12 @@
 <meta name="description" content="Jabones Sonata — jabones artesanales hechos a mano en Medellín. Cuidado que se siente, belleza que armoniza. 10 variedades, promociones y empaque de regalo.">
 <link rel="icon" href="assets/img/logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,500;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#fbf4ee; --bg2:#f4e6dd; --card:#fffaf6; --ink:#3b2a26; --mute:#8a7169;
-  --rose:#d98c95; --rose2:#f3c9cc; --lav:#8b6fb3; --lav2:#d8c8ee; --gold:#c49a5a;
-  --tint:#f3c9cc; --line:rgba(59,42,38,.12);
-  --pop:cubic-bezier(.34,1.6,.5,1); --out:cubic-bezier(.16,1,.3,1);
+  --bg:#1a1114; --bg2:#26191d; --ink:#f8ece4; --mute:#bfa9a4;
+  --rose:#ec9aab; --rose2:#f7c7cf; --lav:#b394e6; --lav2:#d9c8f5; --gold:#e3bb72; --cream:#f6e7dc; --line:rgba(248,236,228,.13);
+  --pop:cubic-bezier(.34,1.8,.5,1); --out:cubic-bezier(.16,1,.3,1);
   --f:'Poppins',system-ui,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -21,216 +20,252 @@ html{-webkit-text-size-adjust:100%;overflow-x:clip}
 body{background:var(--bg);color:var(--ink);font-family:var(--f);overflow-x:clip;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
-.wrap{width:min(1200px,100% - 32px);margin-inline:auto}
-.r{color:var(--rose)} .l{color:var(--lav)}
-em{font-style:italic;font-weight:300}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.wrap{width:min(1240px,100% - 32px);margin-inline:auto}
+.r{color:var(--rose)} .l{color:var(--lav)} .g{color:var(--gold)}
 
-.grain{position:fixed;inset:-50%;z-index:90;pointer-events:none;opacity:.05;
+.grain{position:fixed;inset:-50%;z-index:90;pointer-events:none;opacity:.07;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation:grain .7s steps(4) infinite}
+  animation:grain .6s steps(4) infinite}
 @keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-1%)}100%{transform:translate(0,0)}}
 
-/* ── intro: el pentagrama se dibuja, una nota cae y aparece el logo ── */
-.intro{position:fixed;inset:0;z-index:100;background:#f8e3e2;display:grid;place-items:center;transition:opacity .9s var(--out) .1s,visibility .9s}
-.intro.out{opacity:0;visibility:hidden}
-.intro svg.staff{position:absolute;left:0;width:100%;top:50%;height:120px;transform:translateY(-50%)}
-.intro .staff path{fill:none;stroke:#b98a8f;stroke-width:1.4;stroke-dasharray:1;stroke-dashoffset:1;animation:dash 1.1s var(--out) forwards}
-.intro .staff path:nth-child(2){animation-delay:.06s}.intro .staff path:nth-child(3){animation-delay:.12s}.intro .staff path:nth-child(4){animation-delay:.18s}.intro .staff path:nth-child(5){animation-delay:.24s}
-@keyframes dash{to{stroke-dashoffset:0}}
-.intro img{position:relative;width:min(380px,74vw);opacity:0;transform:scale(.85);animation:logo .9s var(--out) .7s forwards}
-@keyframes logo{to{opacity:1;transform:none}}
+/* ── intro: el logo cae con squash & stretch y la cortina "gotea" como jabón derretido ── */
+.intro{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:var(--bg);transition:transform 1s var(--out) .15s}
+.intro.out{transform:translateY(-130%)}
+.intro .drip{position:absolute;left:0;right:0;top:100%;height:120px;color:var(--bg)}
+.intro img{width:min(300px,62vw);transform-origin:50% 100%;animation:squash 1.2s var(--out) .1s both}
+.intro .notes{position:absolute;inset:0;pointer-events:none}
+.intro .notes span{position:absolute;font-size:40px;color:var(--rose);opacity:0;animation:noteup 1.4s var(--out) forwards}
+.intro .notes span:nth-child(1){left:30%;top:60%;animation-delay:.7s}.intro .notes span:nth-child(2){left:66%;top:55%;animation-delay:.85s;color:var(--lav)}.intro .notes span:nth-child(3){left:58%;top:30%;animation-delay:1s;color:var(--gold)}
+@keyframes noteup{0%{opacity:0;transform:translateY(40px) scale(.4) rotate(-20deg)}40%{opacity:1}100%{opacity:0;transform:translateY(-80px) scale(1) rotate(15deg)}}
+@keyframes squash{0%{transform:translateY(-120vh) scale(.8,1.3)}45%{transform:translateY(0) scale(.8,1.25)}58%{transform:translateY(0) scale(1.25,.75)}72%{transform:translateY(-30px) scale(.94,1.08)}86%{transform:translateY(0) scale(1.04,.96)}100%{transform:none}}
 
 /* ── header ── */
-header{position:fixed;top:0;left:0;right:0;z-index:50;padding:12px 0;transition:background .4s,box-shadow .4s}
-header.solid{background:rgba(251,244,238,.85);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
+header{position:fixed;top:0;left:0;right:0;z-index:50;padding:12px 0;transition:background .4s}
+header.solid{background:rgba(26,17,20,.82);backdrop-filter:blur(10px)}
 header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
 .brand img{height:44px;width:auto}
-nav{display:flex;gap:28px;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
-nav a{color:var(--mute);display:inline-block;transition:color .3s,transform .5s var(--pop)}
-nav a:hover{color:var(--rose);transform:translateY(-3px)}
-.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:999px;font-weight:600;font-size:14px;letter-spacing:.03em;
-  background:var(--ink);color:var(--bg);transition:transform .5s var(--pop),box-shadow .4s,background .3s}
-.btn:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 16px 36px -14px rgba(59,42,38,.55)}
-.btn.rose{background:var(--rose);color:#fff}
-.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
-.btn.ghost:hover{box-shadow:inset 0 0 0 1.5px var(--rose)}
+nav{display:flex;gap:26px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+nav a{color:var(--mute);transition:color .3s,transform .4s var(--pop);display:inline-block}
+nav a:hover{color:var(--rose);transform:translateY(-3px) rotate(-3deg)}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:999px;font-weight:800;font-size:14px;letter-spacing:.04em;text-transform:uppercase;
+  background:var(--rose);color:#2a1218;transition:transform .5s var(--pop),box-shadow .4s}
+.btn:hover{transform:translateY(-3px) scale(1.05) rotate(-2deg);box-shadow:0 14px 40px -8px rgba(236,154,171,.7)}
+.btn.lv{background:var(--lav);color:#1d1030}
+.btn.lv:hover{box-shadow:0 14px 40px -8px rgba(179,148,230,.7)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--line)}
+.btn.ghost:hover{box-shadow:inset 0 0 0 2px var(--lav)}
 .btn svg{width:18px;height:18px;flex:none}
-header .btn{padding:10px 18px;font-size:12.5px}
+header .btn{padding:10px 18px;font-size:12px}
 
-/* ── texto cinético: palabras que flotan ── */
-.kin .w{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .02em .1em;margin-bottom:-.1em}
-.kin .w>span{display:inline-block;transform:translateY(110%);opacity:0;transition:transform 1.1s var(--out),opacity .8s}
-.kin.in .w>span{transform:none;opacity:1}
-.fade{opacity:0;transform:translateY(26px);transition:opacity 1s var(--out),transform 1s var(--out)}
+/* ── texto cinético (letras que rebotan) ── */
+.kin .w{display:inline-block;white-space:nowrap}
+.kin .ch{display:inline-block;transform:translateY(.9em) scale(.4) rotate(-14deg);opacity:0;transition:transform .8s var(--pop),opacity .3s}
+.kin.in .ch{transform:none;opacity:1}
+.fade{opacity:0;transform:translateY(30px);transition:opacity .8s var(--out),transform .8s var(--out)}
 .fade.in{opacity:1;transform:none}
 
 /* ── hero ── */
-.hero{position:relative;min-height:100svh;display:grid;align-items:center;overflow:hidden;padding:110px 0 80px}
-#bubbles{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
-.hero .staffbg{position:absolute;left:0;width:100%;top:58%;height:160px;opacity:.45}
-.hero .staffbg path{fill:none;stroke:var(--rose);stroke-width:1.2}
-.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
-.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--lav)}
-.eyebrow svg{width:16px;height:22px}
-.hero h1{font-weight:600;font-size:clamp(44px,6.8vw,100px);line-height:.98;letter-spacing:-.035em;margin:22px 0 24px}
-.hero h1 em{color:var(--rose)}
-.hero p.lead{font-size:clamp(16px,1.3vw,18px);color:var(--mute);max-width:470px;line-height:1.7}
+.hero{position:relative;min-height:100svh;display:grid;align-items:center;overflow:hidden;padding:110px 0 90px}
+#bubbles{position:absolute;inset:0;width:100%;height:100%}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.chip{display:inline-flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;padding:8px 14px;border-radius:999px;border:1.5px solid var(--lav);color:var(--lav)}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--lav);animation:blink 1.2s infinite}
+@keyframes blink{50%{opacity:.2}}
+.hero h1{font-weight:900;font-size:clamp(46px,7vw,108px);line-height:.92;letter-spacing:-.04em;margin:24px 0 24px}
+.hero h1 .r{font-style:italic}
+.hero p.lead{font-size:clamp(16px,1.35vw,19px);color:var(--mute);max-width:480px;line-height:1.6}
 .hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
-.orbit{position:relative;justify-self:center;width:min(470px,100%);aspect-ratio:1}
-.orbit .ph{position:absolute;inset:9%;border-radius:50%;overflow:hidden;clip-path:circle(0% at 50% 50%);transition:clip-path 1.6s var(--out) .15s;box-shadow:0 40px 80px -40px rgba(59,42,38,.5)}
-.orbit.in .ph{clip-path:circle(50% at 50% 50%)}
-.orbit .ph img{width:100%;height:100%;object-fit:cover;transform:scale(1.3);transition:transform 2.4s var(--out) .15s}
-.orbit.in .ph img{transform:scale(1.02)}
-.orbit .ring{position:absolute;inset:0;width:100%;height:100%;animation:spin 40s linear infinite}
-.orbit .ring text{font:500 12px var(--f);letter-spacing:.42em;fill:var(--mute);text-transform:uppercase}
-.orbit .note{position:absolute;font-size:34px;color:var(--lav);animation:floaty 4s ease-in-out infinite;opacity:0;transition:opacity 1s .9s}
-.orbit.in .note{opacity:1}
-.orbit .note.n1{top:4%;right:10%}.orbit .note.n2{bottom:12%;left:0;animation-delay:1.3s;color:var(--rose);font-size:28px}.orbit .note.n3{top:42%;right:-4%;animation-delay:2.4s;font-size:24px;color:var(--gold)}
-@keyframes floaty{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-16px) rotate(6deg)}}
-@keyframes spin{to{transform:rotate(360deg)}}
+.blobwrap{position:relative;justify-self:center;width:min(460px,100%);aspect-ratio:1}
+.blob{position:absolute;inset:0;overflow:hidden;border-radius:42% 58% 63% 37% / 41% 44% 56% 59%;animation:morph 9s ease-in-out infinite;
+  transform:scale(0) rotate(-20deg);transition:transform 1.2s var(--pop) .1s;box-shadow:0 0 0 6px var(--rose),0 0 90px -10px rgba(236,154,171,.55)}
+.blobwrap.in .blob{transform:none}
+.blob img{width:100%;height:100%;object-fit:cover}
+@keyframes morph{0%,100%{border-radius:42% 58% 63% 37% / 41% 44% 56% 59%}33%{border-radius:58% 42% 38% 62% / 55% 38% 62% 45%}66%{border-radius:38% 62% 50% 50% / 38% 60% 40% 62%}}
+.sticker{position:absolute;z-index:2;font-weight:900;text-transform:uppercase;text-align:center;line-height:1;border-radius:999px;padding:12px 18px;
+  transform:scale(0) rotate(30deg);transition:transform .8s var(--pop)}
+.blobwrap.in .sticker{transform:rotate(var(--r)) scale(1)}
+.sticker.s1{--r:-10deg;top:4%;left:-8%;background:var(--gold);color:#2a1a05;font-size:15px;transition-delay:.9s;animation:bob 3s ease-in-out 2s infinite}
+.sticker.s2{--r:8deg;bottom:14%;right:-8%;background:var(--lav);color:#1d1030;font-size:12px;transition-delay:1.05s;animation:bob 3.4s ease-in-out 2.3s infinite}
+.sticker.s2 b{display:block;font-size:24px}
+.sticker.s3{--r:-4deg;bottom:-2%;left:6%;background:var(--cream);color:var(--bg);font-size:12px;letter-spacing:.1em;transition-delay:1.2s;animation:bob 3.8s ease-in-out 2.6s infinite}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -10px}}
 
-/* ── ticker ── */
-.ticker{overflow:hidden;padding:20px 0;border-block:1px solid var(--line);background:var(--card)}
-.ticker .track{display:flex;width:max-content;animation:tick 40s linear infinite}
-.ticker span{font-weight:300;font-style:italic;font-size:clamp(26px,3.4vw,44px);white-space:nowrap;letter-spacing:-.01em}
-.ticker span i{font-style:normal;margin:0 .7em;color:var(--rose);font-size:.7em;vertical-align:middle}
+/* goteo (divisor) */
+.drip{display:block;width:100%;height:90px}
+.drip path{fill:var(--rose)}
+.dripband{background:var(--rose);color:#2a1218;position:relative;z-index:2}
+.dripband .drip{position:absolute;top:100%;left:0;height:70px}
+.dripband .drip.top{top:auto;bottom:100%;transform:scaleY(-1)}
+.ticker{overflow:hidden;padding:16px 0}
+.ticker .track{display:flex;width:max-content;animation:tick 34s linear infinite}
+.ticker span{font-weight:900;font-size:clamp(26px,3.4vw,46px);letter-spacing:-.02em;white-space:nowrap;text-transform:uppercase}
+.ticker span em{font-style:normal;margin:0 .55em;color:#fff}
 @keyframes tick{to{transform:translateX(-50%)}}
+.ticker.dk{background:var(--bg2)}
+.ticker.dk .track{animation-direction:reverse;animation-duration:40s}
+.ticker.dk span{color:var(--lav);font-size:clamp(20px,2.4vw,32px)}
+.ticker.dk span em{color:var(--rose)}
 
-/* ── escena fijada: la sinfonía de 10 jabones ── */
+/* ── escena fijada: anatomía del jabón ── */
 .pin{position:relative}
 .pin .stage{position:sticky;top:0;height:100svh;overflow:hidden}
-#sinfonia{height:1000vh}
-#sinfonia .stage{background:var(--tint);transition:background .8s var(--out)}
-#sinfonia .stage::before{content:"";position:absolute;inset:0;background:radial-gradient(70% 60% at 70% 40%,rgba(255,255,255,.55),transparent 70%)}
-.sf-grid{position:relative;height:100%;display:grid;grid-template-columns:1fr 1.15fr;gap:4vw;align-items:center;padding:90px 5vw 120px}
-.sf-text{position:relative;min-height:380px}
-.sf-item{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:14px;will-change:transform,opacity;opacity:0}
-.sf-item .no{font-weight:500;font-size:13px;letter-spacing:.3em;color:var(--mute)}
-.sf-item h3{font-weight:600;font-size:clamp(46px,6.4vw,96px);line-height:.92;letter-spacing:-.04em}
-.sf-item h3 em{display:block;font-size:.42em;letter-spacing:0;color:var(--mute);margin-bottom:6px}
-.sf-item ul{list-style:none;display:flex;flex-direction:column;gap:6px;margin-top:4px}
-.sf-item li{font-size:15px;line-height:1.5;display:flex;gap:10px;align-items:baseline}
-.sf-item li::before{content:"♪";color:var(--rose);flex:none}
-.sf-item .buy{display:flex;align-items:center;gap:16px;margin-top:10px;flex-wrap:wrap}
-.sf-item .price{font-weight:700;font-size:26px}
-.sf-photo{position:relative;height:min(62svh,560px);border-radius:32px;overflow:hidden;box-shadow:0 50px 90px -50px rgba(59,42,38,.6)}
-.sf-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;will-change:transform,opacity,clip-path}
-.sf-staff{position:absolute;left:5vw;right:5vw;bottom:34px;height:56px}
-.sf-staff svg{width:100%;height:100%;overflow:visible}
-.sf-staff line{stroke:rgba(59,42,38,.25);stroke-width:1}
-.sf-staff .nt{transition:transform .5s var(--pop),fill .4s}
-.sf-staff text{font:500 10px var(--f);letter-spacing:.12em;fill:var(--mute);text-transform:uppercase}
-.sf-head{position:absolute;top:84px;left:5vw;font-size:12px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--mute);z-index:2}
+#jabon{height:380vh}
+#jabon .stage{display:grid;place-items:center}
+#jabon .bgword{position:absolute;font-weight:900;font-style:italic;font-size:clamp(120px,22vw,360px);letter-spacing:-.06em;line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(236,154,171,.26);white-space:nowrap;will-change:transform}
+#jabon .frame{position:relative;height:min(68svh,600px);aspect-ratio:1;will-change:transform}
+#jabon .frame .pic{position:absolute;inset:0;border-radius:28px;overflow:hidden;will-change:clip-path}
+#jabon .frame .pic img{width:100%;height:100%;object-fit:cover}
+#jabon svg.lines{position:absolute;inset:-30% -60%;width:220%;height:160%;overflow:visible;pointer-events:none}
+#jabon svg.lines line{stroke:var(--ink);stroke-width:2}
+#jabon svg.lines circle{fill:var(--gold)}
+#jabon .lbl{position:absolute;white-space:nowrap;font-weight:900;font-size:clamp(17px,1.9vw,26px);text-transform:uppercase;letter-spacing:-.01em;padding:8px 16px;border-radius:999px;will-change:transform,opacity;opacity:0}
+#jabon .lbl.a{background:var(--rose);color:#2a1218} #jabon .lbl.b{background:var(--lav);color:#1d1030} #jabon .lbl.c{background:var(--gold);color:#2a1a05} #jabon .lbl.d{background:var(--cream);color:var(--bg)}
+#jabon .title{position:absolute;left:0;right:0;bottom:5svh;text-align:center;z-index:3;will-change:transform,opacity}
+#jabon .title h3{font-weight:900;font-size:clamp(26px,3.6vw,52px);letter-spacing:-.03em;line-height:1}
+#jabon .title p{color:var(--mute);margin-top:8px;font-size:15px}
+.prog{position:absolute;left:4vw;right:4vw;top:80px;height:3px;border-radius:3px;background:var(--line);z-index:4}
+.prog i{position:absolute;inset:0;border-radius:3px;background:linear-gradient(90deg,var(--rose),var(--lav),var(--gold));transform-origin:left;transform:scaleX(0)}
 
-/* ── promo: tres jabones caen en la caja ── */
+/* ── escena horizontal: los 10 jabones ── */
+#catalogo{height:900vh}
+#catalogo .stage{display:flex;flex-direction:column;justify-content:center}
+#catalogo .head{padding:0 4vw;margin-bottom:3.5svh;display:flex;justify-content:space-between;align-items:end;gap:20px}
+#catalogo .head h2{font-weight:900;font-size:clamp(40px,6.4vw,96px);line-height:.9;letter-spacing:-.045em}
+#catalogo .count{font-weight:900;font-size:clamp(22px,2.4vw,34px);font-variant-numeric:tabular-nums;color:var(--mute)}
+#catalogo .count b{color:var(--rose)}
+#catalogo .rail{display:flex;gap:3vw;padding:0 4vw;width:max-content;will-change:transform}
+.opt{position:relative;width:min(78vw,900px);height:min(60svh,500px);border-radius:32px;overflow:hidden;display:grid;grid-template-columns:1.15fr 1fr;background:var(--bg2);border:1px solid var(--line);flex:none}
+.opt .ph{overflow:hidden}
+.opt .ph img{width:100%;height:100%;object-fit:cover;will-change:transform}
+.opt .tx{padding:clamp(22px,2.8vw,40px);display:flex;flex-direction:column;justify-content:center;gap:10px}
+.opt .num{font-weight:900;font-size:clamp(70px,8vw,120px);line-height:.8;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:2px var(--c,var(--rose))}
+.opt h3{font-weight:900;font-size:clamp(28px,2.9vw,42px);line-height:1;letter-spacing:-.03em;text-transform:uppercase}
+.opt h3 small{display:block;font-size:.42em;letter-spacing:.2em;color:var(--mute);font-weight:700;margin-bottom:6px}
+.opt ul{list-style:none;display:flex;flex-direction:column;gap:4px}
+.opt li{color:var(--mute);font-size:14px;line-height:1.45;display:flex;gap:8px}
+.opt li::before{content:"♪";color:var(--c,var(--rose));flex:none}
+.opt .buy{display:flex;align-items:center;gap:14px;margin-top:8px;flex-wrap:wrap}
+.opt .price{font-weight:900;font-size:26px;color:var(--gold)}
+.opt .buy .btn{padding:11px 18px;font-size:12px}
+
+/* ── ¿qué necesita tu piel? (pestañas) ── */
 section.block{padding:clamp(90px,12vw,150px) 0}
-.sec-head{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:46px}
-.sec-head h2{font-weight:600;font-size:clamp(40px,6vw,86px);line-height:.95;letter-spacing:-.04em}
-.sec-head h2 em{color:var(--rose)}
-.sec-head p{color:var(--mute);max-width:380px;line-height:1.7}
-.promos{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:18px}
-.pr{position:relative;border-radius:30px;padding:30px;background:var(--card);border:1px solid var(--line);overflow:hidden;min-height:340px;display:flex;flex-direction:column}
-.pr.main{background:var(--ink);color:var(--bg)}
-.pr .tag{font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--rose)}
-.pr .big{font-weight:700;font-size:clamp(46px,5vw,72px);letter-spacing:-.04em;line-height:1;margin:14px 0 8px}
-.pr .big small{font-size:.42em;font-weight:500;color:var(--mute)}
-.pr.main .big small{color:var(--rose2)}
-.pr p{color:var(--mute);line-height:1.6;font-size:15px}
-.pr.main p{color:#d9c9c1}
-.pr .btn{margin-top:auto;align-self:flex-start}
-.drop{display:flex;gap:10px;margin:14px 0 22px;height:74px;align-items:flex-end}
-.drop i{width:64px;height:64px;border-radius:50%;background-size:cover;background-position:center;box-shadow:0 10px 20px -8px rgba(0,0,0,.45);transform:translateY(-220px) rotate(-40deg);opacity:0}
-.pr.in .drop i{animation:fall .9s var(--pop) forwards}
-.pr.in .drop i:nth-child(2){animation-delay:.18s}.pr.in .drop i:nth-child(3){animation-delay:.36s}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:40px}
+.sec-head h2{font-weight:900;font-size:clamp(44px,7vw,104px);line-height:.88;letter-spacing:-.045em}
+.sec-head p{color:var(--mute);max-width:380px;line-height:1.6}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px}
+.tab{padding:12px 20px;border-radius:999px;font-weight:800;font-size:14px;letter-spacing:.04em;text-transform:uppercase;border:1.5px solid var(--line);transition:transform .45s var(--pop),background .3s,color .3s,border-color .3s}
+.tab:hover{transform:translateY(-3px) rotate(-2deg);border-color:var(--rose)}
+.tab[aria-selected=true]{background:var(--rose);border-color:var(--rose);color:#2a1218;transform:scale(1.06)}
+.board{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 34px;min-height:300px}
+.item{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;padding:16px 0;border-bottom:1px dashed var(--line);
+  opacity:0;transform:translateY(24px) scale(.96);animation:itemin .6s var(--pop) forwards}
+.item img{width:58px;height:58px;border-radius:50%;object-fit:cover}
+.item h4{font-weight:800;font-size:clamp(17px,1.5vw,21px)}
+.item small{display:block;font-weight:400;color:var(--mute);font-size:13.5px;margin-top:3px;line-height:1.45}
+.item .pr{font-weight:900;font-size:clamp(18px,1.6vw,22px);color:var(--gold);white-space:nowrap}
+@keyframes itemin{to{opacity:1;transform:none}}
+.note{margin-top:22px;color:var(--mute);font-size:13px}
+.note a{color:var(--lav);font-weight:700;border-bottom:1px solid currentColor}
+
+/* ── promos ── */
+.promos{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.v{position:relative;border-radius:28px;padding:30px;display:flex;flex-direction:column;gap:10px;overflow:hidden;min-height:340px}
+.v .tag{font-size:11px;font-weight:900;letter-spacing:.24em;text-transform:uppercase;opacity:.75}
+.v .big{font-weight:900;font-size:clamp(42px,4.4vw,64px);letter-spacing:-.045em;line-height:1}
+.v .big small{font-size:.4em;letter-spacing:0}
+.v p{font-size:15px;line-height:1.5;opacity:.85}
+.v .btn{margin-top:auto;align-self:flex-start;background:var(--bg);color:var(--ink)}
+.v.a{background:var(--rose);color:#2a1218} .v.b{background:var(--lav);color:#1d1030} .v.c{background:var(--cream);color:var(--bg)}
+.v.fade{transform:translateY(40px) rotate(-3deg)} .v.fade.in{transform:none}
+.v:nth-child(2){transition-delay:.12s}.v:nth-child(3){transition-delay:.24s}
+.drop{display:flex;gap:10px;margin:8px 0 6px;height:70px;align-items:flex-end}
+.drop i{width:60px;height:60px;border-radius:50%;background-size:cover;background-position:center;box-shadow:0 10px 20px -8px rgba(0,0,0,.5);border:3px solid rgba(255,255,255,.6);transform:translateY(-220px) rotate(-40deg);opacity:0}
+.v.in .drop i{animation:fall .9s var(--pop) .3s forwards}
+.v.in .drop i:nth-child(2){animation-delay:.48s}.v.in .drop i:nth-child(3){animation-delay:.66s}
 @keyframes fall{0%{opacity:1}70%{transform:translateY(6px) rotate(6deg) scale(1.05,.92);opacity:1}100%{transform:none;opacity:1}}
-.pr .bow{position:absolute;right:-30px;bottom:-30px;width:160px;height:160px;opacity:.1}
 
-/* ── regalo (escena fijada corta) ── */
-#regalo{height:260vh}
-#regalo .stage{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:5vw;padding:80px 5vw}
-#regalo .gift{position:relative;height:min(70svh,600px);border-radius:32px;overflow:hidden;will-change:clip-path}
-#regalo .gift img{width:100%;height:100%;object-fit:cover;will-change:transform}
-#regalo .ribbon{position:absolute;background:var(--lav);z-index:2;will-change:transform}
-#regalo .ribbon.v{top:0;bottom:0;left:50%;width:22px;margin-left:-11px;transform-origin:top}
-#regalo .ribbon.h{left:0;right:0;top:50%;height:22px;margin-top:-11px;transform-origin:left}
-#regalo .gtext h2{font-weight:600;font-size:clamp(40px,5.4vw,80px);line-height:.95;letter-spacing:-.04em}
-#regalo .gtext h2 em{color:var(--lav)}
-#regalo .gtext p{color:var(--mute);line-height:1.75;margin-top:22px;max-width:460px;will-change:transform,opacity}
-#regalo .gtext .row{display:flex;gap:14px;align-items:center;margin-top:28px;flex-wrap:wrap}
-#regalo .gtext .chip{padding:10px 18px;border-radius:999px;background:var(--lav2);font-weight:600;font-size:14px}
+/* ── galería ── */
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.gallery figure{border-radius:24px;overflow:hidden;aspect-ratio:1;transform:translateY(60px) rotate(var(--r,0deg)) scale(.9);opacity:0;transition:transform 1s var(--pop),opacity .5s}
+.gallery figure.in{transform:rotate(var(--r,0deg));opacity:1}
+.gallery figure:hover{transform:rotate(0) scale(1.04)}
+.gallery figure:nth-child(2){transition-delay:.1s;margin-top:40px}.gallery figure:nth-child(3){transition-delay:.2s}.gallery figure:nth-child(4){transition-delay:.3s;margin-top:40px}
+.gallery img{width:100%;height:100%;object-fit:cover}
 
-/* ── galería que flota ── */
-.float-gal{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.float-gal figure{border-radius:26px;overflow:hidden;aspect-ratio:1;animation:floatcard 7s ease-in-out infinite}
-.float-gal figure:nth-child(2){animation-delay:-1.7s;margin-top:50px}.float-gal figure:nth-child(3){animation-delay:-3.4s}.float-gal figure:nth-child(4){animation-delay:-5.1s;margin-top:50px}
-.float-gal img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--out)}
-.float-gal figure:hover img{transform:scale(1.07)}
-.float-gal figcaption{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);margin-top:10px}
-@keyframes floatcard{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+/* ── regalo ── */
+.gift{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:center}
+.gift .blobwrap{width:min(440px,100%)}
+.gift .blob{box-shadow:0 0 0 6px var(--lav),0 0 90px -10px rgba(179,148,230,.55)}
+.gift h2{font-weight:900;font-size:clamp(44px,6vw,92px);line-height:.9;letter-spacing:-.045em}
+.gift p{color:var(--mute);line-height:1.75;margin-top:22px;max-width:520px}
+.gift .row{display:flex;gap:14px;align-items:center;margin-top:28px;flex-wrap:wrap}
+.gift .pill{padding:10px 18px;border-radius:999px;background:var(--bg2);border:1px solid var(--line);font-weight:800;font-size:14px}
+.gift .pill b{color:var(--gold)}
 
 /* ── nosotros ── */
 .about{text-align:center}
-.about blockquote{font-weight:300;font-size:clamp(28px,3.6vw,52px);line-height:1.25;letter-spacing:-.02em;max-width:1000px;margin:0 auto}
-.about blockquote b{font-weight:600}
-.about blockquote em{color:var(--rose)}
-.about .sig{margin-top:30px;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--mute)}
+.about blockquote{font-weight:900;font-size:clamp(32px,4.6vw,68px);line-height:1.02;letter-spacing:-.035em;max-width:1100px;margin:0 auto}
 .about p.body{max-width:640px;margin:30px auto 0;color:var(--mute);line-height:1.8}
 
 /* ── cta ── */
-.cta{position:relative;overflow:hidden;padding:clamp(100px,13vw,170px) 0;text-align:center;background:var(--bg2)}
-#bubbles2{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.cta .wrap{position:relative;z-index:2}
-.cta h2{font-weight:600;font-size:clamp(46px,7.6vw,120px);line-height:.95;letter-spacing:-.045em}
-.cta h2 em{color:var(--rose)}
-.cta p.sub{color:var(--mute);margin:24px auto 0;max-width:520px;line-height:1.7}
-.cta .ctas{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:40px}
-.facts{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:44px}
-.facts span{font-size:14px;padding:10px 18px;border-radius:999px;background:var(--card);border:1px solid var(--line)}
-.facts b{font-weight:600}
+.visit{position:relative;overflow:hidden;padding:clamp(100px,13vw,170px) 0;text-align:center}
+#bubbles2{position:absolute;inset:0;width:100%;height:100%;-webkit-mask-image:linear-gradient(transparent,#000 30%);mask-image:linear-gradient(transparent,#000 30%)}
+.visit .wrap{position:relative;z-index:2}
+.visit h2{font-weight:900;font-size:clamp(48px,8.4vw,132px);line-height:.88;letter-spacing:-.05em}
+.visit h2 .r{font-style:italic}
+.visit p.sub{color:var(--mute);margin:24px auto 0;max-width:520px;line-height:1.7}
+.facts{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:30px 0 0}
+.facts span{font-weight:700;font-size:14px;padding:10px 18px;border-radius:999px;background:var(--bg2);border:1px solid var(--line)}
+.facts span b{color:var(--lav)}
+.cta{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:18px;margin-top:46px}
 .tapzone{position:relative;display:inline-block}
-.tapzone .hand{position:absolute;right:-22px;bottom:-54px;font-size:52px;pointer-events:none;transform-origin:30% 10%;animation:tap 2.8s var(--out) infinite;filter:drop-shadow(0 10px 14px rgba(59,42,38,.3));font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif}
+.tapzone .hand{position:absolute;right:-24px;bottom:-54px;font-size:54px;pointer-events:none;transform-origin:30% 10%;animation:tap 2.6s var(--out) infinite;filter:drop-shadow(0 10px 14px rgba(0,0,0,.5));font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif}
 .tapzone .ripple{position:absolute;inset:0;border-radius:999px;pointer-events:none}
-.tapzone .ripple::before,.tapzone .ripple::after{content:"";position:absolute;inset:0;border-radius:999px;border:2px solid var(--rose);opacity:0;animation:ripple 2.8s var(--out) infinite}
+.tapzone .ripple::before,.tapzone .ripple::after{content:"";position:absolute;inset:0;border-radius:999px;border:2px solid var(--lav);opacity:0;animation:ripple 2.6s var(--out) infinite}
 .tapzone .ripple::after{animation-delay:.18s}
-.tapzone .btn{animation:press 2.8s var(--out) infinite;font-size:16px;padding:18px 30px}
+.tapzone .btn{animation:press 2.6s var(--out) infinite;font-size:16px;padding:18px 30px}
 @keyframes tap{0%{transform:translate(60px,70px) rotate(-18deg);opacity:0}25%{transform:translate(0,0) rotate(-8deg);opacity:1}33%{transform:translate(0,5px) rotate(-8deg) scale(.92)}42%{transform:translate(0,0) rotate(-8deg)}70%{transform:translate(0,0) rotate(-8deg);opacity:1}100%{transform:translate(50px,90px) rotate(-18deg);opacity:0}}
 @keyframes ripple{0%,30%{opacity:0;transform:scale(1)}33%{opacity:1;transform:scale(1)}70%{opacity:0;transform:scale(1.3,1.9)}100%{opacity:0}}
 @keyframes press{0%,30%{transform:none}33%{transform:scale(.94)}42%,100%{transform:none}}
 
-footer{padding:34px 0;border-top:1px solid var(--line)}
+footer{border-top:1px solid var(--line);padding:34px 0}
 footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--mute)}
 footer .soc{display:flex;gap:10px}
 footer .soc a{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);transition:transform .5s var(--pop),border-color .3s}
 footer .soc a:hover{transform:translateY(-4px) rotate(-10deg);border-color:var(--rose)}
 footer .soc svg{width:18px;height:18px}
 
-@media (max-width:1020px){ .promos{grid-template-columns:1fr 1fr} .pr.main{grid-column:1/-1} .float-gal{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:1020px){
+  .promos{grid-template-columns:1fr}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  .board{grid-template-columns:1fr}
+  .gift{grid-template-columns:1fr}
+}
 @media (max-width:760px){
   nav{display:none}
   .hero{padding-top:96px}
-  .hero .wrap{grid-template-columns:1fr;gap:30px}
-  .orbit{width:min(310px,80vw);order:-1}
-  .sf-grid{grid-template-columns:1fr;grid-template-rows:38% 1fr;gap:18px;padding:76px 16px 96px;align-items:stretch}
-  .sf-photo{height:auto;order:-1;border-radius:24px}
-  .sf-text{min-height:0}
-  .sf-item{justify-content:flex-start;gap:8px}
-  .sf-item h3{font-size:44px}
-  .sf-item li{font-size:13.5px}
-  .sf-item ul{gap:3px}
-  .sf-item .price{font-size:22px}
-  .sf-head{display:none}
-  .sf-staff{left:16px;right:16px;bottom:22px;height:44px}
-  .sf-staff text{display:none}
-  .promos{grid-template-columns:1fr}
-  #regalo .stage{grid-template-columns:1fr;grid-template-rows:auto 1fr;padding:80px 16px 40px;gap:24px;align-content:center}
-  #regalo .gift{height:42svh}
-  .tapzone .hand{right:-8px;font-size:44px}
+  .hero .wrap{grid-template-columns:1fr;gap:40px}
+  .blobwrap{width:min(300px,78vw);order:-1}
+  .sticker.s1{left:-4%} .sticker.s2{right:-4%}
+  .chip{font-size:10px;letter-spacing:.14em}
+  #jabon .frame{height:min(48svh,420px)}
+  #jabon .lbl{font-size:14px;padding:6px 12px}
+  #catalogo .head{flex-direction:column;align-items:flex-start;gap:6px}
+  .opt{width:86vw;height:min(68svh,620px);grid-template-columns:1fr;grid-template-rows:38% 1fr}
+  .opt .tx{gap:6px;padding:18px;justify-content:flex-start}
+  .opt .num{font-size:56px;position:absolute;top:12px;right:16px;text-shadow:0 2px 20px #000}
+  .opt li{font-size:13px}
+  .opt .price{font-size:22px}
+  .gift .blobwrap{justify-self:center;width:min(300px,78vw);order:0}
+  .tapzone .hand{right:-8px;font-size:46px}
   .tapzone .btn{font-size:14px;padding:16px 22px}
 }
 @media (max-width:420px){ header .btn span{display:none} header .btn{padding:10px 12px} }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
-  .kin .w>span,.fade,.orbit .ph,.drop i{transform:none!important;opacity:1!important;clip-path:none!important}
+  .kin .ch,.fade,.gallery figure,.blob,.sticker,.item,.drop i{transform:none!important;opacity:1!important}
   .intro{display:none}
 }
 </style>
@@ -239,17 +274,16 @@ footer .soc svg{width:18px;height:18px}
 <div class="grain" aria-hidden="true"></div>
 
 <div class="intro" id="intro" aria-hidden="true">
-  <svg class="staff" viewBox="0 0 1000 120" preserveAspectRatio="none">
-    <path pathLength="1" d="M0 20 C250 10 750 30 1000 20"/><path pathLength="1" d="M0 40 C250 30 750 50 1000 40"/><path pathLength="1" d="M0 60 C250 50 750 70 1000 60"/><path pathLength="1" d="M0 80 C250 70 750 90 1000 80"/><path pathLength="1" d="M0 100 C250 90 750 110 1000 100"/>
-  </svg>
-  <img src="assets/img/logo.jpg" alt="">
+  <div class="notes"><span>♪</span><span>♫</span><span>♩</span></div>
+  <img src="assets/img/logo-crema.png" alt="">
+  <svg class="drip" viewBox="0 0 1440 120" preserveAspectRatio="none"><path fill="currentColor" d="M0 0h1440v20c-40 0-50 70-80 70s-30-60-70-60-40 90-80 90-30-80-80-80-50 40-90 40-40-60-80-60-40 100-90 100-40-90-80-90-50 50-90 50-40-70-80-70-40 60-80 60-50-40-90-40-40 80-90 80-40-70-80-70-30 30-60 30-40-60-80-60-40 60-80 60-40-50-60-50z"/></svg>
 </div>
 
 <header id="top">
   <div class="wrap">
-    <a class="brand" href="#"><img src="assets/img/logo.png" alt="Sonata · Jabones artesanales"></a>
-    <nav><a href="#sinfonia">Catálogo</a><a href="#promos">Promos</a><a href="#regalo">Regalos</a><a href="#nosotros">Nosotros</a></nav>
-    <a class="btn rose" id="waHead" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.7 11.7 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3z"/></svg><span>Haz tu pedido</span></a>
+    <a class="brand" href="#"><img src="assets/img/logo-crema.png" alt="Sonata · Jabones artesanales"></a>
+    <nav><a href="#jabon">Jabones</a><a href="#catalogo">Catálogo</a><a href="#piel">Tu piel</a><a href="#promos">Promos</a></nav>
+    <a class="btn" id="waHead" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/></svg><span>Haz tu pedido</span></a>
   </div>
 </header>
 
@@ -257,92 +291,107 @@ footer .soc svg{width:18px;height:18px}
 <!-- HERO -->
 <section class="hero">
   <canvas id="bubbles" aria-hidden="true"></canvas>
-  <svg class="staffbg" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true" id="staffbg"><path/><path/><path/><path/><path/></svg>
   <div class="wrap">
     <div>
-      <span class="eyebrow fade"><svg viewBox="0 0 16 22" fill="currentColor"><path d="M10 1c-2 0-3 2-3 4 0 1.6.6 3 1.2 4.3C5.6 10.8 4 12.6 4 15a5 5 0 0 0 5 5c.4 0 .8 0 1.1-.1l.3 1.4c.1.6-.3 1.2-1 1.2-.4 0-.7-.2-.8-.5.5-.1.9-.5.9-1a1 1 0 1 0-2 .1c0 1.1 1 1.9 2 1.9 1.4 0 2.3-1.2 2-2.5l-.3-1.6A4 4 0 0 0 14 15.2 3.8 3.8 0 0 0 10.4 11h-.3l-.6-2.4C11 7.3 12 5.7 12 3.8 12 2.2 11.3 1 10 1zm.3 1.6c.4 0 .6.4.6 1.1 0 1.2-.6 2.3-1.6 3.2-.2-.6-.3-1.2-.3-1.9 0-1.3.6-2.4 1.3-2.4zM8.3 10.7l.5 2.1a2.3 2.3 0 0 0-1.7 2.2c0 .9.5 1.6 1.2 2l.2-.4c-.4-.3-.6-.7-.6-1.2 0-.6.4-1.1 1-1.3l1.1 4.6-.5.1a3.6 3.6 0 0 1-3.6-3.6c0-1.8 1.2-3.2 2.4-4.5zm2 1.7h.1c1.3 0 2.3 1.1 2.3 2.4 0 1-.6 1.9-1.4 2.3z"/></svg>Jabones artesanales · Medellín</span>
-      <h1 class="kin" data-kin>Cuidado que se siente, <em>belleza que armoniza.</em></h1>
-      <p class="lead fade">Jabones hechos a mano con ingredientes seleccionados y procesos artesanales. Más que un jabón: pequeños momentos de bienestar para tu piel.</p>
+      <span class="chip fade"><i></i>Hechos a mano · Medellín</span>
+      <h1 class="kin" data-kin>Cuidado que se siente, <span class="r">belleza que armoniza.</span></h1>
+      <p class="lead fade">Jabones artesanales con ingredientes seleccionados. Más que un jabón: pequeños momentos de bienestar para tu piel.</p>
       <div class="ctas fade">
-        <a class="btn rose" id="waHero" href="#" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-        <a class="btn ghost" href="#sinfonia">Ver los 10 jabones</a>
+        <a class="btn" href="#catalogo">Ver los 10 jabones <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn ghost" id="waHero" href="#" target="_blank" rel="noopener">Pedir por WhatsApp</a>
       </div>
     </div>
-    <div class="orbit" id="orbit">
-      <svg class="ring" viewBox="0 0 300 300" aria-hidden="true"><defs><path id="cp" d="M150,150 m-142,0 a142,142 0 1,1 284,0 a142,142 0 1,1 -284,0"/></defs>
-        <text><textPath href="#cp" textLength="885" lengthAdjust="spacing">Hecho a mano ✦ Ingredientes naturales ✦ 10 variedades ✦ Empaque de regalo ✦</textPath></text></svg>
-      <div class="ph"><img src="assets/img/arroz.jpg" alt="Jabón de arroz en forma de rosa, Sonata"></div>
-      <span class="note n1">♪</span><span class="note n2">♫</span><span class="note n3">♩</span>
+    <div class="blobwrap" id="blob">
+      <div class="blob"><img src="assets/img/arroz.jpg" alt="Jabón de arroz en forma de rosa, Sonata"></div>
+      <span class="sticker s1">10 variedades 🌿</span>
+      <span class="sticker s2"><b>3×$30.000</b>promo</span>
+      <span class="sticker s3">🎁 Empaque de regalo</span>
     </div>
   </div>
 </section>
 
-<div class="ticker"><div class="track" id="t1"></div></div>
+<div class="dripband">
+  <svg class="drip top" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0h1440v10c-30 0-40 40-70 40s-30-35-60-35-40 50-70 50-30-45-70-45-40 25-70 25-30-35-70-35-40 55-80 55-30-50-70-50-40 30-70 30-30-40-70-40-40 35-70 35-40-25-70-25-30 45-80 45-30-40-70-40-30 20-60 20-40-35-70-35-30 35-70 35-30-30-50-30z"/></svg>
+  <div class="ticker"><div class="track" id="t1"></div></div>
+  <svg class="drip" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0h1440v10c-30 0-40 40-70 40s-30-35-60-35-40 50-70 50-30-45-70-45-40 25-70 25-30-35-70-35-40 55-80 55-30-50-70-50-40 30-70 30-30-40-70-40-40 35-70 35-40-25-70-25-30 45-80 45-30-40-70-40-30 20-60 20-40-35-70-35-30 35-70 35-30-30-50-30z"/></svg>
+</div>
 
-<!-- SINFONÍA: 10 jabones, el scroll los "toca" uno por uno -->
-<section class="pin" id="sinfonia">
+<!-- JABÓN DE MIEL · anatomía (escena fijada) -->
+<section class="pin" id="jabon">
   <div class="stage">
-    <div class="sf-head">El catálogo · 10 jabones</div>
-    <div class="sf-grid">
-      <div class="sf-text" id="sfText"></div>
-      <div class="sf-photo" id="sfPhoto"></div>
+    <div class="prog"><i></i></div>
+    <div class="bgword">Hecho a mano</div>
+    <div class="frame">
+      <div class="pic"><img src="assets/img/miel.jpg" alt="Jabón de miel artesanal Sonata"></div>
+      <svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg>
+      <span class="lbl a" data-at="32,30" data-to="-26,18" data-tom="24,6">Listo para regalar 🎁</span>
+      <span class="lbl c" data-at="80,40" data-to="122,24" data-tom="78,24">Miel 🍯</span>
+      <span class="lbl b" data-at="58,58" data-to="-24,66" data-tom="20,92">Hecho a mano</span>
+      <span class="lbl d" data-at="74,72" data-to="122,80" data-tom="66,96">Antibacterial</span>
     </div>
-    <div class="sf-staff"><svg id="sfStaff" viewBox="0 0 1000 56" preserveAspectRatio="none"></svg></div>
+    <div class="title"><h3>Jabón de <span class="g">Miel</span> · evita la <span class="r">resequedad</span></h3><p>Deja la piel suave y tersa al tacto · Hidratante</p></div>
   </div>
 </section>
+
+<!-- CATÁLOGO (escena horizontal fijada) -->
+<section class="pin" id="catalogo">
+  <div class="stage">
+    <div class="head"><h2 class="kin" data-kin>Elige <span class="r">tu jabón</span></h2><div class="count"><b id="cnt">01</b> / 10</div></div>
+    <div class="rail" id="rail"></div>
+  </div>
+</section>
+
+<!-- ¿QUÉ NECESITA TU PIEL? -->
+<section class="block" id="piel">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="kin" data-kin>¿Qué necesita <span class="l">tu piel?</span></h2>
+      <p class="fade">Elige y te mostramos los jabones con ese beneficio, según el catálogo de Sonata.</p>
+    </div>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div class="board" id="board" role="tabpanel"></div>
+    <p class="note">Ver el <a href="https://drive.google.com/file/d/1V82PDaJ9zBgn4oYVjAXojC_lJ5donoi1/view" target="_blank" rel="noopener">catálogo completo en PDF</a></p>
+  </div>
+</section>
+
+<div class="ticker dk"><div class="track" id="t2"></div></div>
 
 <!-- PROMOS -->
 <section class="block" id="promos">
   <div class="wrap">
-    <div class="sec-head">
-      <h2 class="kin" data-kin>Promoción <em>especial</em></h2>
-      <p class="fade">Precios y promociones según el catálogo vigente de Sonata. Confírmalos al hacer tu pedido.</p>
-    </div>
+    <div class="sec-head"><h2 class="kin" data-kin>Promoción <span class="g">especial</span></h2><p class="fade">Precios y promociones según el catálogo vigente de Sonata. Confírmalos al hacer tu pedido.</p></div>
     <div class="promos">
-      <div class="pr main fade">
-        <span class="tag">Arma tu trío</span>
-        <div class="drop"><i style="background-image:url(assets/img/cat-lavanda.jpg)"></i><i style="background-image:url(assets/img/cat-miel.jpg)"></i><i style="background-image:url(assets/img/cat-rosas.jpg)"></i></div>
-        <div class="big">3 × $30.000</div>
-        <p>Tres jabones a tu elección (máximo 1 exfoliante).</p>
-        <a class="btn rose" id="waPromo" href="#" target="_blank" rel="noopener" style="margin-top:24px">Quiero la promoción</a>
-      </div>
-      <div class="pr fade">
-        <span class="tag">Exfoliantes</span>
-        <div class="drop"><i style="background-image:url(assets/img/cat-exfoliante.jpg)"></i><i style="background-image:url(assets/img/cat-exfoliante.jpg);background-position:30% 50%"></i><i style="background-image:url(assets/img/cat-exfoliante.jpg);background-position:70% 50%"></i></div>
-        <div class="big">3 × $36.000</div>
-        <p>Tres jabones exfoliantes con estropajo incluido.</p>
-      </div>
-      <div class="pr fade">
-        <span class="tag">Para regalar</span>
-        <div class="big">+$4.000 <small>c/u</small></div>
-        <p>Empaque de regalo por unidad.</p>
-        <svg class="bow" viewBox="0 0 24 24" fill="#8b6fb3"><path d="M12 8c-1.5-3-5-5-7-3s1 5 5 5H2v4h1v8h18v-8h1v-4h-8c4 0 7-3 5-5s-5.5 0-7 3z"/></svg>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- REGALO (escena fijada corta: el lazo envuelve la foto) -->
-<section class="pin" id="regalo">
-  <div class="stage">
-    <div class="gift"><img src="assets/img/empaque-regalo.jpg" alt="Jabón Sonata en empaque de regalo con lazo morado"></div>
-    <div class="gtext">
-      <h2>Da los mejores <em>regalos.</em></h2>
-      <p>Un regalo también puede transmitir cuidado, bienestar y dedicación. Por eso nuestros jabones artesanales se empacan con una presentación elegante, lista para sorprender a esa persona especial — o para darte un gusto que también mereces.</p>
-      <div class="row"><span class="chip">Empaque de regalo · $4.000 c/u</span><a class="btn" id="waRegalo" href="#" target="_blank" rel="noopener">Pedir para regalo</a></div>
+      <div class="v a fade"><span class="tag">Arma tu trío</span><div class="drop"><i style="background-image:url(assets/img/cat-lavanda.jpg)"></i><i style="background-image:url(assets/img/cat-miel.jpg)"></i><i style="background-image:url(assets/img/cat-rosas.jpg)"></i></div><div class="big">3 × $30.000</div><p>Tres jabones a tu elección (máximo 1 exfoliante).</p><a class="btn" id="waPromo" href="#" target="_blank" rel="noopener">Quiero la promo</a></div>
+      <div class="v b fade"><span class="tag">Exfoliantes</span><div class="drop"><i style="background-image:url(assets/img/cat-exfoliante.jpg)"></i><i style="background-image:url(assets/img/cat-exfoliante.jpg);background-position:25% 50%"></i><i style="background-image:url(assets/img/cat-exfoliante.jpg);background-position:75% 50%"></i></div><div class="big">3 × $36.000</div><p>Tres jabones exfoliantes con estropajo incluido.</p><a class="btn" id="waExf" href="#" target="_blank" rel="noopener">Quiero los 3</a></div>
+      <div class="v c fade"><span class="tag">Para regalar</span><div class="drop"><i style="background-image:url(assets/img/cat-regalo.jpg)"></i></div><div class="big">+$4.000 <small>c/u</small></div><p>Empaque de regalo por unidad.</p><a class="btn" id="waRegalo" href="#" target="_blank" rel="noopener">Pedir para regalo</a></div>
     </div>
   </div>
 </section>
 
 <!-- GALERÍA -->
-<section class="block">
+<section class="block" style="padding-top:0">
   <div class="wrap">
-    <div class="sec-head"><h2 class="kin" data-kin>Hechos <em>a mano</em></h2><p class="fade">Formas de rosa, flor y panal; colores que vienen de sus ingredientes. Cada jabón es único.</p></div>
-    <div class="float-gal">
-      <figure><img src="assets/img/cremosos.jpg" alt="Jabones cremosos Sonata"></figure>
-      <figure><img src="assets/img/miel.jpg" alt="Jabón de miel Sonata"></figure>
-      <figure><img src="assets/img/coco.jpg" alt="Jabón de coco Sonata"></figure>
-      <figure><img src="assets/img/presentacion.jpg" alt="Presentación de jabones Sonata"></figure>
+    <div class="sec-head"><h2 class="kin" data-kin>Pura <span class="r">armonía</span></h2><p class="fade">Formas de rosa, flor y panal; colores que vienen de sus ingredientes. Cada jabón es único.</p></div>
+    <div class="gallery">
+      <figure style="--r:-3deg"><img src="assets/img/cremosos.jpg" alt="Jabones cremosos Sonata"></figure>
+      <figure style="--r:2deg"><img src="assets/img/miel-02.jpg" alt="Jabones de miel Sonata"></figure>
+      <figure style="--r:-2deg"><img src="assets/img/coco.jpg" alt="Jabón de coco Sonata"></figure>
+      <figure style="--r:3deg"><img src="assets/img/presentacion.jpg" alt="Presentación de jabones Sonata"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- REGALO -->
+<section class="block" style="padding-top:0">
+  <div class="wrap gift">
+    <div class="blobwrap" id="blob2">
+      <div class="blob"><img src="assets/img/empaque-regalo.jpg" alt="Jabón Sonata en empaque de regalo"></div>
+      <span class="sticker s1">Se empaca como regalo</span>
+    </div>
+    <div>
+      <h2 class="kin" data-kin>Da los mejores <span class="l">regalos.</span></h2>
+      <p class="fade">Un regalo también puede transmitir cuidado, bienestar y dedicación. Por eso nuestros jabones artesanales se empacan con una presentación elegante, lista para sorprender a esa persona especial — o para darte un gusto que también mereces.</p>
+      <div class="row fade"><span class="pill">Empaque de regalo · <b>$4.000</b> c/u</span><a class="btn lv" id="waRegalo2" href="#" target="_blank" rel="noopener">Pedir para regalo</a></div>
     </div>
   </div>
 </section>
@@ -350,23 +399,22 @@ footer .soc svg{width:18px;height:18px}
 <!-- NOSOTROS -->
 <section class="block about" id="nosotros" style="padding-top:0">
   <div class="wrap">
-    <blockquote class="kin" data-kin>Más que un jabón, queremos acompañarte en esos <em>pequeños momentos de bienestar</em> que hacen la diferencia.</blockquote>
-    <p class="body fade">Nacimos con el propósito de crear jabones artesanales que combinen calidad, cuidado y una experiencia agradable para la piel. Trabajamos cada producto con dedicación, utilizando ingredientes seleccionados y procesos artesanales que nos permiten ofrecer jabones únicos para el cuidado diario.</p>
-    <div class="sig fade">— Jabones Sonata</div>
+    <blockquote class="kin" data-kin>Más que un jabón, queremos acompañarte en esos <span class="r">pequeños momentos de bienestar.</span></blockquote>
+    <p class="body fade">Nacimos con el propósito de crear jabones artesanales que combinen calidad, cuidado y una experiencia agradable para la piel. Trabajamos cada producto con dedicación, utilizando ingredientes seleccionados y procesos artesanales.</p>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="cta">
+<section class="visit" id="pedido">
   <canvas id="bubbles2" aria-hidden="true"></canvas>
   <div class="wrap">
-    <h2 class="kin" data-kin>¡Mima tu piel <em>con Sonata!</em></h2>
+    <h2 class="kin" data-kin>¡Mima tu piel <span class="r">con Sonata!</span></h2>
     <p class="sub fade">Déjanos un mensaje y pregunta por nuestros productos. Te respondemos por WhatsApp.</p>
-    <div class="ctas fade">
-      <span class="tapzone"><a class="btn rose" id="waCta" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>Escribir al 317 448 7478</a><span class="ripple"></span><span class="hand" aria-hidden="true">👆</span></span>
-      <a class="btn ghost" href="https://drive.google.com/file/d/1V82PDaJ9zBgn4oYVjAXojC_lJ5donoi1/view" target="_blank" rel="noopener">Catálogo en PDF</a>
-    </div>
     <div class="facts fade"><span>📍 <b>Medellín</b>, Colombia</span><span>🚚 Entregas: pregunta por la tuya al pedir</span><span>📸 <b>@sonata_jabones</b></span></div>
+    <div class="cta fade">
+      <span class="tapzone"><a class="btn" id="waCta" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/></svg>Escribir al 317 448 7478</a><span class="ripple"></span><span class="hand" aria-hidden="true">👆</span></span>
+      <a class="btn ghost" href="https://drive.google.com/file/d/1V82PDaJ9zBgn4oYVjAXojC_lJ5donoi1/view" target="_blank" rel="noopener">Catálogo PDF</a>
+    </div>
   </div>
 </section>
 </main>
@@ -392,124 +440,146 @@ const prog=(t,a,b)=>clamp((t-a)/(b-a));
 const lerp=(a,b,k)=>a+(b-a)*k;
 const eOutCubic=k=>1-Math.pow(1-k,3);
 const eInOutCubic=k=>k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;
-const eOutBack=(k,s=1.5)=>1+(s+1)*Math.pow(k-1,3)+s*Math.pow(k-1,2);
+const eOutBack=(k,s=1.7)=>1+(s+1)*Math.pow(k-1,3)+s*Math.pow(k-1,2);
 
 // ── WhatsApp real del catálogo ──
 const WA='573174487478', wa=m=>`https://wa.me/${WA}?text=${encodeURIComponent(m)}`;
 const setWA=(id,m)=>{const e=document.getElementById(id);if(e)e.href=wa(m);};
-setWA('waHead','Hola Sonata 🌿, quiero pedir jabones artesanales');setWA('waHero','Hola Sonata 🌿, quiero pedir jabones artesanales');
-setWA('waCta','Hola Sonata 🌿, quiero pedir jabones artesanales');setWA('waFoot','Hola Sonata 🌿');
-setWA('waPromo','Hola Sonata 🌿, quiero la promoción de 3 jabones');setWA('waRegalo','Hola Sonata 🎁, quiero jabones empacados para regalo');
+const HOLA='Hola Sonata 🌿, quiero pedir jabones artesanales';
+['waHead','waHero','waCta'].forEach(id=>setWA(id,HOLA));setWA('waFoot','Hola Sonata 🌿');
+setWA('waPromo','Hola Sonata 🌿, quiero la promoción de 3 jabones');setWA('waExf','Hola Sonata 🌿, quiero la promoción de 3 jabones exfoliantes');
+setWA('waRegalo','Hola Sonata 🎁, quiero jabones empacados para regalo');setWA('waRegalo2','Hola Sonata 🎁, quiero jabones empacados para regalo');
 
 // ── catálogo (texto literal del catálogo PDF de Sonata) ──
 const P=[
- ['Miel','cat-miel.jpg','12.000',['Evita resequedad','Deja la piel suave y tersa al tacto','Antibacterial','Ayuda a aliviar las irritaciones','Hidratante'],'#f6dcae'],
- ['Arroz','cat-arroz.jpg','12.000',['Aporta hidratación','Mejora apariencia de manchas leves','Unifica tono de la piel con el uso constante','Contiene antioxidantes naturales presentes en el arroz'],'#f1e6d6'],
- ['Coco','cat-coco.jpg','12.000',['Nutre la piel dejándola suave y fresca','Hidratante','Limpiador profundo','Suavizante','Antioxidante'],'#efe9e2'],
- ['Avena','cat-avena.jpg','12.000',['Hidratante','Calmante: alivia sensación de picazón','Exfoliante suave','Ideal para piel sensible','Limpia sin resecar en exceso'],'#e3e6cc'],
- ['Exfoliante','cat-exfoliante.jpg','14.000',['Trae estropajo incluido en el jabón','Limpia profundamente','Exfolia de forma natural','Propiedades antibacterianas'],'#f7d2b0'],
- ['Aloe Vera','cat-aloe.jpg','12.000',['Hidrata y ayuda a mantener la humedad natural de la piel','Sensación refrescante y calmante','Limpia delicadamente sin resecar','Deja un aroma relajante'],'#d6ebcf'],
- ['Manzanilla','cat-manzanilla.jpg','12.000',['Sensación de confort después del lavado','Calmante y reconfortante','Ayuda a mantener la hidratación natural','Nutre y aporta suavidad'],'#f3e7bf'],
- ['Lavanda','cat-lavanda.jpg','12.000',['Ayuda a proteger la piel de los radicales libres','Sensación de relajación y bienestar','Experiencia aromática ideal para el descanso','Mantiene la piel hidratada'],'#e1d6f1'],
- ['Ruda','cat-ruda.jpg','12.000',['Cálido aroma herbal con notas de canela','Elimina impurezas y deja frescura','Contiene vitamina E, acción antioxidante','Limpia delicadamente la piel'],'#dbe8cd'],
- ['Rosas','cat-rosas.jpg','12.000',['Enriquecido con vitamina E antioxidante','Delicada fragancia floral con notas de flores de algodón','Favorece una piel suave y renovada','Limpia delicadamente sin resecar'],'#f4d0cf'],
+ ['Miel','cat-miel.jpg','12.000',['Evita resequedad','Deja la piel suave y tersa al tacto','Antibacterial','Ayuda a aliviar las irritaciones','Hidratante'],'#e3bb72'],
+ ['Arroz','cat-arroz.jpg','12.000',['Aporta hidratación','Mejora apariencia de manchas leves','Unifica tono de la piel con el uso constante','Contiene antioxidantes naturales presentes en el arroz'],'#f6e7dc'],
+ ['Coco','cat-coco.jpg','12.000',['Nutre la piel dejándola suave y fresca','Hidratante','Limpiador profundo','Suavizante','Antioxidante'],'#f6e7dc'],
+ ['Avena','cat-avena.jpg','12.000',['Hidratante','Calmante: alivia sensación de picazón','Exfoliante suave','Ideal para piel sensible','Limpia sin resecar en exceso'],'#c9d79a'],
+ ['Exfoliante','cat-exfoliante.jpg','14.000',['Trae estropajo incluido en el jabón','Limpia profundamente','Exfolia de forma natural','Propiedades antibacterianas'],'#f0a868'],
+ ['Aloe Vera','cat-aloe.jpg','12.000',['Hidrata y ayuda a mantener la humedad natural de la piel','Sensación refrescante y calmante','Limpia delicadamente sin resecar','Deja un aroma relajante'],'#9fd99a'],
+ ['Manzanilla','cat-manzanilla.jpg','12.000',['Sensación de confort después del lavado','Calmante y reconfortante','Ayuda a mantener la hidratación natural','Nutre y aporta suavidad'],'#e8d47c'],
+ ['Lavanda','cat-lavanda.jpg','12.000',['Ayuda a proteger la piel de los radicales libres','Sensación de relajación y bienestar','Experiencia aromática ideal para el descanso','Mantiene la piel hidratada'],'#b394e6'],
+ ['Ruda','cat-ruda.jpg','12.000',['Cálido aroma herbal con notas de canela','Elimina impurezas y deja frescura','Contiene vitamina E, acción antioxidante','Limpia delicadamente la piel'],'#a7cf86'],
+ ['Rosas','cat-rosas.jpg','12.000',['Enriquecido con vitamina E antioxidante','Delicada fragancia floral con notas de flores de algodón','Favorece una piel suave y renovada','Limpia delicadamente sin resecar'],'#ec9aab'],
 ];
-const N=P.length,sfText=document.getElementById('sfText'),sfPhoto=document.getElementById('sfPhoto'),staff=document.getElementById('sfStaff'),stage=document.querySelector('#sinfonia .stage');
-P.forEach(([n,img,price,bens],i)=>{
-  const title=n==='Exfoliante'?'Jabón':'Jabón de';
-  sfText.insertAdjacentHTML('beforeend',`<div class="sf-item"><span class="no">${String(i+1).padStart(2,'0')} / ${N}</span><h3><em>${title}</em>${n}</h3><ul>${bens.map(b=>`<li>${b}</li>`).join('')}</ul><div class="buy"><span class="price">$${price}</span><a class="btn" href="${wa(`Hola Sonata 🌿, quiero pedir el ${n==='Exfoliante'?'Jabón Exfoliante':'Jabón de '+n}`)}" target="_blank" rel="noopener">Pedir este jabón</a></div></div>`);
-  sfPhoto.insertAdjacentHTML('beforeend',`<img src="assets/img/${img}" alt="Jabón de ${n} artesanal Sonata">`);
-});
-// pentagrama con una nota por jabón
-{let h='';for(let k=0;k<5;k++)h+=`<line x1="0" x2="1000" y1="${8+k*10}" y2="${8+k*10}"/>`;
- P.forEach(([n],i)=>{const x=50+i*100,y=[38,28,33,18,43,23,28,13,33,23][i];
-  h+=`<g class="nt" style="transform-origin:${x}px ${y}px"><ellipse cx="${x}" cy="${y}" rx="7" ry="5" transform="rotate(-20 ${x} ${y})" fill="rgba(59,42,38,.25)"/><line x1="${x+6}" x2="${x+6}" y1="${y}" y2="${y-26}" style="stroke:rgba(59,42,38,.25);stroke-width:1.5"/></g><text x="${x}" y="70" text-anchor="middle">${n}</text>`;});
- staff.innerHTML=h;}
-const items=[...sfText.children],imgs=[...sfPhoto.children],notes=[...staff.querySelectorAll('.nt')];
-let curTint=-1;
-function sceneSinfonia(p){
-  const f=p*N, idx=Math.min(N-1,Math.floor(f));
-  items.forEach((el,i)=>{
-    // cada jabón vive en [i, i+1]: entra en el primer 30%, sale en el último 20%
-    const k=f-i, inK=eOutCubic(prog(k,-.05,.3)), outK=i===N-1?0:eInOutCubic(prog(k,.82,1));
-    const v=inK*(1-outK);
-    el.style.opacity=v; el.style.pointerEvents=v>.6?'auto':'none';
-    el.style.transform=`translateY(${(1-inK)*70-outK*70}px)`;
-    const im=imgs[i];
-    im.style.opacity=clamp(prog(k,-.1,.15))*(i===N-1?1:1-prog(k,.92,1.05));
-    im.style.clipPath=`circle(${lerp(0,80,eOutCubic(prog(k,-.1,.3)))}% at 50% 50%)`;
-    im.style.transform=`scale(${lerp(1.18,1.02,clamp(k))})`;
-    im.style.zIndex=i;
-    const on=i<=idx, cur=i===idx;
-    notes[i].style.transform=cur?'scale(1.6) translateY(-3px)':on?'scale(1.1)':'scale(1)';
-    notes[i].querySelector('ellipse').style.fill=cur?'#d98c95':on?'#8b6fb3':'rgba(59,42,38,.25)';
-  });
-  if(idx!==curTint){curTint=idx;stage.style.background=P[idx][4];}
+const fullName=n=>n==='Exfoliante'?'Jabón Exfoliante':'Jabón de '+n;
+const rail=document.getElementById('rail');
+rail.innerHTML=P.map(([n,img,price,bens,c],i)=>`<article class="opt" style="--c:${c}"><div class="ph"><img src="assets/img/${img}" alt="${fullName(n)} artesanal Sonata"></div><div class="tx"><span class="num">${String(i+1).padStart(2,'0')}</span><h3><small>${n==='Exfoliante'?'Jabón':'Jabón de'}</small>${n}</h3><ul>${bens.slice(0,4).map(b=>`<li>${b}</li>`).join('')}</ul><div class="buy"><span class="price">$${price}</span><a class="btn" href="${wa(`Hola Sonata 🌿, quiero pedir el ${fullName(n)}`)}" target="_blank" rel="noopener">Pedir</a></div></div></article>`).join('');
+
+// ── ¿qué necesita tu piel? — filtra por palabras del texto literal de cada beneficio ──
+const NEEDS={'Hidratación':/hidrat|humedad/i,'Calma':/calm|alivi|confort|relaj|descanso|sensible/i,'Antioxidante':/antioxid|radicales|vitamina e/i,'Limpieza profunda':/limpi|impurezas|exfol/i,'Suavidad':/suave|suavi|tersa|renovada/i};
+const tabs=document.getElementById('tabs'),board=document.getElementById('board');
+function show(need){
+  tabs.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected',t.dataset.c===need));
+  const re=NEEDS[need];
+  board.innerHTML=P.filter(p=>p[3].some(b=>re.test(b))).map(([n,img,price,bens],i)=>`<div class="item" style="animation-delay:${i*0.06}s"><img src="assets/img/${img}" alt=""><h4>${fullName(n)}<small>${bens.filter(b=>re.test(b)).join(' · ')}</small></h4><span class="pr">$${price}</span></div>`).join('');
 }
+Object.keys(NEEDS).forEach(c=>{const b=document.createElement('button');b.className='tab';b.role='tab';b.dataset.c=c;b.textContent=c;b.onclick=()=>show(c);tabs.append(b);});
+show('Hidratación');
 
-// ── regalo: el lazo envuelve la foto ──
-const SR=document.getElementById('regalo'),gift=SR.querySelector('.gift'),gimg=gift.querySelector('img'),gt=SR.querySelector('.gtext p'),gh=SR.querySelector('.gtext h2');
-function sceneRegalo(p){
-  const o=eInOutCubic(prog(p,0,.35));
-  gift.style.clipPath=`inset(${lerp(50,0,o)}% ${lerp(50,0,o)}% round 32px)`;
-  gimg.style.transform=`scale(${lerp(1.4,1,eOutCubic(prog(p,0,.7)))}) rotate(${lerp(-6,0,o)}deg)`;
-  const hk=eOutBack(prog(p,.15,.4));gh.style.transform=`translateY(${(1-hk)*60}px)`;gh.style.opacity=clamp(hk*1.4);
-  const tk=eOutCubic(prog(p,.35,.6));gt.style.transform=`translateY(${(1-tk)*40}px)`;gt.style.opacity=tk;
-}
+// ── tickers ──
+const fill=(id,html)=>{document.getElementById(id).innerHTML=html.repeat(2);};
+fill('t1',('<span>'+P.map(p=>p[0]).join('<em>♪</em>')+'<em>♪</em></span>').repeat(2));
+fill('t2','<span>Hecho a mano<em>✦</em>Ingredientes seleccionados<em>✦</em>Procesos artesanales<em>✦</em>Empaque de regalo<em>✦</em></span>'.repeat(2));
 
-function progOf(sec){const r=sec.getBoundingClientRect();return clamp(-r.top/(r.height-innerHeight));}
-const hdr=document.getElementById('top'),SS=document.getElementById('sinfonia');let ticking=false;
-function onScroll(){if(ticking)return;ticking=true;requestAnimationFrame(()=>{ticking=false;
-  hdr.classList.toggle('solid',scrollY>40);
-  sceneSinfonia(RM?progOf(SS):progOf(SS));sceneRegalo(RM?1:progOf(SR));});}
-addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
-
-// ── texto cinético ──
+// ── texto cinético: letra por letra ──
 document.querySelectorAll('[data-kin]').forEach(el=>{
   let i=0;const walk=n=>{[...n.childNodes].forEach(c=>{
     if(c.nodeType===3){const frag=document.createDocumentFragment();
       c.textContent.split(/(\s+)/).forEach(tok=>{if(!tok)return;if(/^\s+$/.test(tok)){frag.append(' ');return;}
-        const w=document.createElement('span');w.className='w';const s=document.createElement('span');s.textContent=tok;s.style.transitionDelay=(i++*0.06)+'s';w.append(s);frag.append(w);});
+        const w=document.createElement('span');w.className='w';
+        [...tok].forEach(ch=>{const s=document.createElement('span');s.className='ch';s.textContent=ch;s.style.transitionDelay=(i++*0.025)+'s';w.append(s);});
+        frag.append(w);});
       c.replaceWith(frag);}else walk(c);});};walk(el);
 });
-function revealHero(){document.querySelectorAll('.hero .kin,.hero .fade,#orbit').forEach((e,i)=>setTimeout(()=>e.classList.add('in'),i*140));}
+
+// ── intro ──
+function revealHero(){document.querySelectorAll('.hero .kin,.hero .fade,#blob').forEach((e,i)=>setTimeout(()=>e.classList.add('in'),i*130));}
 const intro=document.getElementById('intro');
-if(RM){intro.remove();revealHero();}else setTimeout(()=>{intro.classList.add('out');setTimeout(revealHero,250);setTimeout(()=>intro.remove(),1200);},1900);
+if(RM){intro.remove();revealHero();}
+else setTimeout(()=>{intro.classList.add('out');setTimeout(revealHero,380);setTimeout(()=>intro.remove(),1400);},1600);
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.2});
-document.querySelectorAll('.kin,.fade,.pr').forEach(e=>{if(!e.closest('.hero'))io.observe(e);});
+document.querySelectorAll('.kin,.fade,.gallery figure,#blob2').forEach(e=>{if(!e.closest('.hero'))io.observe(e);});
 
-// ── ticker ──
-document.getElementById('t1').innerHTML=('<span>'+P.map(p=>p[0]).join('<i>♪</i>')+'<i>♪</i></span>').repeat(4);
+// ── ESCENA "jabón": foto entra, líneas se dibujan, etiquetas rebotan ──
+const SJ=document.getElementById('jabon'),sj={frame:SJ.querySelector('.frame'),pic:SJ.querySelector('.pic'),bg:SJ.querySelector('.bgword'),svg:SJ.querySelector('svg.lines'),lbls:[...SJ.querySelectorAll('.lbl')],title:SJ.querySelector('.title'),bar:SJ.querySelector('.prog i')};
+const fx=x=>(x+60)/220*100, fy=y=>(y+30)/160*100;
+sj.lbls.forEach(l=>{
+  const [ax,ay]=l.dataset.at.split(',').map(Number),[tx,ty]=((innerWidth<760&&l.dataset.tom)||l.dataset.to).split(',').map(Number);
+  l._a=[ax,ay];l._t=[tx,ty];
+  const ln=document.createElementNS('http://www.w3.org/2000/svg','line');ln.setAttribute('x1',fx(ax));ln.setAttribute('y1',fy(ay));ln.setAttribute('x2',fx(ax));ln.setAttribute('y2',fy(ay));ln.setAttribute('vector-effect','non-scaling-stroke');
+  const dot=document.createElementNS('http://www.w3.org/2000/svg','circle');dot.setAttribute('cx',fx(ax));dot.setAttribute('cy',fy(ay));dot.setAttribute('r','.6');
+  sj.svg.append(ln,dot);l._ln=ln;l._dot=dot;
+  l.style.left=tx+'%';l.style.top=ty+'%';
+});
+function sceneJabon(p){
+  const k=eOutBack(prog(p,0,.22),1.2);
+  sj.frame.style.transform=`translateY(${(1-k)*40}svh) rotate(${lerp(-8,0,k)}deg) scale(${lerp(.6,1,k)*lerp(1,1.04,prog(p,.3,1))})`;
+  sj.pic.style.clipPath=`inset(${lerp(50,0,eOutCubic(prog(p,0,.2)))}% round 28px)`;
+  sj.bg.style.transform=`translateX(${lerp(30,-60,p)}%)`;
+  sj.lbls.forEach((l,i)=>{
+    const a=.24+i*.13, lk=eInOutCubic(prog(p,a,a+.08)), bk=eOutBack(prog(p,a+.06,a+.14),2);
+    l._ln.setAttribute('x2',fx(lerp(l._a[0],l._t[0],lk)));l._ln.setAttribute('y2',fy(lerp(l._a[1],l._t[1],lk)));l._ln.style.opacity=lk>0?1:0;
+    l._dot.style.opacity=clamp(lk*4);
+    l.style.opacity=clamp(bk*1.5);
+    l.style.transform=`translate(-50%,-50%) scale(${lerp(.2,1,bk)}) rotate(${lerp(20,i%2?3:-3,bk)}deg)`;
+  });
+  const tk=eOutBack(prog(p,.8,.92));sj.title.style.opacity=clamp(tk*1.4);sj.title.style.transform=`translateY(${(1-tk)*60}px)`;
+  sj.bar.style.transform=`scaleX(${p})`;
+}
 
-// ── pentagrama del hero: 5 líneas que ondulan (función pura de t) ──
-const sb=[...document.querySelectorAll('#staffbg path')];
-function drawStaff(t){sb.forEach((pa,k)=>{let d='';for(let x=0;x<=1440;x+=40){const y=20+k*28+Math.sin(x*.004+t*.8+k*.25)*18+Math.sin(x*.011-t*.5)*5;d+=(x?'L':'M')+x+' '+y.toFixed(1);}pa.setAttribute('d',d);});}
+// ── ESCENA "catálogo": el scroll vertical mueve el riel de 10 jabones ──
+const SC=document.getElementById('catalogo'),opts=[...rail.children],cnt=document.getElementById('cnt');
+function sceneCatalogo(p){
+  const max=rail.scrollWidth-innerWidth;const k=eInOutCubic(prog(p,.03,.97));
+  rail.style.transform=`translateX(${-max*k}px)`;
+  let best=0,bd=9;
+  opts.forEach((o,i)=>{const c=(o.offsetLeft-max*k+o.offsetWidth/2)/innerWidth-.5;
+    if(Math.abs(c)<bd){bd=Math.abs(c);best=i;}
+    o.querySelector('.ph img').style.transform=`scale(1.12) translateX(${c*-8}%)`;
+    o.style.transform=`rotate(${c*-4}deg) scale(${1-Math.min(Math.abs(c),1)*.08})`;});
+  cnt.textContent=String(best+1).padStart(2,'0');
+}
 
-// ── burbujas de jabón iridiscentes (canvas): cada burbuja = función pura de t + semilla ──
-function bubbleField(cv,{count=26}={}){
+function progOf(sec){const r=sec.getBoundingClientRect();return clamp(-r.top/(r.height-innerHeight));}
+const hdr=document.getElementById('top');let ticking=false;
+function onScroll(){if(ticking)return;ticking=true;requestAnimationFrame(()=>{ticking=false;
+  hdr.classList.toggle('solid',scrollY>40);
+  sceneJabon(RM?1:progOf(SJ));sceneCatalogo(RM?0:progOf(SC));});}
+addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
+
+// ── burbujas de jabón + pétalos y notas (canvas): cada partícula = función pura de t + semilla ──
+function bubbleField(cv,{count=40}={}){
   const c=cv.getContext('2d');let W,H;
   const rnd=(i,k)=>{const x=Math.sin(i*127.1+k*311.7)*43758.5453;return x-Math.floor(x);};
-  const B=[...Array(count)].map((_,i)=>({x:rnd(i,1),sp:.012+rnd(i,2)*.03,r:10+rnd(i,3)*rnd(i,3)*58,ph:rnd(i,4),sw:20+rnd(i,5)*50,hue:rnd(i,6)*360}));
+  const COLS=['#ec9aab','#b394e6','#e3bb72','#f7c7cf','#f6e7dc'];
+  const P=[...Array(count)].map((_,i)=>{const r=rnd(i,9);return{kind:r<.45?'bub':r<.8?'petal':'note',x:rnd(i,1),sp:.014+rnd(i,2)*.035,sz:.6+rnd(i,3)*1.1,ph:rnd(i,4),sw:16+rnd(i,5)*40,rot:rnd(i,6)*6,vr:(rnd(i,7)-.5)*1.6,col:COLS[Math.floor(rnd(i,8)*COLS.length)],hue:rnd(i,10)*360,g:['♪','♫','♩'][Math.floor(rnd(i,11)*3)]};});
   const size=()=>{const d=Math.min(devicePixelRatio||1,2);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*d;cv.height=H*d;c.setTransform(d,0,0,d,0,0);};
   size();addEventListener('resize',size);
   let vis=true;new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(cv);
   const draw=t=>{c.clearRect(0,0,W,H);
-    B.forEach(b=>{const k=(t*b.sp+b.ph)%1,y=H+b.r-k*(H+2*b.r),x=W*b.x+Math.sin(t*.7+b.ph*10)*b.sw,a=Math.sin(Math.PI*k)*.9,wob=1+.04*Math.sin(t*3+b.ph*20);
-      c.save();c.translate(x,y);c.scale(wob,2-wob);c.globalAlpha=a;
-      const g=c.createRadialGradient(-b.r*.3,-b.r*.3,b.r*.1,0,0,b.r);
-      const h=(b.hue+t*40)%360;
-      g.addColorStop(0,'rgba(255,255,255,.05)');g.addColorStop(.75,`hsla(${h},80%,85%,.12)`);g.addColorStop(.92,`hsla(${(h+90)%360},70%,75%,.35)`);g.addColorStop(1,'rgba(255,255,255,0)');
-      c.fillStyle=g;c.beginPath();c.arc(0,0,b.r,0,7);c.fill();
-      c.strokeStyle=`hsla(${(h+180)%360},60%,70%,.35)`;c.lineWidth=1;c.stroke();
-      c.fillStyle='rgba(255,255,255,.85)';c.beginPath();c.ellipse(-b.r*.42,-b.r*.42,b.r*.16,b.r*.08,-.8,0,7);c.fill();
-      c.restore();});
+    [[.82,.28,'236,154,171'],[.12,.8,'179,148,230']].forEach(([gx,gy,rgb],j)=>{const r=Math.max(W,H)*(.42+.04*Math.sin(t*.8+j*2));const g=c.createRadialGradient(W*gx,H*gy,0,W*gx,H*gy,r);g.addColorStop(0,`rgba(${rgb},.15)`);g.addColorStop(1,`rgba(${rgb},0)`);c.fillStyle=g;c.fillRect(0,0,W,H);});
+    P.forEach(p=>{
+      if(p.kind==='bub'){ // burbujas suben
+        const k=(t*p.sp+p.ph)%1,R=8+p.sz*30,y=H+R-k*(H+2*R),x=W*p.x+Math.sin(t*.7+p.ph*10)*p.sw,a=Math.sin(Math.PI*k)*.85,w=1+.04*Math.sin(t*3+p.ph*20);
+        c.save();c.translate(x,y);c.scale(w,2-w);c.globalAlpha=a;const h=(p.hue+t*40)%360;
+        const g=c.createRadialGradient(-R*.3,-R*.3,R*.1,0,0,R);g.addColorStop(0,'rgba(255,255,255,.03)');g.addColorStop(.75,`hsla(${h},80%,80%,.10)`);g.addColorStop(.93,`hsla(${(h+90)%360},75%,75%,.38)`);g.addColorStop(1,'rgba(255,255,255,0)');
+        c.fillStyle=g;c.beginPath();c.arc(0,0,R,0,7);c.fill();c.strokeStyle=`hsla(${(h+180)%360},70%,80%,.3)`;c.lineWidth=1;c.stroke();
+        c.fillStyle='rgba(255,255,255,.8)';c.beginPath();c.ellipse(-R*.42,-R*.42,R*.16,R*.08,-.8,0,7);c.fill();c.restore();
+      }else{ // pétalos y notas caen girando
+        const k=(t*p.sp*.8+p.ph)%1,y=-30+k*(H+60),x=W*p.x+Math.sin(t*.9+p.ph*12)*p.sw;
+        c.save();c.translate(x,y);c.rotate(p.rot+t*p.vr);c.globalAlpha=.8*Math.sin(Math.PI*k);c.fillStyle=p.col;
+        if(p.kind==='petal'){const s=7*p.sz;c.beginPath();c.ellipse(0,0,s*1.5,s*.7,0,0,7);c.fill();}
+        else{c.font=`${14+p.sz*12}px Poppins, sans-serif`;c.textAlign='center';c.fillText(p.g,0,0);}
+        c.restore();}
+    });
   };
-  if(RM){draw(5);return;}
+  if(RM){draw(4);return;}
   const loop=n=>{if(vis)draw(n/1000);requestAnimationFrame(loop);};requestAnimationFrame(loop);
 }
-bubbleField(document.getElementById('bubbles'),{count:24});
-bubbleField(document.getElementById('bubbles2'),{count:18});
-if(RM)drawStaff(0);else{const sl=n=>{drawStaff(n/1000);requestAnimationFrame(sl);};requestAnimationFrame(sl);}
+bubbleField(document.getElementById('bubbles'),{count:56});
+bubbleField(document.getElementById('bubbles2'),{count:40});
 </script>
 </body>
 </html>
