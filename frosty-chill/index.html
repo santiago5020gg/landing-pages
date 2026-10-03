@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Frosty &amp; Chill · Panamá</title>
-<meta name="description" content="Frosty & Chill Panamá — Refrescos, postres y hamburguesas. Del antojo al chill perfecto. Plaza Balboa y San Antonio, lunes a domingo de 4:00 pm a 11:00 pm.">
+<meta name="description" content="Frosty & Chill Panamá — Refrescos, postres y hamburguesas. Del antojo al chill perfecto. Plaza Balboa, lunes a domingo de 4:00 pm a 11:00 pm.">
 <link rel="icon" href="assets/img/avatar.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&display=swap" rel="stylesheet">
@@ -104,23 +104,26 @@ header .btn{padding:10px 18px;font-size:12px}
 .ticker.dk span{color:var(--cyan);font-size:clamp(20px,2.4vw,32px)}
 .ticker.dk span em{color:var(--pink)}
 
-/* ── escena fijada: anatomía del postre ── */
+/* ── escena: anatomía de la Supremacy Burger ── */
 .pin{position:relative}
 .pin .stage{position:sticky;top:0;height:100svh;overflow:hidden}
-#postre{height:380vh}
-#postre .stage{display:grid;place-items:center}
-#postre .bgword{position:absolute;font-weight:900;font-style:italic;font-size:clamp(120px,22vw,360px);letter-spacing:-.06em;line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(255,61,154,.28);white-space:nowrap;will-change:transform}
-#postre .frame{position:relative;height:min(74svh,640px);aspect-ratio:3/4;will-change:transform}
-#postre .frame .pic{position:absolute;inset:0;border-radius:28px;overflow:hidden;will-change:clip-path}
-#postre .frame .pic img{width:100%;height:100%;object-fit:cover}
-#postre svg.lines{position:absolute;inset:-30% -60%;width:220%;height:160%;overflow:visible;pointer-events:none}
-#postre svg.lines line{stroke:var(--ink);stroke-width:2}
-#postre svg.lines circle{fill:var(--yellow)}
-#postre .lbl{position:absolute;white-space:nowrap;font-weight:900;font-size:clamp(18px,2vw,28px);text-transform:uppercase;letter-spacing:-.01em;padding:8px 16px;border-radius:999px;will-change:transform,opacity;opacity:0}
-#postre .lbl.a{background:var(--pink);color:#fff} #postre .lbl.b{background:var(--cyan);color:#06191a} #postre .lbl.c{background:var(--yellow);color:#1b1300} #postre .lbl.d{background:var(--ink);color:var(--bg)}
-#postre .title{position:absolute;left:0;right:0;bottom:6svh;text-align:center;z-index:3;will-change:transform,opacity}
-#postre .title h3{font-weight:900;font-size:clamp(26px,3.6vw,52px);letter-spacing:-.03em;line-height:1}
-#postre .title p{color:var(--mute);margin-top:8px;font-size:15px}
+#estrella{height:380vh}
+#estrella .stage{display:grid;place-items:center}
+#estrella[data-callouts=auto]{height:auto}
+#estrella[data-callouts=auto] .stage{position:relative;height:100svh}
+#estrella[data-callouts=auto] .prog{display:none}
+#estrella .bgword{position:absolute;font-weight:900;font-style:italic;font-size:clamp(120px,22vw,360px);letter-spacing:-.06em;line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(255,61,154,.28);white-space:nowrap;will-change:transform}
+#estrella .frame{position:relative;height:min(74svh,640px);aspect-ratio:3/4;will-change:transform}
+#estrella .frame .pic{position:absolute;inset:0;border-radius:28px;overflow:hidden;will-change:clip-path}
+#estrella .frame .pic img{width:100%;height:100%;object-fit:cover}
+#estrella svg.lines{position:absolute;inset:-30% -60%;width:220%;height:160%;overflow:visible;pointer-events:none}
+#estrella svg.lines line{stroke:var(--ink);stroke-width:2}
+#estrella svg.lines circle{fill:var(--yellow)}
+#estrella .lbl{position:absolute;white-space:nowrap;font-weight:900;font-size:clamp(18px,2vw,28px);text-transform:uppercase;letter-spacing:-.01em;padding:8px 16px;border-radius:999px;will-change:transform,opacity;opacity:0}
+#estrella .lbl.a{background:var(--pink);color:#fff} #estrella .lbl.b{background:var(--cyan);color:#06191a} #estrella .lbl.c{background:var(--yellow);color:#1b1300} #estrella .lbl.d{background:var(--ink);color:var(--bg)}
+#estrella .title{position:absolute;left:0;right:0;bottom:6svh;text-align:center;z-index:3;will-change:transform,opacity}
+#estrella .title h3{font-weight:900;font-size:clamp(26px,3.6vw,52px);letter-spacing:-.03em;line-height:1}
+#estrella .title p{color:var(--mute);margin-top:8px;font-size:15px}
 .prog{position:absolute;left:4vw;right:4vw;top:80px;height:3px;border-radius:3px;background:var(--line);z-index:4}
 .prog i{position:absolute;inset:0;border-radius:3px;background:linear-gradient(90deg,var(--pink),var(--cyan));transform-origin:left;transform:scaleX(0)}
 
@@ -139,6 +142,24 @@ header .btn{padding:10px 18px;font-size:12px}
 .opt h3{font-weight:900;font-size:clamp(26px,2.8vw,40px);line-height:1;letter-spacing:-.03em;text-transform:uppercase}
 .opt p{color:var(--mute);line-height:1.6;font-size:15px}
 .opt .new{align-self:flex-start;font-size:11px;font-weight:900;letter-spacing:.2em;background:var(--yellow);color:#1b1300;padding:6px 10px;border-radius:8px}
+
+/* ── modos del riel (data-riel): fijado = el scroll vertical lo mueve · carrusel = el visitante lo desliza · vertical = tarjetas una debajo de otra ── */
+.rnav{display:none}
+[data-riel=carrusel],[data-riel=vertical]{height:auto!important}
+[data-riel=carrusel] .stage,[data-riel=vertical] .stage{position:relative!important;height:auto!important;overflow:visible!important;padding:clamp(90px,10vw,130px) 0 0!important}
+[data-riel=carrusel] .rail{width:auto!important;transform:none!important;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding-inline:4vw;scrollbar-width:none;padding-top:24px;padding-bottom:30px;cursor:grab}
+[data-riel=carrusel] .rail::-webkit-scrollbar{display:none}
+[data-riel=carrusel] .rail>*{scroll-snap-align:center}
+[data-riel=carrusel] .rail::after{content:"";flex:0 0 1px}
+[data-riel=carrusel] .rnav{display:flex;align-items:center;justify-content:center;gap:16px;padding:6px 4vw 0;color:var(--mute);font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.rnav button{width:52px;height:52px;border-radius:50%;border:1.5px solid var(--line);font-size:20px;font-weight:900;transition:transform .4s var(--pop),background .3s,color .3s}
+.rnav button:hover{transform:scale(1.1);background:var(--pink);color:#fff;border-color:var(--pink)}
+.rnav button:disabled{opacity:.3;pointer-events:none}
+[data-riel=vertical] .count{display:none}
+[data-riel=vertical] .rail{width:auto!important;transform:none!important;flex-direction:column;align-items:center;gap:clamp(56px,7vw,90px);padding-top:30px}
+[data-riel=vertical] .rail>*{opacity:0;transform:translateY(80px) rotate(-3deg) scale(.94);transition:transform 1s var(--pop),opacity .6s var(--out)}
+[data-riel=vertical] .rail>*.in{opacity:1;transform:rotate(var(--tilt,0deg))}
+@media (min-width:1021px){[data-riel=vertical] .rail>*:nth-child(odd){align-self:flex-start;--tilt:-1.5deg}[data-riel=vertical] .rail>*:nth-child(even){align-self:flex-end;--tilt:1.5deg}}
 
 /* ── menú con pestañas ── */
 section.block{padding:clamp(90px,12vw,150px) 0}
@@ -187,7 +208,7 @@ section.block{padding:clamp(90px,12vw,150px) 0}
 .hours{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin:30px 0 50px}
 .hours span{font-weight:800;font-size:15px;padding:10px 18px;border-radius:999px;background:var(--bg2);border:1px solid var(--line)}
 .hours span b{color:var(--cyan)}
-.sedes{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.sedes{display:grid;grid-template-columns:minmax(0,560px);justify-content:center;gap:20px}
 .sede{position:relative;border-radius:28px;padding:34px;background:var(--bg2);border:1px solid var(--line);overflow:hidden}
 .sede::before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-80px;top:-80px;background:var(--pink);opacity:.16;filter:blur(30px);transition:transform 1s var(--out)}
 .sede:nth-child(2)::before{background:var(--cyan)}
@@ -231,8 +252,8 @@ footer .soc svg{width:18px;height:18px}
   .hero .wrap{grid-template-columns:1fr;gap:40px}
   .blobwrap{width:min(300px,78vw);order:-1}
   .sticker.s1{left:-4%} .sticker.s2{right:-4%}
-  #postre .frame{height:min(56svh,520px)}
-  #postre .lbl{font-size:15px;padding:6px 12px}
+  #estrella .frame{height:min(56svh,520px)}
+  #estrella .lbl{font-size:15px;padding:6px 12px}
   .opt{width:84vw;height:min(68svh,600px);grid-template-columns:1fr;grid-template-rows:46% 1fr}
   .opt .tx{gap:8px;padding:20px}
   .opt .num{font-size:64px;position:absolute;top:14px;right:18px;-webkit-text-stroke-width:2px;text-shadow:0 2px 20px #000}
@@ -261,7 +282,7 @@ footer .soc svg{width:18px;height:18px}
 <header id="top">
   <div class="wrap">
     <a class="brand" href="#"><img src="assets/img/avatar.jpg" alt="Logo Frosty &amp; Chill">Frosty &amp; Chill</a>
-    <nav><a href="#postre">Postres</a><a href="#elige">Favoritos</a><a href="#menu">Menú</a><a href="#sedes">Sedes</a></nav>
+    <nav><a href="#estrella">Supremacy</a><a href="#elige">Favoritos</a><a href="#menu">Menú</a><a href="#sedes">Ubicación</a></nav>
     <a class="btn" href="https://ig.me/m/frosty.chillpty" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/></svg><span>Escríbenos</span></a>
   </div>
 </header>
@@ -281,8 +302,8 @@ footer .soc svg{width:18px;height:18px}
       </div>
     </div>
     <div class="blobwrap" id="blob">
-      <div class="blob"><img src="assets/img/sundae.jpg" alt="Fresas con crema, queso y churros de Frosty & Chill"></div>
-      <span class="sticker s1">Fresas con crema 🍓</span>
+      <div class="blob"><img src="assets/img/burger-supremacy.jpg" alt="Supremacy Burger de Frosty & Chill" style="object-position:25% 50%"></div>
+      <span class="sticker s1">Supremacy Burger 🍔</span>
       <span class="sticker s2"><b>4PM</b>a 11PM</span>
       <span class="sticker s3">🛵 En PedidosYa</span>
     </div>
@@ -295,41 +316,42 @@ footer .soc svg{width:18px;height:18px}
   <svg class="drip" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0h1440v10c-30 0-40 40-70 40s-30-35-60-35-40 50-70 50-30-45-70-45-40 25-70 25-30-35-70-35-40 55-80 55-30-50-70-50-40 30-70 30-30-40-70-40-40 35-70 35-40-25-70-25-30 45-80 45-30-40-70-40-30 20-60 20-40-35-70-35-30 35-70 35-30-30-50-30z"/></svg>
 </div>
 
-<!-- POSTRE · anatomía (escena fijada) -->
-<section class="pin" id="postre">
+<!-- ESTRELLA · anatomía de la Supremacy Burger (callouts auto) -->
+<section class="pin" id="estrella" data-callouts="auto"><!-- data-callouts: auto (se reproduce sola, rápido, al llegar) | scroll (el scroll es la línea de tiempo) -->
   <div class="stage">
     <div class="prog"><i></i></div>
-    <div class="bgword">Explosión de sabores</div>
+    <div class="bgword">Supremacy</div>
     <div class="frame">
-      <div class="pic"><img src="assets/img/sundae.jpg" alt="Fresas con crema, queso y churros"></div>
+      <div class="pic"><img src="assets/img/burger-supremacy.jpg" alt="Supremacy Burger con papas western" style="object-position:25% 50%"></div>
       <svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg>
-      <span class="lbl a" data-at="48,12" data-to="-24,14" data-tom="22,4">Fresas 🍓</span>
-      <span class="lbl b" data-at="22,52" data-to="-26,56" data-tom="16,70">Crema</span>
-      <span class="lbl c" data-at="42,42" data-to="118,30" data-tom="80,28">Queso</span>
-      <span class="lbl d" data-at="80,55" data-to="118,74" data-tom="80,84">Churros</span>
+      <span class="lbl a" data-at="82,51" data-to="118,32" data-tom="78,30">Queso frito</span>
+      <span class="lbl b" data-at="22,68" data-to="-26,66" data-tom="22,90">Carne angus</span>
+      <span class="lbl c" data-at="41,50" data-to="-24,30" data-tom="24,8">Cheddar</span>
+      <span class="lbl d" data-at="40,78" data-to="118,80" data-tom="76,92">Lechuga</span>
     </div>
-    <div class="title"><h3>Fresas con crema, <span class="p">queso</span> y <span class="c">churros</span></h3><p>“Lunes de explosión de sabores” 🍓🧀</p></div>
+    <div class="title"><h3><span class="p">Supremacy</span> <span class="c">Burger</span></h3><p>Bacon, queso frito, carne angus, cheddar, plátano maduro y la grandiosa salsa de la casa 🍔</p></div>
   </div>
 </section>
 
-<!-- ELIGE (escena horizontal fijada) -->
-<section class="pin" id="elige">
+<!-- ELIGE (riel de productos) -->
+<section class="pin" id="elige" data-riel="carrusel"><!-- data-riel: carrusel (por defecto) | fijado | vertical -->
   <div class="stage">
     <div class="head"><h2 class="kin" data-kin>¿Qué opción <span class="c">eliges hoy?</span></h2></div>
     <div class="rail">
       <article class="opt">
-        <div class="ph"><img src="assets/img/burger-supremacy.jpg" alt="Supremacy Burger con papas western"></div>
-        <div class="tx"><span class="num">01</span><span class="new">NUEVA</span><h3>Supremacy Burger</h3><p>Bacon, queso frito, carne angus, lechuga, cebolla, queso cheddar, plátano maduro y la grandiosa salsa de la casa. Acompáñala con papas francesas o western.</p></div>
+        <div class="ph"><img src="assets/img/salchipapa.jpg" alt="Salchipapa Queen"></div>
+        <div class="tx"><span class="num">01</span><span class="new">PARA COMPARTIR</span><h3>Salchipapa Queen</h3><p>Papas francesas, salchichas, tocineta, queso fundido, maíz, plátano maduro, pollo, carne mechada, chicharrón y salsas de la casa.</p></div>
       </article>
       <article class="opt">
         <div class="ph"><img src="assets/img/supremo-cerdo.jpg" alt="Supremo de cerdo con patacones y ensalada"></div>
         <div class="tx"><span class="num">02</span><span class="new">NEW</span><h3>Supremo de cerdo</h3><p>Puerco a la plancha con chimichurri de la casa. Acompáñalo con patacones, yuca frita o papas fritas y ensalada.</p></div>
       </article>
       <article class="opt">
-        <div class="ph"><img src="assets/img/salchipapa.jpg" alt="Salchipapa Sin Nombre"></div>
-        <div class="tx"><span class="num">03</span><span class="new">PARA COMPARTIR</span><h3>Salchipapa “Sin Nombre”</h3><p>Papas francesas, salchichas, tocineta, queso fundido, maíz, plátano maduro, pollo, carne mechada, chicharrón y salsas de la casa.</p></div>
+        <div class="ph"><img src="assets/img/sundae.jpg" alt="Fresas con crema, queso y churros"></div>
+        <div class="tx"><span class="num">03</span><span class="new">POSTRE</span><h3>Fresas con crema</h3><p>Fresas con crema acompañadas de queso y churros. “Lunes de explosión de sabores” 🍓🧀</p></div>
       </article>
     </div>
+    <div class="rnav" aria-label="Ver más productos"><button type="button" data-d="-1" aria-label="Anterior">←</button><span>Desliza para ver más</span><button type="button" data-d="1" aria-label="Siguiente">→</button></div>
   </div>
 </section>
 
@@ -342,7 +364,7 @@ footer .soc svg{width:18px;height:18px}
     </div>
     <div class="tabs" role="tablist" id="tabs"></div>
     <div class="board" id="board" role="tabpanel"></div>
-    <p class="note">Ver menú completo: <a href="https://heyzine.com/flip-book/4d67999ffe.html" target="_blank" rel="noopener">Plaza Balboa</a> · <a href="https://heyzine.com/flip-book/9372d3e874.html" target="_blank" rel="noopener">San Antonio</a></p>
+    <p class="note"><a href="https://heyzine.com/flip-book/4d67999ffe.html" target="_blank" rel="noopener">Ver menú completo</a></p>
   </div>
 </section>
 
@@ -387,15 +409,6 @@ footer .soc svg{width:18px;height:18px}
         <div class="row">
           <a class="btn" href="https://maps.app.goo.gl/57Y7nuoAYeJTnhjB6" target="_blank" rel="noopener">Cómo llegar</a>
           <a class="btn ghost" href="https://heyzine.com/flip-book/4d67999ffe.html" target="_blank" rel="noopener">Menú</a>
-        </div>
-      </div>
-      <div class="sede fade">
-        <svg class="pin-ic" viewBox="0 0 24 30"><path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 30 12 30s12-9.2 12-18.1C24 5.3 18.6 0 12 0z" fill="#2fe0e6"/><circle cx="12" cy="11.5" r="4.6" fill="#07060a"/></svg>
-        <h3>San Antonio</h3>
-        <p>Ubicación en Google Maps.</p>
-        <div class="row">
-          <a class="btn cy" href="https://maps.app.goo.gl/aBF2b8qTTxbALMQG7" target="_blank" rel="noopener">Cómo llegar</a>
-          <a class="btn ghost" href="https://heyzine.com/flip-book/9372d3e874.html" target="_blank" rel="noopener">Menú</a>
         </div>
       </div>
     </div>
@@ -472,8 +485,8 @@ function show(cat){
 Object.keys(MENU).forEach(c=>{const b=document.createElement('button');b.className='tab';b.role='tab';b.dataset.c=c;b.textContent=c;b.onclick=()=>show(c);tabs.append(b);});
 show('Hamburguesas');
 
-// ── ESCENA "postre": foto entra, líneas se dibujan, etiquetas rebotan ──
-const SP=document.getElementById('postre'),sp={frame:SP.querySelector('.frame'),pic:SP.querySelector('.pic'),bg:SP.querySelector('.bgword'),svg:SP.querySelector('svg.lines'),lbls:[...SP.querySelectorAll('.lbl')],title:SP.querySelector('.title'),bar:SP.querySelector('.prog i')};
+// ── ESCENA "estrella": foto entra, líneas se dibujan, etiquetas rebotan ──
+const SP=document.getElementById('estrella'),sp={frame:SP.querySelector('.frame'),pic:SP.querySelector('.pic'),bg:SP.querySelector('.bgword'),svg:SP.querySelector('svg.lines'),lbls:[...SP.querySelectorAll('.lbl')],title:SP.querySelector('.title'),bar:SP.querySelector('.prog i')};
 // svg cubre el frame expandido: inset -30% -60% → 220% x 160%; convertir % del frame a coords 0-100 del svg
 const fx=x=>(x+60)/220*100, fy=y=>(y+30)/160*100;
 sp.lbls.forEach(l=>{
@@ -484,7 +497,7 @@ sp.lbls.forEach(l=>{
   sp.svg.append(ln,dot);l._ln=ln;l._dot=dot;
   l.style.left=tx+'%';l.style.top=ty+'%';
 });
-function scenePostre(p){
+function sceneEstrella(p){
   const k=eOutBack(prog(p,0,.22),1.2);
   sp.frame.style.transform=`translateY(${(1-k)*40}svh) rotate(${lerp(-8,0,k)}deg) scale(${lerp(.6,1,k)*lerp(1,1.04,prog(p,.3,1))})`;
   sp.pic.style.clipPath=`inset(${lerp(50,0,eOutCubic(prog(p,0,.2)))}% round 28px)`;
@@ -501,19 +514,47 @@ function scenePostre(p){
 
 // ── ESCENA "elige": el scroll vertical mueve el riel horizontal ──
 const SE=document.getElementById('elige'),rail=SE.querySelector('.rail'),opts=[...SE.querySelectorAll('.opt')];
+// modo del riel: atributo data-riel (fijado | carrusel | vertical); ?riel=… en la URL lo sobreescribe para probar
+const RIEL=new URLSearchParams(location.search).get('riel')||SE.dataset.riel||'fijado';
+SE.dataset.riel=RIEL;
+if(RIEL!=='fijado')SE.classList.remove('pin');
+if(RIEL==='carrusel'){
+  const step=()=>opts[0].offsetWidth+parseFloat(getComputedStyle(rail).columnGap||0);
+  const nav=SE.querySelectorAll('.rnav button');
+  nav.forEach(b=>b.onclick=()=>rail.scrollBy({left:step()*+b.dataset.d,behavior:'smooth'}));
+  const upd=()=>{nav[0].disabled=rail.scrollLeft<8;nav[1].disabled=rail.scrollLeft>rail.scrollWidth-rail.clientWidth-8;sceneElige(0);};
+  rail.addEventListener('scroll',()=>requestAnimationFrame(upd),{passive:true});
+  let dx=null,sl=0;rail.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;dx=e.clientX;sl=rail.scrollLeft;rail.style.scrollSnapType='none';});
+  addEventListener('pointermove',e=>{if(dx!==null)rail.scrollLeft=sl-(e.clientX-dx);});
+  addEventListener('pointerup',()=>{if(dx===null)return;dx=null;rail.style.scrollSnapType='';const i=Math.round(rail.scrollLeft/step());rail.scrollTo({left:i*step(),behavior:'smooth'});});
+  setTimeout(upd,50);
+}
+if(RIEL==='vertical'){const vio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');vio.unobserve(e.target);}}),{threshold:.25});opts.forEach(b=>vio.observe(b));}
 function sceneElige(p){
-  const max=rail.scrollWidth-innerWidth;const k=eInOutCubic(prog(p,.06,.94));
-  rail.style.transform=`translateX(${-max*k}px)`;
-  opts.forEach((o,i)=>{const c=(o.offsetLeft-max*k+o.offsetWidth/2)/innerWidth-.5; // -0.5..0.5 respecto al centro
+  if(RIEL==='vertical')return;
+  const car=RIEL==='carrusel',max=rail.scrollWidth-innerWidth,k=car?0:eInOutCubic(prog(p,.06,.94)),off=car?rail.scrollLeft:max*k;
+  if(!car)rail.style.transform=`translateX(${-off}px)`;
+  opts.forEach((o,i)=>{const c=(o.offsetLeft-off+o.offsetWidth/2)/innerWidth-.5; // -0.5..0.5 respecto al centro
     o.querySelector('.ph img').style.transform=`scale(1.12) translateX(${c*-8}%)`;
-    o.style.transform=`rotate(${c*-4}deg) scale(${1-Math.min(Math.abs(c),1)*.08})`;});
+    if(!car)o.style.transform=`rotate(${c*-4}deg) scale(${1-Math.min(Math.abs(c),1)*.08})`;});
+}
+
+// ── callouts "auto": la escena se reproduce sola (2.5 s) cuando un tercio entra en pantalla ──
+const CALL=new URLSearchParams(location.search).get('callouts')||SP.dataset.callouts||'scroll';
+SP.dataset.callouts=CALL;
+let calloutP=CALL==='auto'?0:null;
+if(CALL==='auto'){
+  const DUR=2500;
+  const play=()=>{const t0=performance.now();const tick=n=>{calloutP=clamp((n-t0)/DUR);sceneEstrella(calloutP);if(calloutP<1)requestAnimationFrame(tick);};requestAnimationFrame(tick);};
+  new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){o.disconnect();RM?sceneEstrella(1):play();}}),{threshold:.3}).observe(SP);
+  sceneEstrella(0);
 }
 
 function progOf(sec){const r=sec.getBoundingClientRect();return clamp(-r.top/(r.height-innerHeight));}
 const hdr=document.getElementById('top');let ticking=false;
 function onScroll(){if(ticking)return;ticking=true;requestAnimationFrame(()=>{ticking=false;
   hdr.classList.toggle('solid',scrollY>40);
-  scenePostre(RM?1:progOf(SP));sceneElige(RM?0:progOf(SE));});}
+  if(calloutP===null)sceneEstrella(RM?1:progOf(SP));sceneElige(RM?0:progOf(SE));});}
 addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
 
 // ── chispitas de colores (canvas): cada sprinkle = función pura de t + semilla ──
